@@ -47,7 +47,7 @@
 
 - Grégory STANKOV
   - School: HES-SO - Genève, Haute Ecole Spécialisée de Suisse occidentale - HEG 
-  - Short description: Grégory is a highly motivated software developer with 2 years of experience in IT. Grégory has a strong understanding of [skill 1], [skill 2],       and [skill 3]. Grégory is confident in his ability to contribute to the project and [looks/is looking] forward to working with the team.
+  - Short description: Grégory is a highly motivated software developer with 2 years of experience in IT. Grégory has a strong understanding of [skill 1], [skill 2], and [skill 3]. Grégory is confident in his ability to contribute to the project and [looks/is looking] forward to working with the team.
   - Skill levels:
     - Javascript
     - Vue.js
@@ -74,7 +74,7 @@
     
 
 ### Professor Responsible
-[Professor Name]
+Michael Schumacher
 
 ### Means of Communication
 [Adapt to your needs]
