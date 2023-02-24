@@ -74,7 +74,7 @@
     
 
 ### Professor Responsible
-[Professor Name]
+Michael Schumacher
 
 ### Means of Communication
 [Adapt to your needs]
