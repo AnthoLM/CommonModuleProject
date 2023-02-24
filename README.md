@@ -18,7 +18,16 @@
     - Python : Literally saw it for 45 minute total
     - Django : That's a real cool movie
     
-  - [Name 1]
+- [Name 1]
+  - School:
+  - Short description: [Name 1] is a highly motivated software developer with [X years/months] of experience in [related technology/field]. [He/She] has a strong understanding of [skill 1], [skill 2], and [skill 3]. [Name 1] is confident in [his/her] ability to contribute to the project and [looks/is looking] forward to working with the team.
+  - Skill levels:
+    - Javascript
+    - Vue.js
+    - Python
+    - Django
+    
+- [Name 1]
   - School:
   - Short description: [Name 1] is a highly motivated software developer with [X years/months] of experience in [related technology/field]. [He/She] has a strong understanding of [skill 1], [skill 2], and [skill 3]. [Name 1] is confident in [his/her] ability to contribute to the project and [looks/is looking] forward to working with the team.
   - Skill levels:
