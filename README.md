@@ -2,7 +2,7 @@
 
 ## Team
 - Nemo Vollert
-- Anthony Le Meillour
+- Anthony Lemeillour
 - Christophe Berger
 - Gregory Stankov
 - Benoit Bonvin
@@ -44,10 +44,19 @@
     - Vue.js
     - Python
     - Django
-    
+
 - [Name 1]
   - School:
   - Short description: [Name 1] is a highly motivated software developer with [X years/months] of experience in [related technology/field]. [He/She] has a strong understanding of [skill 1], [skill 2], and [skill 3]. [Name 1] is confident in [his/her] ability to contribute to the project and [looks/is looking] forward to working with the team.
+  - Skill levels:
+    - Javascript
+    - Vue.js
+    - Python
+    - Django
+    
+- Benoit Bonvin
+  - School:
+  - Short description: Benoit is a highly motivated software developer with 2 years of experience in IT. He has a strong understanding of Javascript, Python, and PHP.  Benoit is confident in his ability to contribute to the project and is looking forward to working with the team.
   - Skill levels:
     - Javascript
     - Vue.js
@@ -65,7 +74,7 @@
     
 
 ### Professor Responsible
-- 
+[Professor Name]
 
 ### Means of Communication
 [Adapt to your needs]
