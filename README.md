@@ -1,6 +1,12 @@
-# Project [NAME]
+# Project Fennec
 
 ## Team
+- Nemo Vollert
+- Anthony Lemeillour
+- Christophe Berger
+- Gregory Stankov
+- Benoit Bonvin
+- Ricardo-Miguel Almeida Santos
 
 ### Members
 - [Name 1]
