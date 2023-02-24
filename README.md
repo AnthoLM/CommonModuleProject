@@ -2,7 +2,7 @@
 
 ## Team
 - Nemo Vollert
-- Anthony Lemeillour
+- Anthony Le Meillour
 - Christophe Berger
 - Gregory Stankov
 - Benoit Bonvin
