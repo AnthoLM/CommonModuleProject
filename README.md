@@ -69,9 +69,9 @@ Michael Schumacher
 ### Means of Communication
 [Adapt to your needs]
 - [Teams](https://teams.microsoft.com/l/team/19%3ajm4VyNKKk_l-duXbNetcjXE8cco0EGKKDD_oz2Pl5DQ1%40thread.tacv2/conversations?groupId=75ea3a7c-2843-4595-b17b-289de91de09e&tenantId=a372f724-c0b2-4ea0-abfb-0eb8c6f84e40) for general and quick discussions
-- [GitHub Issues](https://github.com/heg-interschool/project-[groupename]/issues) for project-related discussions and bug tracking
+- [GitHub Issues](https://github.com/heg-interschool/project-fennec/issues) for project-related discussions and bug tracking
 
 ## Mockups
 
-Attach or add a link to the project mockups in this section.
+Our mockups can be found one [this OneNote](https://hessoit.sharepoint.com/:o:/s/2023-65-41Inter-schoolSoftware-GrF/EjoY0racLiFKil18lKDJDoMBkYBlCuV4gQypUHV9tbV4CA?email=nemo.vollert%40he-arc.ch&e=lnok30)
 
