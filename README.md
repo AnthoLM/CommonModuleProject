@@ -11,7 +11,7 @@
 ### Members
 - Nemo Vollert
   - School: He-Arc Neuchâtel
-  - Short description: Nemo is a highly motivated software developer with a year and a half of experience in [related technology/field]. He has a strong understanding of being a little lazy, taking a nap, and turning off my computer. Nemo is confident in his ability to contribute to the project and is looking forward to working with the team.
+  - Short description: Nemo is a highly motivated software developer with a year and a half of experience in computer. He has a strong understanding of being a little lazy, taking a nap, and turning off my computer. Nemo is confident in his ability to contribute to the project and is looking forward to working with the team.
   - Skill levels:
     - Javascript : A little bit
     - Vue.js : Blorbo-level
@@ -73,5 +73,5 @@ Michael Schumacher
 
 ## Mockups
 
-Our mockups can be found one [this OneNote](https://hessoit.sharepoint.com/:o:/s/2023-65-41Inter-schoolSoftware-GrF/EjoY0racLiFKil18lKDJDoMBkYBlCuV4gQypUHV9tbV4CA?email=nemo.vollert%40he-arc.ch&e=lnok30)
+Our mockups can be found on [this OneNote](https://hessoit.sharepoint.com/:o:/s/2023-65-41Inter-schoolSoftware-GrF/EjoY0racLiFKil18lKDJDoMBkYBlCuV4gQypUHV9tbV4CA?email=nemo.vollert%40he-arc.ch&e=lnok30)
 
