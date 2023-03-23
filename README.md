@@ -3,7 +3,6 @@
 ## Team
 - Nemo Vollert
 - Anthony Lemeillour
-- Christophe Berger
 - Gregory Stankov
 - Benoit Bonvin
 - Ricardo-Miguel Almeida Santos
@@ -54,14 +53,6 @@
     - Python
     - Assembly
 
-- [Name 1]
-  - School:
-  - Short description: [Name 1] is a highly motivated software developer with [X years/months] of experience in [related technology/field]. [He/She] has a strong understanding of [skill 1], [skill 2], and [skill 3]. [Name 1] is confident in [his/her] ability to contribute to the project and [looks/is looking] forward to working with the team.
-  - Skill levels:
-    - Javascript
-    - Vue.js
-    - Python
-    - Django
 
 ### Professor Responsible
 Michael Schumacher
