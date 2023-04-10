@@ -4,7 +4,7 @@ import router from './router'
 import "bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@fortawesome/fontawesome-free/css/all.min.css";
-import "bootswatch/dist/morph/bootstrap.min.css";
+import "bootswatch/dist/litera/bootstrap.min.css";
 
 
 
