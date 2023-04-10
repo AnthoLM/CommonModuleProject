@@ -34,3 +34,8 @@ npm run build
 npm run lint
 ```
 
+---
+# Info for others
+
+Hey this is the basic version of a Vue.js Project once initialised. 
+It's simple and right now I'll shape it into a basic version of what our mock-up look like so we have something to refer. 
