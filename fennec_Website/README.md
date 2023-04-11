@@ -38,4 +38,7 @@ npm run lint
 # Info for others
 
 Hey this is the basic version of a Vue.js Project once initialised. 
-It's simple and right now I'll shape it into a basic version of what our mock-up look like so we have something to refer. 
+It's simple and right now I'll shape it into a basic version of what our mock-up look like so we have something to refer to while working on it.
+
+**Important, if you want to use npm type commands after you just launched the project, you need to first get into the "fennec_website" folder with a cd, or the commands won't work.**
+

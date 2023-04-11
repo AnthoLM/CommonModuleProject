@@ -16,10 +16,10 @@
               <router-link class="nav-link active" to="/">Events</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link active" to="/">Places</router-link>
+              <router-link class="nav-link active" to="/">Places(not done yet)</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link active" to="/">Create your own event !</router-link>
+              <router-link class="nav-link active" to="/">Create your own event !(not done yet)</router-link>
             </li>
           </ul>
           <form class="d-flex" role="search">
