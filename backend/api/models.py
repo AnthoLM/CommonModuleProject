@@ -15,6 +15,7 @@ class Event(models.Model):
     EventCategory = models.ForeignKey('EventCategory', on_delete=models.CASCADE, null=True) #Will probably need a related name
     owner = models.ForeignKey('auth.User', related_name='events', on_delete=models.CASCADE, null=True) # One to many relationship (One user can have many events)
     #This need works and can not be used as is. 
+    #The owner field actually doesn't work because the user is not logged in when the event is created.
     
     class Meta:
         ordering = ['dateDebut']
