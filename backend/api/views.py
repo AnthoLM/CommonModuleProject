@@ -1,15 +1,12 @@
-#from django.shortcuts import render
-from rest_framework import viewsets
-from .models import Event, AgeCategory, EventCategory
-from .serializers import EventSerializer, AgeCategorySerializer, EventCategorySerializer
-#from rest_framework import generics
-#from rest_framework.decorators import action
+from api.models import Event, AgeCategory, EventCategory
+from api.serializers import EventCategorySerializer, AgeCategorySerializer, EventSerializer
+from rest_framework import generics
+from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.decorators import api_view
 from rest_framework.reverse import reverse
 #Not sure all those imports are needed but the tutorial used them at some points and I don't have the brain to know which one does what. 
-#I've commented the ones I'm not sure about.
 #I'm purposedly typing long sentences because otherwise it's all copilote writing for me and I hate it. 
 
 # Create your views here.
@@ -17,10 +14,9 @@ from rest_framework.reverse import reverse
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        
         'event': reverse('event-list', request=request, format=format),
-        'ageCategory': reverse('ageCategory-list', request=request, format=format),
-        'eventCategory': reverse('eventCategory-list', request=request, format=format)
+        'agecategory': reverse('agecategory-list', request=request, format=format),
+        'eventcategory': reverse('eventcategory-list', request=request, format=format)
     })
 
 
