@@ -5,6 +5,7 @@
         <div class="card-body">
             <h5 class="card-title">{{ eventPreview.title }}</h5>
             <p class="card-text">{{ eventPreview.description }}</p>
+            <p class="card-text">This event will be in : {{ eventPreview.place }}</p>
             <router-link class="nav-link" :to="{ name: 'event', params: { id: eventPreview.id } }">
                 <button type="button" class="btn btn-secondary">See this event</button>
             </router-link>
