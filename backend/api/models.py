@@ -19,6 +19,8 @@ class Event(models.Model):
     
     class Meta:
         ordering = ['dateDebut']
+    def __str__(self):
+        return self.title
 
 class AgeCategory(models.Model):
     #There is a possibility to create the categories already here and not in the admin panel, same for the event categories
@@ -27,6 +29,8 @@ class AgeCategory(models.Model):
 
     class Meta:
         ordering = ['minAge']
+    def __str__(self):
+        return self.name
 
 class EventCategory(models.Model):
     name = models.CharField(max_length=100)
@@ -34,3 +38,5 @@ class EventCategory(models.Model):
 
     class Meta:
         ordering = ['name']
+    def __str__(self):
+        return self.name
