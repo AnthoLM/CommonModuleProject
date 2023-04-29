@@ -2,7 +2,7 @@
   <header>
     <nav class="navbar navbar-expand-lg bg-light"><!--This is the navbar and since it's in app.vue, it's something that will stay in all view of our site-->
       <div class="container-fluid">
-        <Router-Link class="nav-link" to="/">
+        <Router-Link class="navbar-brand" to="/">
           <img src="img\logo_fennec.png" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
           {{ website_title }} 
         </Router-Link>
@@ -13,19 +13,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
             <li class="nav-item">
-              <router-link class="nav-link active" to="/">Events</router-link>
+              <router-link class="nav-link" to="/">Event</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link active" to="/">Places(not done yet)</router-link>
+              <router-link class="nav-link" to="/">Place</router-link>
             </li>
             <li class="nav-item">
-              <router-link class="nav-link active" to="/">Create your own event !(not done yet)</router-link>
+              <router-link class="nav-link" to="/">Create Event</router-link>
             </li>
           </ul>
-          <form class="d-flex" role="search">
+          <ul class="navbar-nav m-auto">
+            <li class="nav-item">
+              <router-link class="nav-link" to="/login">Login</router-link>
+            </li>
+          </ul>
+          <!--<form class="d-flex" role="search">
             <input class="form-control me-2" type="search" placeholder="(this doesn't work yet)" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Don't click here</button>
           </form>
+          -->
         </div>
       </div>
     </nav>
@@ -37,10 +43,12 @@
 
 <script>
 import website_title from './models/title';
+import login from './views/Login.vue'
 export default {
   data() {
     return {
       website_title,
+      login,
     }
   },
 }
