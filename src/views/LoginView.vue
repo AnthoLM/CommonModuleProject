@@ -1,8 +1,28 @@
 <template>
-  <div class="container">
-    <p>test</p>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-3"><!--EMpty on purpose--></div>
+      <div class="col text-center">
+        <div class="card mt-5 text-center border-dark" style="width: 18rem">
+          <div class="card-header">
+            <img src="@/assets/images/logo_fennec.jpg" style="width: 200px" />
+            <h1>Connexion</h1>
+          </div>
+          <div class="card-body">
+            <p class="card-text">
+              <input type="text" class="form-control" v-model="username" placeholder="username" />
+              <input type="password" class="form-control mt-2" v-model="password" placeholder="password" />
+              <input type="submit" class="mt-2 btn btn-primary" value="Login" @click="login" />
+            </p>
+          </div>
+          <div class="card-footer">
+            <p>Pas encore de compte ? Clique <router-link to="/register">ici</router-link> pour t'enregistrer !</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-3"><!--EMpty on purpose--></div>
+    </div>
   </div>
-  <p>test</p>
 </template>
 <script>
 import authService from "@/services/authService"
@@ -18,6 +38,22 @@ export default {
   computed: {
     user() {
       return authService.user.value
+    }
+  },
+  methods: {
+    login() {
+      this.loginError = ""
+      authService
+        .login({
+          username: this.username,
+          password: this.password
+        })
+        .catch((err) => {
+          this.loginError = err.response.data
+        })
+    },
+    logout() {
+      authService.logout()
     }
   }
 }
