@@ -11,12 +11,20 @@
           <div class="card-body">
             <p class="card-text">
               <input type="text" class="form-control" v-model="username" placeholder="username" />
-              <input type="password" class="form-control mt-2" v-model="password" placeholder="password" />
+              <input
+                type="password"
+                class="form-control mt-2"
+                v-model="password"
+                placeholder="password"
+              />
               <input type="submit" class="mt-2 btn btn-primary" value="Login" @click="login" />
             </p>
           </div>
           <div class="card-footer">
-            <p>Pas encore de compte ? Clique <router-link to="/register">ici</router-link> pour t'enregistrer !</p>
+            <p>
+              Pas encore de compte ? Clique <router-link to="/register">ici</router-link> pour
+              t'enregistrer !
+            </p>
           </div>
         </div>
       </div>
@@ -32,7 +40,10 @@ export default {
   data() {
     return {
       decoration,
-      test: "test"
+      test: "test",
+      password: "",
+      username: "",
+      loginError: ""
     }
   },
   computed: {
