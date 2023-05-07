@@ -7,7 +7,8 @@
     </p>
     <br />
     <div v-if="user">
-      Logged in user data: <pre>{{ user }}</pre>
+      Logged in user data:
+      <pre>{{ user }}</pre>
       <input type="submit" value="Logout" @click="logout" />
       <br />
       <p>Subject</p>
