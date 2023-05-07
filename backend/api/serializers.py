@@ -1,17 +1,20 @@
+from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from api.models import Event, AgeCategory, EventCategory
+from .models import Message
 
-class EventSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Event
-        fields = ('id', "url", 'title', 'description', 'dateDebut', 'dateFin', 'allDay', 'streetName', 'streetNumber', 'AgeCategory', 'EventCategory', 'owner')
 
-class AgeCategorySerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = AgeCategory
-        fields = ('id', "url", 'name', 'minAge')
+        model = User
+        fields = ['url', 'username', 'email', 'groups']
 
-class EventCategorySerializer(serializers.ModelSerializer):
+
+class GroupSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = EventCategory
-        fields = ('id', "url", 'name', 'description')
+        model = Group
+        fields = ['url', 'name']
+
+class MessageSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Message
+        fields = ('url', 'subject', 'body', 'pk')

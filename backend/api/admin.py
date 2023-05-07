@@ -1,8 +1,9 @@
 from django.contrib import admin
-from .models import Event, AgeCategory, EventCategory
 
-admin.site.register(Event)
-admin.site.register(AgeCategory)
-admin.site.register(EventCategory)
+from .models import Message
 
-# Register your models here.
+@admin.register(Message)
+class ModelAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'subject', 'created_at', 'updated_at')
+    list_filter = ('created_at',)
+    search_fields = ('subject', 'body')

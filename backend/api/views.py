@@ -1,58 +1,34 @@
-from api.models import Event, AgeCategory, EventCategory
-from api.serializers import EventCategorySerializer, AgeCategorySerializer, EventSerializer
-from rest_framework import generics
-from rest_framework.decorators import action
-from rest_framework.response import Response
-from rest_framework import viewsets
-from rest_framework.decorators import api_view
-from rest_framework.reverse import reverse
-#Not sure all those imports are needed but the tutorial used them at some points and I don't have the brain to know which one does what. 
-#I'm purposedly typing long sentences because otherwise it's all copilote writing for me and I hate it. 
+from django.contrib.auth.models import User, Group
+from django.views.generic import TemplateView
+from django.views.decorators.cache import never_cache
+from rest_framework import viewsets, permissions
+from .models import Message
+from .serializers import UserSerializer, GroupSerializer, MessageSerializer
 
-# Create your views here.
+# Serve Vue Application
+index_view = never_cache(TemplateView.as_view(template_name='index.html'))
 
-@api_view(['GET'])
-def api_root(request, format=None):
-    return Response({
-        'event': reverse('event-list', request=request, format=format),
-        'agecategory': reverse('agecategory-list', request=request, format=format),
-        'eventcategory': reverse('eventcategory-list', request=request, format=format)
-    })
-
-
-class EventViewSet(viewsets.ModelViewSet):
+class UserViewSet(viewsets.ModelViewSet):
     """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
+    API endpoint that allows users to be viewed or edited.
     """
-    queryset = Event.objects.all()
-    serializer_class = EventSerializer
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAdminUser]
 
 
-    def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
-
-class EventCategoryViewSet(viewsets.ModelViewSet):
+class GroupViewSet(viewsets.ModelViewSet):
     """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
+    API endpoint that allows groups to be viewed or edited.
     """
-    queryset = EventCategory.objects.all()
-    serializer_class = EventCategorySerializer
+    queryset = Group.objects.all()
+    serializer_class = GroupSerializer
+    permission_classes = [permissions.IsAdminUser]
 
-
-    def perform_create(self, serializer):
-        serializer.save()
-
-
-class AgeCategoryViewSet(viewsets.ModelViewSet):
+class MessageViewSet(viewsets.ModelViewSet):
     """
-    This viewset automatically provides `list`, `create`, `retrieve`,
-    `update` and `destroy` actions.
+    API endpoint that allows messages to be viewed or edited.
     """
-    queryset = AgeCategory.objects.all()
-    serializer_class = AgeCategorySerializer
-
-
-    def perform_create(self, serializer):
-        serializer.save()
+    queryset = Message.objects.all()
+    serializer_class = MessageSerializer
+    # SHOULD IMPLEMENT CUSTOM PERMISSIONS FOR OBJECT LEVEL SECURITY
