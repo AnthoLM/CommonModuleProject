@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-3"><!--EMpty on purpose--></div>
       <div class="col text-center">
-        <div class="card mt-5 text-center border-dark" style="width: 18rem">
+        <div class="card w-100 mt-5 text-center border-dark" style="width: 18rem">
           <div class="card-header">
             <img src="@/assets/images/logo_fennec.jpg" style="width: 200px" />
             <h1>Connexion</h1>
