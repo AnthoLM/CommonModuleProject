@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Bar",
+        "address": "Rue de l'Industrie",
+        "city": "Sion",
+        "latitude": 129.0,
+        "longitude": 20.0,
+        "country": "Suisse"
+    },
+
+    {
+        "name": "Bowling",
+        "address": "Rue Sucepute",
+        "city": "Sierre",
+        "latitude": 147.0,
+        "longitude": 288.0,
+        "country": "Suisse"
+    }
+]

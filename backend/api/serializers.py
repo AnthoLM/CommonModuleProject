@@ -24,5 +24,5 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
 class PlaceSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Place
-        fields = ('url', 'name', 'address', 'city',
-                  'latitude', 'longitude', 'country')
+        fields = ('name', 'address', 'city',
+                  'lat', 'lng', 'country')
