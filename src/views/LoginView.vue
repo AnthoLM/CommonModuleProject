@@ -17,7 +17,17 @@
                 v-model="password"
                 placeholder="password"
               />
-              <input type="submit" class="mt-2 btn btn-primary" value="Login" @click="login" />
+              <input
+                type="submit"
+                class="mt-2 w-100 btn btn-primary"
+                value="Login"
+                @click="login"
+              />
+              <Transition name="slide-fade">
+                <div class="alert alert-danger" role="alert" v-if="this.loginError !== ''">
+                  {{ textErrorLogin }}
+                </div>
+              </Transition>
             </p>
           </div>
           <div class="card-footer">
@@ -49,19 +59,27 @@ export default {
   computed: {
     user() {
       return authService.user.value
+    },
+    textErrorLogin() {
+      if (this.loginError === "ErrorFieldsEmpty") return "Veuillez remplir tous les champs"
+      else return "Nom d'utilisateur ou mot de passe incorrect"
     }
   },
   methods: {
     login() {
-      this.loginError = ""
-      authService
-        .login({
-          username: this.username,
-          password: this.password
-        })
-        .catch((err) => {
-          this.loginError = err.response.data
-        })
+      if (this.username === "" || this.password === "") {
+        this.loginError = "ErrorFieldsEmpty"
+      } else {
+        this.loginError = ""
+        authService
+          .login({
+            username: this.username,
+            password: this.password
+          })
+          .catch((err) => {
+            this.loginError = err.response.data
+          })
+      }
     },
     logout() {
       authService.logout()
@@ -69,3 +87,18 @@ export default {
   }
 }
 </script>
+<style>
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+</style>
