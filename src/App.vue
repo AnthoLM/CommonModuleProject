@@ -35,7 +35,7 @@
         <!-- <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
           <button class="btn btn-outline-success" type="submit">Search</button>
-        </form> -->
+        </form> --><!--This is commented for the moment but it can probably be used later on, so I'm leaving it there-->
         <ul class="navbar-nav" v-if="!user">
           <div class="btn-group" role="group" aria-label="Basic example">
             <RouterLink class="btn btn-primary" to="/login">Login</RouterLink>

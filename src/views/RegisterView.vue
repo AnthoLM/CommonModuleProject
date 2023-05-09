@@ -10,13 +10,20 @@
           </div>
           <div class="card-body">
             <p class="card-text">
-              <input type="email" class="form-control" v-model="email" placeholder="Email" />
+              <input type="text" class="form-control" v-model="firstName" placeholder="Prénom" />
+              <input
+                type="text"
+                class="form-control mt-2"
+                v-model="lastName"
+                placeholder="Nom de famille"
+              />
+              <input type="email" class="form-control mt-2" v-model="email" placeholder="Email" />
               <input
                 type="text"
                 class="form-control mt-2"
                 v-model="username"
                 placeholder="Nom d'utilisateur"
-              />
+              /><!--Seulement username, password1/2 sont nécessaire pour faire un register.-->
               <input
                 type="password"
                 class="form-control mt-2"
@@ -30,7 +37,7 @@
                 placeholder="Confirmer le mot de passe"
               />
               <Transition name="slide-fade">
-                <div class="alert alert-danger" role="alert" v-if="!readyForRegister">
+                <div class="alert alert-danger mt-2" role="alert" v-if="!isReadyForRegister">
                   {{ textNotReady }}
                 </div>
               </Transition>
@@ -38,15 +45,19 @@
                 type="submit"
                 class="mt-2 btn btn-primary"
                 value="Créer un compte"
-                :disabled="readyForRegister === false"
+                :disabled="!isReadyForRegister"
                 @click="register"
               />
+              <Transition name="slide-fade">
+                <div class="alert alert-danger mt-2" role="alert" v-if="loginFailed">
+                  {{ textErrorRegister }}
+                </div>
+              </Transition>
             </p>
           </div>
           <div class="card-footer">
             <p>
-              Pas encore de compte ? Clique <router-link to="/register">ici</router-link> pour
-              t'enregistrer !
+              Dejà un compte ? Clique <router-link to="/login">ici</router-link> pour te connecter !
             </p>
           </div>
         </div>
@@ -63,6 +74,8 @@ export default {
   data() {
     return {
       decoration,
+      firstName: "",
+      lastName: "",
       email: "",
       password: "",
       username: "",
@@ -74,10 +87,14 @@ export default {
     user() {
       return authService.user.value
     },
-    readyForRegister() {
-      if (this.password === "" || this.password2 === "" || this.username === "") {
-        return false
-      } else return this.password === this.password2 && this.password.length <= 8
+    loginFailed() {
+      return this.loginError !== ""
+    },
+    isReadyForRegister() {
+      return this.textNotReady === null
+      // if (this.password === "" || this.password2 === "" || this.username === "") {
+      //   return false
+      // } else return this.password === this.password2 && this.password.length <= 8
     },
     textNotReady() {
       if (this.username === "") {
@@ -86,9 +103,15 @@ export default {
         return "Les mots de passe ne correspondent pas"
       } else if (this.password.length < 8) {
         return "Le mot de passe doit contenir au moins 8 caractères"
-      } else {
-        return ""
+      } else return null
+    },
+    textErrorRegister() {
+      if (this.loginError.username) {
+        return "Ce nom d'utilisateur est déjà pris"
+      } else if (this.loginError.password) {
+        return "Ce mot de passe est trop courant ou n'est pas assez compliqué"
       }
+      return null
     }
   },
   methods: {
@@ -98,7 +121,10 @@ export default {
         .register({
           username: this.username,
           password1: this.password,
-          password2: this.password
+          password2: this.password2 //les deux passwords sont needed
+          //email: this.email //seulement le username est nécessaire, alors au pire on peut laisser tout ça comme ça.
+          // first_name: this.firstName,
+          // last_name: this.lastName
         })
         .catch((err) => {
           this.loginError = err.response.data
