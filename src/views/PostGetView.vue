@@ -2,7 +2,6 @@
     <div>
         <h3>Hello message</h3>
         <div v-for="city in cities" :key="city">{{ city }}</div>
-        <div v-for="npa in npas" :key="npa">{{ npa }}</div>
     </div>
     
   
@@ -21,8 +20,7 @@ export default {
   },
 
     async mounted() {
-    this.cities = await placeservice.fetchCity()
-    this.npas = await placeservice.fetchNPA()
+    this.cities = await placeservice.fetchCity("Sierre")
   },
 
 }

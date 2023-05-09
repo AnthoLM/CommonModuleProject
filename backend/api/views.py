@@ -42,7 +42,19 @@ class PlaceViewSet(viewsets.ModelViewSet):
     """
     queryset = Place.objects.all()
     serializer_class = PlaceSerializer
-    filterset_fields = ['city', 'npa']
-    search_fields = ['name', 'address', 'city', 'npa']
+
+    def get_queryset(self):
+        queryset = Place.objects.all()
+        city = self.request.query_params.get('city', None)
+        if city is not None:
+            queryset = queryset.filter(city=city)
+        return queryset
+
+    def get_queryset(self):
+        queryset = Place.objects.all()
+        npa = self.request.query_params.get('npa', None)
+        if npa is not None:
+            queryset = queryset.filter(npa=npa)
+        return queryset
 
     # SHOULD IMPLEMENT CUSTOM PERMISSIONS FOR OBJECT LEVEL SECURITY

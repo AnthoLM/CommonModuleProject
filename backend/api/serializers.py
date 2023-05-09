@@ -23,6 +23,15 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
 
 class PlaceSerializer(serializers.HyperlinkedModelSerializer):
 
+    city = serializers.SerializerMethodField()
+    npa = serializers.SerializerMethodField()
+
     class Meta:
         model = Place
-        fields = ('id', 'name', 'address', 'city', 'npa',)
+        fields = ('name', 'address', 'city', 'npa')
+
+    def get_city(self, obj):
+        return obj.city
+
+    def get_npa(self, obj):
+        return obj.npa
