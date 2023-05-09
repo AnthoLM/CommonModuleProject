@@ -1,7 +1,8 @@
 <template>
   <div id="nav">
     <router-link :to="{ name: 'home' }">Home</router-link> |
-    <router-link :to="{ name: 'messages' }">Django Rest</router-link>
+    <router-link :to="{ name: 'messages' }">Django Rest</router-link> |
+    <router-link :to="{ name: 'postget'}">GET POST</router-link>
   </div>
   <router-view />
 </template>
