@@ -12,7 +12,6 @@ class ModelAdmin(admin.ModelAdmin):
 
 @admin.register(Place)
 class ModelAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'address', 'city',
-                    'latitude', 'longitude', 'country')
-    list_filter = ('city', 'country')
-    search_fields = ('name', 'city', 'country')
+    list_display = ('pk', 'name', 'address', 'city', 'npa')
+    list_filter = ('city', 'npa')
+    search_fields = ('name', 'city', 'address', 'npa')
