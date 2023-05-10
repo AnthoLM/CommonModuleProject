@@ -10,13 +10,13 @@
           </div>
           <div class="card-body">
             <p class="card-text">
-              <input type="text" class="form-control" v-model="firstName" placeholder="Prénom" />
+              <!-- <input type="text" class="form-control" v-model="firstName" placeholder="Prénom" />
               <input
                 type="text"
                 class="form-control mt-2"
                 v-model="lastName"
                 placeholder="Nom de famille"
-              />
+              /> -->
               <input type="email" class="form-control mt-2" v-model="email" placeholder="Email" />
               <input
                 type="text"
@@ -120,11 +120,9 @@ export default {
       authService
         .register({
           username: this.username,
+          email: this.email,
           password1: this.password,
-          password2: this.password2 //les deux passwords sont needed
-          //email: this.email //seulement le username est nécessaire, alors au pire on peut laisser tout ça comme ça.
-          // first_name: this.firstName,
-          // last_name: this.lastName
+          password2: this.password2
         })
         .catch((err) => {
           this.loginError = err.response.data
