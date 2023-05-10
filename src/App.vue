@@ -31,6 +31,9 @@
           <li class="nav-item">
             <RouterLink class="nav-link" to="/messages">message</RouterLink>
           </li>
+          <li class="nav-item">
+            <RouterLink class="nav-link" to="/places">Places</RouterLink>
+          </li>
         </ul>
         <!-- <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
@@ -43,6 +46,11 @@
           </div>
         </ul>
         <ul class="navbar-nav" v-else>
+          <li class="nav-item">
+            <RouterLink class="nav-link" to="/placeAdd"
+              >Ajouter une place <i class="fa-solid fa-plus"></i
+            ></RouterLink>
+          </li>
           <li class="nav-item">
             <h4>
               <span class="badge text-bg-warning">Bienvenue {{ user.username }} !</span>
