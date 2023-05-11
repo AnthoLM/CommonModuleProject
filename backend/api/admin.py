@@ -14,4 +14,5 @@ class ModelAdmin(admin.ModelAdmin):
 class ModelAdmin(admin.ModelAdmin):
     list_display = ('pk', 'name', 'address', 'city', 'npa')
     list_filter = ('city', 'npa')
+    # Try to delete name and address
     search_fields = ('name', 'city', 'address', 'npa')
