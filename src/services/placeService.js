@@ -16,7 +16,7 @@ export default {
     postNPA(npaData){
         return api.post(`places/`, npaData).then((response) => response.data.map(place => place))
     },
-    postPlace(){
-        return api.post(`places/`).then((response) => response.data)
+    postPlace(placeData){
+        return api.post(`places/`, placeData).then((response) => response.data)
     }
 }

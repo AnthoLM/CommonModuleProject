@@ -46,14 +46,12 @@ class PlaceViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = Place.objects.all()
         city = self.request.query_params.get('city', None)
-        if city is not None:
-            queryset = queryset.filter(city=city)
-        return queryset
-
-    def get_queryset(self):
-        queryset = Place.objects.all()
         npa = self.request.query_params.get('npa', None)
-        if npa is not None:
+        if city is not None and npa is not None:
+            queryset = queryset.filter(city=city, npa=npa)
+        elif city is not None:
+            queryset = queryset.filter(city=city)
+        elif npa is not None:
             queryset = queryset.filter(npa=npa)
         return queryset
 

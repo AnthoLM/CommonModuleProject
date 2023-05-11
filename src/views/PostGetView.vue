@@ -2,10 +2,12 @@
     <div>
         <h3>Hello message</h3>
         <div v-for="city in cities" :key="city">{{ city }}</div>
+        <br>
         <div v-for="npa in npas" :key="npa">{{ npa }}</div>
+        <br>
         <div v-for="place in places" :key="place">{{ place }}</div>
-        <form @submit.prevent="postPlace">
-      <label>
+        <br>
+        <label>
         Name:
         <input type="text" v-model="name" required>
       </label>
@@ -25,11 +27,9 @@
         <input type="text" v-model="npa" required>
       </label>
       <br>
-      <button type="submit">Create Place</button>
-    </form>
+        <input type="submit" value="Add" @click="postNewPlace({name: name, address: address, city: city, npa: npa})"
+        :disabled="!name || !address || !city || !npa"/>
     </div>
-    
-  
 </template>
 
 <script>
@@ -56,22 +56,17 @@ export default {
   },
 
   methods: {
-    async postPlace() {
-      try {
-        const response = await placeservice.postPlace({
-          name: this.name,
-          address: this.address,
-          city: this.city,
-          npa: this.npa
-        })
-        this.places.push(response.data)
-        this.name = ""
-        this.address = ""
-        this.city = ""
-        this.npa = ""
-      } catch (error) {
-        console.log(error)
-      }
+    postNewPlace(name, address, city, npa) {
+      this.places.push(name)
+      this.places.push(address)
+      this.places.push(city)
+      this.places.push(npa)
+
+      placeservice.postPlace({name: name, address: address, city:city, npa:npa})
+      this.name = ""
+      this.address = ""
+      this.city = ""
+      this.npa = ""
     }
   }
 }
