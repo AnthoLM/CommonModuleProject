@@ -33,12 +33,16 @@ class PlaceSerializer(serializers.HyperlinkedModelSerializer):
     # Test can be deleted in the future
     def create(self, validated_data):
         place = Place.objects.create(
+            id = validated_data['id'],
             name=validated_data['name'],
             address=validated_data['address'],
             city=validated_data['city'],
             npa=validated_data['npa']
         )
         return place
+    
+    def delete(self, instance):
+        instance.delete()
 
     # Test can be deleted in the future
     def update(self, instance, validated_data):
@@ -48,6 +52,9 @@ class PlaceSerializer(serializers.HyperlinkedModelSerializer):
         instance.npa = validated_data.get('npa', instance.npa)
         instance.save()
         return instance
+    
+    def delete(self, instance):
+        instance.delete()
 
     def get_city(self, obj):
         return obj.city

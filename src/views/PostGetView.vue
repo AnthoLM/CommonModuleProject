@@ -1,13 +1,31 @@
 <template>
-    <div>
-        <h3>Hello message</h3>
-        <div v-for="city in cities" :key="city">{{ city }}</div>
-        <br>
-        <div v-for="npa in npas" :key="npa">{{ npa }}</div>
-        <br>
-        <div v-for="place in places" :key="place">{{ place }}</div>
-        <br>
-        <label>
+  <div>
+    <h3>Places</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>NPA</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="(place) in places" :key="place.pk">
+          <td>{{ place.name }}</td>
+          <td>{{ place.address }}</td>
+          <td>{{ place.city }}</td>
+          <td>{{ place.npa }}</td>
+          <td>
+            <button @click="deletePlace(place.pk)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <hr>
+    <h3>Add Place</h3>
+    <form>
+      <label>
         Name:
         <input type="text" v-model="name" required>
       </label>
@@ -27,53 +45,53 @@
         <input type="text" v-model="npa" required>
       </label>
       <br>
-        <input type="submit" value="Add" @click="postNewPlace({name: name, address: address, city: city, npa: npa})"
-        :disabled="!name || !address || !city || !npa"/>
-      <br>
-      <!--<input type="submit" @click="deletePlace(pk)" value="Delete" :disabled="!place"/>-->
-    </div>
+      <button type="submit" @click.prevent="postNewPlace({name: name, address: address, city: city, npa: npa})" :disabled="!name || !address || !city || !npa">Add Place</button>
+    </form>
+  </div>
 </template>
-
 <script>
+import placeService from '../services/placeService'
 import placeservice from "../services/placeService"
 
 export default {
-    name: "PostGetView",
-    data() {
+  name: "PostGetView",
+  data() {
     return {
       name: "",
       address: "",
       city: "",
       npa: "",
-      cities: [],
-      npas: [],
       places: []
     }
   },
 
-    async mounted() {
-    this.cities = await placeservice.fetchCity()
-    this.npas = await placeservice.fetchNPA()
+  async mounted() {
     this.places = await placeservice.fetchPlaces()
   },
 
   methods: {
     postNewPlace(cityData) {
-      placeservice.postPlace(cityData)
-      this.name = ""
-      this.address = ""
-      this.city = ""
-      this.npa = ""
+    this.places.push(cityData)
+    placeservice.postPlace(cityData)
+    this.name = ""
+    this.address = ""
+    this.city = ""
+    this.npa = ""
     },
-
     deletePlace(place){
-      placeservice.deletePlace(place.pk)
-      this.place = this.places.filter((obj) => obj.pk !== place.pk)
+      this.places = this.places.filter((obj) => obj.pk !== place.pk);
+      placeService.deletePlace(place.pk);
     }
   }
 }
 </script>
-
 <style>
+  table {
+    border-collapse: collapse;
+  }
 
+  table td, table th {
+    border: 1px solid black;
+    padding: 5px;
+  }
 </style>
