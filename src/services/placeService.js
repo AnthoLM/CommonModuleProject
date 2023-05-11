@@ -18,5 +18,8 @@ export default {
     },
     postPlace(placeData){
         return api.post(`places/`, placeData).then((response) => response.data)
+    },
+    deletePlace(placeId){
+        return api.delete(`places/${placeId}`).then((response) => response.data)
     }
 }

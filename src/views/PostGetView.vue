@@ -29,6 +29,8 @@
       <br>
         <input type="submit" value="Add" @click="postNewPlace({name: name, address: address, city: city, npa: npa})"
         :disabled="!name || !address || !city || !npa"/>
+      <br>
+      <!--<input type="submit" @click="deletePlace(pk)" value="Delete" :disabled="!place"/>-->
     </div>
 </template>
 
@@ -56,17 +58,17 @@ export default {
   },
 
   methods: {
-    postNewPlace(name, address, city, npa) {
-      this.places.push(name)
-      this.places.push(address)
-      this.places.push(city)
-      this.places.push(npa)
-
-      placeservice.postPlace({name: name, address: address, city:city, npa:npa})
+    postNewPlace(cityData) {
+      placeservice.postPlace(cityData)
       this.name = ""
       this.address = ""
       this.city = ""
       this.npa = ""
+    },
+
+    deletePlace(place){
+      placeservice.deletePlace(place.pk)
+      this.place = this.places.filter((obj) => obj.pk !== place.pk)
     }
   }
 }
