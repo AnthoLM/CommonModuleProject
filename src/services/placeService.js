@@ -11,9 +11,12 @@ export default {
         return api.get(`places/`, {params: {npa: npaName}}).then((response) => response.data.map(place => place.npa))
     },
     postCity(cityData){
-        return api.post(`places/`, cityData).then((response) => response.data)
+        return api.post(`places/`, cityData).then((response) => response.data.map(place => place))
     },
     postNPA(npaData){
-        return api.post(`places/`, npaData).then((response) => response.data)
+        return api.post(`places/`, npaData).then((response) => response.data.map(place => place))
+    },
+    postPlace(){
+        return api.post(`places/`).then((response) => response.data)
     }
 }
