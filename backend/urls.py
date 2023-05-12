@@ -17,12 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from .api.views import index_view, UserViewSet, GroupViewSet, MessageViewSet
+from .api.views import index_view, UserViewSet, GroupViewSet, MessageViewSet, PlaceViewSet
 
 router = routers.DefaultRouter()
 router.register('messages', MessageViewSet)
 router.register('users', UserViewSet)
 router.register('groups', GroupViewSet)
+router.register('places', PlaceViewSet)
 
 urlpatterns = [
     # http://localhost:8000/
@@ -34,7 +35,8 @@ urlpatterns = [
     path('api/explorer/', include('rest_framework.urls', namespace='rest_framework')),
 
     path('api/dj-rest-auth/', include('dj_rest_auth.urls')),
-    path('api/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),
+    path('api/dj-rest-auth/registration/',
+         include('dj_rest_auth.registration.urls')),
 
     # http://localhost:8000/api/admin/
     path('api/admin/', admin.site.urls),
