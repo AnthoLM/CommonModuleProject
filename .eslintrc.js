@@ -11,8 +11,6 @@ module.exports = {
     ecmaVersion: "latest"
   },
   rules: {
-    "prettier/prettier": ["warn", { singleQuote: false }],
-    "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
-    "no-debugger": process.env.NODE_ENV === "production" ? "warn" : "off"
+    'prettier/prettier': 0
   }
 }

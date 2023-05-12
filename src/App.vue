@@ -57,7 +57,8 @@
             </h4>
           </li>
         </ul>
-      </div>
+      </div> |
+    <router-link :to="{ name: 'postget'}">GET POST</router-link>
     </div>
   </nav>
   <router-view />
