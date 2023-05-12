@@ -23,17 +23,13 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
 
 class PlaceSerializer(serializers.HyperlinkedModelSerializer):
 
-    # city = serializers.SerializerMethodField()
-    # npa = serializers.SerializerMethodField()
-
     class Meta:
         model = Place
-        fields = ('name', 'address', 'city', 'npa')
+        fields = ('pk','name', 'address', 'city', 'npa')
 
     # Test can be deleted in the future
     def create(self, validated_data):
         place = Place.objects.create(
-            id = validated_data['id'],
             name=validated_data['name'],
             address=validated_data['address'],
             city=validated_data['city'],

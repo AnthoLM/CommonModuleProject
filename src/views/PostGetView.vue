@@ -79,8 +79,9 @@ export default {
     this.npa = ""
     },
     deletePlace(place){
-      this.places = this.places.filter((obj) => obj.pk !== place.pk);
-      placeService.deletePlace(place.pk);
+      console.log(place)
+      this.places = this.places.filter((obj) => obj.pk !== place);
+      placeService.deletePlace(place);
     }
   }
 }

@@ -9,6 +9,7 @@ class Message(models.Model):
 
 
 class Place(models.Model):
+    #pk = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=255)

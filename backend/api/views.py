@@ -42,6 +42,7 @@ class PlaceViewSet(viewsets.ModelViewSet):
     """
     queryset = Place.objects.all()
     serializer_class = PlaceSerializer
+    permissions_classes = [permissions.AllowAny]
 
     def get_queryset(self):
         queryset = Place.objects.all()
