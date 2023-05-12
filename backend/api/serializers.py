@@ -48,9 +48,6 @@ class PlaceSerializer(serializers.HyperlinkedModelSerializer):
         instance.npa = validated_data.get('npa', instance.npa)
         instance.save()
         return instance
-    
-    def delete(self, instance):
-        instance.delete()
 
     def get_city(self, obj):
         return obj.city
