@@ -36,12 +36,10 @@ class PlaceSerializer(serializers.HyperlinkedModelSerializer):
             npa=validated_data['npa']
         )
         return place
-    
-    def delete(self, instance):
-        instance.delete()
 
     # Test can be deleted in the future
     def update(self, instance, validated_data):
+        instance.pk = validated_data.get('pk', instance.pk)
         instance.name = validated_data.get('name', instance.name)
         instance.address = validated_data.get('address', instance.address)
         instance.city = validated_data.get('city', instance.city)

@@ -51,7 +51,6 @@
 </template>
 <script>
 import placeService from '../services/placeService'
-import placeservice from "../services/placeService"
 
 export default {
   name: "PostGetView",
@@ -66,22 +65,22 @@ export default {
   },
 
   async mounted() {
-    this.places = await placeservice.fetchPlaces()
+    this.places = await placeService.fetchPlaces()
   },
 
   methods: {
     postNewPlace(cityData) {
     this.places.push(cityData)
-    placeservice.postPlace(cityData)
+    placeService.postPlace(cityData)
     this.name = ""
     this.address = ""
     this.city = ""
     this.npa = ""
     },
-    deletePlace(place){
-      console.log(place)
-      this.places = this.places.filter((obj) => obj.pk !== place);
-      placeService.deletePlace(place);
+    deletePlace(pk){
+      console.log(pk)
+      this.places = this.places.filter((obj) => obj.pk !== pk);
+      placeService.deletePlace(pk);
     }
   }
 }
