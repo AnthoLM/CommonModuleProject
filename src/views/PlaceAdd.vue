@@ -81,7 +81,7 @@
                 name: this.nameOfPlace,
                 address: this.address,
                 city: this.citySelected,
-                npa: npaSelected
+                npa: this.npaSelected
               })
             "
           >
@@ -93,9 +93,11 @@
     </div>
   </div>
 </template>
+
 <script>
 import authService from "@/services/authService"
 import cities from "../models/cities"
+import placeService from "@/services/placeService"
 
 export default {
   data() {
@@ -145,8 +147,8 @@ export default {
     }
   },
   methods: {
-    addPlace() {
-      //placeService.postCity(place)
+    addPlace(place) {
+      placeService.postCity(place)
       //Just need to have place in the parameter, it causes a error as it is not defined
       this.address = ""
       this.nameOfPlace = ""

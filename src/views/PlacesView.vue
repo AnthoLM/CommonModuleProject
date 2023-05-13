@@ -64,37 +64,19 @@
 </template>
 <script>
 import authService from "@/services/authService"
+import placeService from "@/services/placeService"
 
 export default {
   data() {
     return {
       searchTerm: "",
       npaSearch: "",
-      places: [
-        { name: "Le bar du coin", address: "Rue de la gare 12", city: "Lausanne", npa: 1000 },
-        { name: "Le bar du coin2", address: "Rue de la gare 12", city: "Lausanne", npa: 1001 },
-        { name: "Le bar du coin3", address: "Locatiom de la gare 12", city: "Lausanne", npa: 1020 },
-        { name: "Le bar du coin6", address: "Endroit de la gare 12", city: "Lausanne", npa: 1040 },
-        {
-          name: "Le bar du coin4",
-          address: "Position de la gare 12",
-          city: "Lausanne",
-          npa: 123423400
-        },
-        {
-          name: "Le bar du coin5",
-          address: "Somewhere de la gare 12",
-          city: "Lausanne",
-          npa: 1220
-        },
-        {
-          name: "Le bar du coin7",
-          address: "Above the rainbow de la gare 12",
-          city: "Lausanne",
-          npa: 15000
-        }
-      ]
+      places: []
     }
+  },
+  async mounted() {
+    authService.getUser()
+    this.places = await placeService.fetchPlaces()
   },
   computed: {
     user() {
