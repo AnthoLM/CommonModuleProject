@@ -128,7 +128,7 @@ export default {
       )
     },
     hasMultipleZipCode() {
-      return this.listOfValidZIP.length > 1
+      return this.listOfValidZIP != null && this.listOfValidZIP.length > 1
     },
     distinctCities() {
       // Create a new Set object with unique city names
