@@ -22,6 +22,25 @@ python manage.py createsuperuser --email admin@example.com --username admin
 python manage.py runserver
 - click on the link - 
 
+$ git clone https://github.com/heg-interschool/project-fennec.git
+$ cd projet-fennec
+```
+
+Setup frontend
+```
+$ npm install
+```
+Setup backend
+```
+$ python -m venv venv
+# On windows
+$ .\venv\Scripts\Activate.ps1
+# On linux
+$ source venv/bin/activate
+$ pip install -r requirements.txt
+$ python manage.py migrate
+$ python manage.py createsuperuser --email admin@example.com --username admin
+
 ## Team
 - Nemo Vollert
 - Anthony Lemeillour
