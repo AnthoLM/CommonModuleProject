@@ -3,9 +3,7 @@
     <div class="row">
       <div class="col-8 offset-2">
         <h1>Creation de place</h1>
-        <h5 class="mt-5">
-          Tu veux créer une nouvelle place pour inviter tes amis à faire la fête ?
-        </h5>
+        <h5 class="mt-5">Tu veux créer une nouvelle place pour inviter tes amis à faire la fête ?</h5>
         <h5>Ou tu souhaite mettre un bar particulier en valeur ?</h5>
         <h5>Promovoir ton nouveau restaurant, celebrer quelque chose ?</h5>
         <h4>
