@@ -27,11 +27,10 @@
       <div class="col-6 offset-3">
         <div class="spinner-border" role="status">
           <span class="visually-hidden">Loading...</span>
-          <!--Loading animation, it only plays when places is empty. It never will here, but when we get GET running, there will be a time where place will be empty.-->
         </div>
       </div>
     </div>
-    <div class="row mt-3" v-if="filteredPlaces.length === 0">
+    <div class="row mt-3" v-if="filteredPlaces.length === 0 && places.length > 0">
       <div class="col-6 offset-3">
         <p>Looks like we don't have any info about what you're looking for, sowwyyy</p>
         <i class="fa-regular fa-face-sad-tear fa-beat fa-2xl"></i>
