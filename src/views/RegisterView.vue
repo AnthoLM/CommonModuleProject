@@ -66,6 +66,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import authService from "@/services/authService"
 import decoration from "../models/decoration"
