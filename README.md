@@ -3,7 +3,7 @@
 # REQUIEREMENT FENNEC PROJECT
 - When u download the fennec-project
 In new terminal do:
-cd fennec_website
+cd projet-fennec
 npm install
 npm run dev
 - click on the link -
@@ -12,8 +12,13 @@ cd ..
 -to go back on your main directory-
 
 - OPEN A NEW TERMINAL - 
-cd backend
+cd projet-fennec
 pip3 install djangorestframework
+python -m venv venv
+.\venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py createsuperuser --email admin@example.com --username admin
 python manage.py runserver
 - click on the link - 
 
