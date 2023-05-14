@@ -16,9 +16,10 @@ class GroupSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class MessageSerializer(serializers.HyperlinkedModelSerializer):
+    created_date = serializers.DateTimeField(format="%Y-%m-%d %H:%M:%S", read_only=True)
     class Meta:
         model = Message
-        fields = ('url', 'subject', 'body', 'pk')
+        fields = ('url', 'subject', 'body', 'pk', 'created_date', 'updated_date')
 
 
 class PlaceSerializer(serializers.HyperlinkedModelSerializer):

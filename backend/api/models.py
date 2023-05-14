@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 
 class Message(models.Model):
@@ -6,7 +7,8 @@ class Message(models.Model):
     body = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    #CreatedPlace - udpatedPlace + date
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
 
 
 class Place(models.Model):

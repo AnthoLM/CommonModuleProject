@@ -4,6 +4,9 @@ from django.views.decorators.cache import never_cache
 from rest_framework import viewsets, permissions
 from .models import Message, Place
 from .serializers import UserSerializer, GroupSerializer, MessageSerializer, PlaceSerializer
+from django.utils import timezone
+
+current_time = timezone.now()
 
 # Serve Vue Application
 index_view = never_cache(TemplateView.as_view(template_name='index.html'))
@@ -34,7 +37,11 @@ class MessageViewSet(viewsets.ModelViewSet):
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
     # SHOULD IMPLEMENT CUSTOM PERMISSIONS FOR OBJECT LEVEL SECURITY
+    def perform_create(self, serializer):
+        serializer.save()
 
+    def perform_update(self, serializer):
+        serializer.save()
 
 class PlaceViewSet(viewsets.ModelViewSet):
     """
