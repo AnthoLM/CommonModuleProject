@@ -100,6 +100,8 @@ export default {
     textNotReady() {
       if (this.username === "") {
         return "Veuillez entrer un nom d'utilisateur"
+      } else if (this.email === "") {
+        return "Veuillez entrer un email"
       } else if (this.password !== this.password2) {
         return "Les mots de passe ne correspondent pas"
       } else if (this.password.length < 8) {
