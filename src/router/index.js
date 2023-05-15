@@ -4,6 +4,7 @@ import LoginView from "../views/LoginView.vue"
 import RegisterView from "../views/RegisterView.vue"
 import PlaceAdd from "../views/PlaceAdd.vue"
 import PlacesView from "../views/PlacesView.vue"
+import PlaceDetail from "../views/PlaceDetail.vue"
 
 const routes = [
   {
@@ -30,6 +31,11 @@ const routes = [
     path: "/places",
     name: "places",
     component: PlacesView
+  },
+  {
+    path: "/places/:id",
+    name: "placeDetail",
+    component: PlaceDetail
   },
   {
     path: "/messages",
