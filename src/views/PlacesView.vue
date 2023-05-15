@@ -52,7 +52,7 @@
                 {{ place.address }}<br />
                 {{ place.city }}<br />
                 {{ place.npa }}<br />
-                {{ index }}
+                <RouterLink class="btn btn-primary" :to="{ name: 'placeDetail', params: { id: place.pk } }">See this event !</RouterLink>
               </p>
             </div>
           </li>
