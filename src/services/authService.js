@@ -51,5 +51,9 @@ export default {
     return api.get(`dj-rest-auth/user/`).then((response) => {
       user.value = response.data
     })
+  },
+
+  getCurrentUser(){
+    return user.value;
   }
 }

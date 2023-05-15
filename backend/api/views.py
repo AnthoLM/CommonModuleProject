@@ -2,8 +2,8 @@ from django.contrib.auth.models import User, Group
 from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
 from rest_framework import viewsets, permissions
-from .models import Message, Place
-from .serializers import UserSerializer, GroupSerializer, MessageSerializer, PlaceSerializer
+from .models import Message, Place, Commentary
+from .serializers import UserSerializer, GroupSerializer, MessageSerializer, PlaceSerializer, CommentarySerializer
 from django.utils import timezone
 
 current_time = timezone.now()
@@ -64,3 +64,7 @@ class PlaceViewSet(viewsets.ModelViewSet):
         return queryset
 
     # SHOULD IMPLEMENT CUSTOM PERMISSIONS FOR OBJECT LEVEL SECURITY
+
+class CommentaryViewSet(viewsets.ModelViewSet):
+    queryset = Commentary.objects.all()
+    serializer_class = CommentarySerializer

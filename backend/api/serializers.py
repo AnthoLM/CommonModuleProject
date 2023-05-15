@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Message, Place
+from .models import Message, Place, Commentary
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -53,3 +53,18 @@ class PlaceSerializer(serializers.HyperlinkedModelSerializer):
 
     def get_npa(self, obj):
         return obj.npa
+    
+
+
+class CommentarySerializer(serializers.HyperlinkedModelSerializer):
+    user = serializers.ReadOnlyField(source='user.username')
+    replies = serializers.SerializerMethodField()
+
+    class Meta:
+        model = Commentary
+        fields = ['id', 'user', 'content', 'parent', 'created_at', 'replies']
+
+    def get_replies(self, obj):
+        serializer = self.__class__(obj.replies.all(), many=True)
+        serializer.bind('', self)
+        return serializer.data
