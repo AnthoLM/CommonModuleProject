@@ -35,7 +35,6 @@
             <RouterLink class="nav-link" to="/places">Places</RouterLink>
           </li>
           <li class="nav-item">
-            <router-link class="nav-link" to="/commentaries">Commentary</router-link>
           </li>
         </ul>
         <!-- <form class="d-flex" role="search">
@@ -61,6 +60,7 @@
           </li>
         </ul>
       </div> |
+      <router-link :to="{name: 'commentaries'}">Commentary</router-link>
     <router-link :to="{ name: 'postget'}">GET POST</router-link>
     </div>
   </nav>

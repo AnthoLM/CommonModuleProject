@@ -13,7 +13,6 @@ class Message(models.Model):
 
 
 class Place(models.Model):
-    #pk = models.AutoField(primary_key=True)
     name = models.CharField(max_length=255)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=255)
@@ -25,6 +24,7 @@ class Place(models.Model):
 
 class Commentary(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    place = models.ForeignKey('Place', on_delete=models.CASCADE, null=True, blank=True)
     content = models.TextField(max_length=500)
     parent = models.ForeignKey('self', on_delete=models.CASCADE, null=True, related_name='replies')
     created_at = models.DateTimeField(auto_now_add=True)
