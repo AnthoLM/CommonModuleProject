@@ -1,17 +1,49 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo-vue.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <div class="center">
+      <img alt="Fennec_logo" src="../assets/images/fennec-anime.gif" />
+      <h1>Welcome to Fennec Website</h1> 
+
+      <!-- Ajout d'un gif de fennec -->
+      <!-- <div class="fennec">
+        <img alt="Fennec_logo" src="../assets/images/logo_fennec.jpg" />
+      </div> -->
+
+      <!-- Ajout d'un calendrier pour rappeler l'événementiel -->
+      <!-- <div class="event-calendar">
+        <img alt="Event calendar" src="../assets/calendar.png" />
+      </div> -->
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from "@/components/HelloWorld.vue"
-
 export default {
+  name: 'HomeView',
   components: {
-    HelloWorld
   }
 }
+// // @ is an alias to /src
+// import HelloWorld from "@/components/HelloWorld.vue"
+
+// export default {
+//   components: {
+//     HelloWorld
+//   }
+// }
 </script>
+
+<style scoped>
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 60vh; /* Viewport Height */
+}
+
+.fennec img, .event-calendar img {
+  width: 100px;
+  height: auto;
+}
+</style>

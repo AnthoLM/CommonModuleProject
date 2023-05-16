@@ -29,7 +29,7 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/messages">message</RouterLink>
+            <RouterLink class="nav-link" to="/messages">Message</RouterLink>
           </li>
           <li class="nav-item">
             <RouterLink class="nav-link" to="/places">Places</RouterLink>
