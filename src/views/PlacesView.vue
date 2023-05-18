@@ -55,14 +55,15 @@
                 {{ place.npa }}<br />
                 {{ index }}
               </p>
+              Share on: <br>
               <ShareNetwork network="facebook" :url="placeUrl(index)" :title="placeTitle(place)">
-                <button>Partager sur Facebook</button>
+                <i class="fab fa-facebook fa-lg logo-icon" @click="$emit('click')"></i>
               </ShareNetwork>
               <ShareNetwork network="twitter" :url="placeUrl(index)" :title="placeTitle(place)">
-                <button>Partager sur Twitter</button>
+                <i class="fab fa-twitter fa-lg logo-icon" @click="$emit('click')"></i>
               </ShareNetwork>
               <ShareNetwork network="whatsapp" :url="placeUrl(index)" :title="placeTitle(place)">
-                <button>Partager sur Whatsapp</button>
+                <i class="fab fa-whatsapp fa-lg logo-icon" @click="$emit('click')"></i>
               </ShareNetwork>
             </div>
           </li>
@@ -135,8 +136,8 @@ export default {
       return `http://localhost:5173/#/places/${index}`;
     },
     placeTitle(place){
-      return `Venez découvrir ${place.name}`
-    }
+      return `Venez découvrir ${place.name} à ${place.city}`
+    },
   },
   components: {
     ShareNetwork
@@ -173,6 +174,10 @@ export default {
    animations can be calculated correctly. */
 .list-leave-active {
   position: absolute;
+}
+
+.logo-icon{
+  margin-right: 10px;
 }
 </style>
 ```
