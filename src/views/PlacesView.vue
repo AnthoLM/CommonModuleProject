@@ -55,6 +55,15 @@
                 {{ place.npa }}<br />
                 {{ index }}
               </p>
+              <ShareNetwork network="facebook" :url="placeUrl(index)" :title="placeTitle(place)">
+                <button>Partager sur Facebook</button>
+              </ShareNetwork>
+              <ShareNetwork network="twitter" :url="placeUrl(index)" :title="placeTitle(place)">
+                <button>Partager sur Twitter</button>
+              </ShareNetwork>
+              <ShareNetwork network="whatsapp" :url="placeUrl(index)" :title="placeTitle(place)">
+                <button>Partager sur Whatsapp</button>
+              </ShareNetwork>
             </div>
           </li>
         </TransitionGroup>
@@ -64,6 +73,7 @@
 </template>
 <script>
 import authService from "@/services/authService"
+import { ShareNetwork } from 'vue-social-sharing';
 
 export default {
   data() {
@@ -117,7 +127,19 @@ export default {
             return true
           } else return place.npa === this.npaSearch
         })
+    },
+  
+  },
+  methods: {
+    placeUrl(index){
+      return `http://localhost:5173/#/places/${index}`;
+    },
+    placeTitle(place){
+      return `Venez découvrir ${place.name}`
     }
+  },
+  components: {
+    ShareNetwork
   }
 }
 </script>
