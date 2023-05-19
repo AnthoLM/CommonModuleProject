@@ -52,8 +52,4 @@ export default {
       user.value = response.data
     })
   },
-
-  getCurrentUser(){
-    return user.value;
-  }
 }

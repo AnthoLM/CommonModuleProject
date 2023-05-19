@@ -60,8 +60,8 @@
           </li>
         </ul>
       </div> |
-      <router-link :to="{name: 'commentaries'}">Commentary</router-link>
     <router-link :to="{ name: 'postget'}">GET POST</router-link>
+    <router-link :to="{ name: 'commentary'}">Commentary</router-link>
     </div>
   </nav>
   <router-view />

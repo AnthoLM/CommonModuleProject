@@ -26,6 +26,7 @@ import commentService from "../services/commentService";
 import authService from "../services/authService";
 
 export default {
+  name: "CommentView",
   data() {
     return {
       comments: [],
@@ -38,18 +39,18 @@ export default {
     this.comments = await commentService.getComments();
   },
   methods: {
-    async addComment() {
-        const currentUser = authService.getCurrentUser();
-        const commentData = {
-            author: currentUser.username,
-            text: this.newComment.text,
-  };
-  const newComment = await commentService.addComment(commentData);
-  this.comments.push(newComment);
-  this.newComment.text = "";
+    addComment() {
+      const currentUser = authService.getUser();
+      const commentData = {
+        user: currentUser.username,
+        text: this.newComment.text,
+      };
+      const newComment = commentService.addComment(commentData);
+      this.comments.push(newComment);
+      this.newComment.text = "";
     },
-    async deleteComment(commentId) {
-      await commentService.deleteComment(commentId);
+    deleteComment(commentId) {
+      commentService.deleteComment(commentId);
       this.comments = this.comments.filter((comment) => comment.id !== commentId);
     },
     formatDate(dateString) {
