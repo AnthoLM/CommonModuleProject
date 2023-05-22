@@ -15,12 +15,12 @@
       </div>
       <div class="row">
         <h2>Commentaires</h2>
-        <div v-if="!user">Il est nécessaire de se créer un compte et de se connecter pour pouvoir poster des commentaires.</div>
+        <div v-if="!user">Il est nécessaire de <RouterLink to="/register">créer un compte</RouterLink> et de <RouterLink to="/login">se connecter</RouterLink> pour pouvoir poster des commentaires.</div>
         <div v-else>
           <form>
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Ton commentaire" v-model="commentContent">
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="sendMessage()">Envoyer !</button>
+              <button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="sendMessage({content: this.commentContent, place_id: this.idPlace, user_id: this.user.pk})">Envoyer !</button>
             </div>
           </form>
         </div>
@@ -32,7 +32,7 @@
       </div>
       <div class="row">
         <div v-for="comment in comments" :key="comment.id">
-          <div>{{ comment.id }}</div>
+          <div>{{ comment.content }}</div>
         </div>
       </div>
     </div>
@@ -53,21 +53,21 @@ export default {
       comments: [
         {
         id: 1,
-        content: "C'est un super endroit !",
+        content: "C'est un super endroit !1",
         created_at: "2021-03-01T10:00:00.000000Z",
         parent_id: null,
         user_id: 1,
       },
       {
         id: 2,
-        content: "C'est un super endroit !",
+        content: "C'est un super endroit !2",
         created_at: "2021-03-01T10:00:00.000000Z",
         parent_id: null,
         user_id: 1,
       },
       {
         id: 3,
-        content: "C'est un super endroit !",
+        content: "C'est un super endroit !3",
         created_at: "2021-03-01T10:00:00.000000Z",
         parent_id: null,
         user_id: 1,
@@ -77,11 +77,13 @@ export default {
   },
   mounted() {
     authService.getUser()
-    //this.place = placeService.fetchPlace(this.idPlace)
+    //this.place = await placeService.fetchPlace(this.idPlace)
   },
   watch: {
     place() {
-      //this.comments = commentService.fetchComments(this.idPlace)
+      if (this.place !== null) {
+        //this.comments = await commentService.fetchComments(this.idPlace)
+      }
     }
   },
   computed: {
@@ -96,9 +98,11 @@ export default {
     }
   },
   methods: {
-    sendMessage() {
-      //commentService.postComment({content: this.commentContent, place_id: this.idPlace, user_id: this.user.pk})
-      console.log("Message envoyé")
+    sendMessage(payload) {
+      //Just to have instant feedback
+      this.comments.push(payload)
+      //commentService.postComment(payload)
+      this.commentContent = ""
     }
   }
 }
