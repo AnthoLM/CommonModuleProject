@@ -3,6 +3,19 @@
     <h2>Commentary Section</h2>
 
     <form @submit.prevent="addComment">
+
+      <label for="place">Select a place:</label>
+      <p>{{ newComment.place }}</p>
+      <select v-model="newComment.place">
+        <option disabled value="">Please select one</option>
+        <option v-for="place in places" :value="place.pk" :key="place.id">{{ place.name }}</option>
+      </select>
+
+      <label for="user">Select the user:</label>
+      <p>{{ newComment.user }}</p>
+      <select v-model="newComment.user">
+        <option v-for="user in users" :value="user.url" :key="user.url">{{ user.username }}</option>
+      </select>
       <label for="comment">Write a comment:</label>
       <textarea v-model="newComment.text" id="comment" rows="4"></textarea>
       <button type="submit">Add Comment</button>
@@ -11,10 +24,10 @@
     <ul>
       <li v-for="comment in comments" :key="comment.id">
         <div class="comment-header">
-          <span class="comment-author">{{ comment.author }}</span>
-          <span class="comment-date">{{ formatDate(comment.created_at) }}</span>
+          <span class="comment-author">{{ comment.user.username }}</span>
+          <span class="comment-text">{{ comment.content }}</span>
+          <span class="comment-date">{{ formatDate(comment.date) }}</span>
         </div>
-        <div class="comment-text">{{ comment.text }}</div>
         <button @click="deleteComment(comment.id)">Delete</button>
       </li>
     </ul>
@@ -24,6 +37,7 @@
 <script>
 import commentService from "../services/commentService";
 import authService from "../services/authService";
+import placeService from "../services/placeService";
 
 export default {
   name: "CommentView",
@@ -31,31 +45,49 @@ export default {
     return {
       comments: [],
       newComment: {
+        user: "",
+        place: "",
         text: "",
+        date: "",
       },
+      places: [],
+      users:[],
     };
   },
   async mounted() {
     this.comments = await commentService.getComments();
+    console.log(this.comments);
+    this.places = await placeService.fetchPlaces();
+    authService.getUsers();
+  },
+  computed: {
+    users() {
+      return authService.users.value
+    }
   },
   methods: {
-    addComment() {
-      const currentUser = authService.getUser();
-      const commentData = {
-        user: currentUser.username,
-        text: this.newComment.text,
-      };
-      const newComment = commentService.addComment(commentData);
-      this.comments.push(newComment);
-      this.newComment.text = "";
-    },
-    deleteComment(commentId) {
-      commentService.deleteComment(commentId);
-      this.comments = this.comments.filter((comment) => comment.id !== commentId);
+    async addComment() {
+        let commentData ={
+          user: this.newComment.user, 
+          place: "http://127.0.0.1:8000/api/places/"+this.newComment.place+"/",
+          content: this.newComment.text,
+        }
+        commentService.addComment(commentData);
     },
     formatDate(dateString) {
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      };
       const date = new Date(dateString);
-      return date.toLocaleString();
+      return date.toLocaleString("en-CH", options);
+    },
+    async deleteComment(commentId) {
+      commentService.deleteComment(commentId);
+      this.comments = this.comments.filter((comment) => comment.id !== commentId);
     },
   },
 };
@@ -79,6 +111,12 @@ export default {
 }
 
 .comment-text {
-  margin-bottom: 1rem;
+  align-items: center;
+}
+
+.comment-header {
+  margin-top: 1em;
+  border: solid black 1px;
+  align-items: center;
 }
 </style>

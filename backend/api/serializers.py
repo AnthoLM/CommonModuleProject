@@ -56,15 +56,16 @@ class PlaceSerializer(serializers.HyperlinkedModelSerializer):
     
 
 
-class CommentarySerializer(serializers.HyperlinkedModelSerializer):
-    user = serializers.ReadOnlyField(source='user.username')
-    replies = serializers.SerializerMethodField()
+class ReadCommentarySerializer(serializers.HyperlinkedModelSerializer):
+    user = UserSerializer(read_only=True)
 
     class Meta:
         model = Commentary
-        fields = ['id', 'user', 'content', 'parent', 'created_at', 'replies']
+        fields = ['id', 'user', 'place', 'content', 'date']
 
-    def get_replies(self, obj):
-        serializer = self.__class__(obj.replies.all(), many=True)
-        serializer.bind('', self)
-        return serializer.data
+class PostCommentarySerializer(serializers.HyperlinkedModelSerializer):
+    #user = UserSerializer()
+
+    class Meta:
+        model = Commentary
+        fields = ['id', 'user', 'place', 'content', 'date']

@@ -5,6 +5,7 @@ import { ref } from "vue"
 const LOCALSTORARGE_TOKEN_KEY = "myapp_access_token"
 let access_token = localStorage.getItem(LOCALSTORARGE_TOKEN_KEY)
 let user = ref()
+let users = ref()
 
 api.interceptors.request.use((config) => {
   if (access_token) {
@@ -14,7 +15,7 @@ api.interceptors.request.use((config) => {
 })
 
 export default {
-  user,
+  user, users,
   login(payload) {
     if (!payload.username || !payload.password) {
       return Promise.reject("Username and password are required.")
@@ -52,4 +53,10 @@ export default {
       user.value = response.data
     })
   },
+
+  getUsers(){
+    return api.get(`/users/`).then((response) => {
+      users.value = response.data
+    })
+  }
 }

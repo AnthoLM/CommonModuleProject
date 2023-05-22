@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Message, Place
+from .models import Message, Place, Commentary
 
 
 @admin.register(Message)
@@ -16,3 +16,9 @@ class ModelAdmin(admin.ModelAdmin):
     list_filter = ('city', 'npa')
     # Try to delete name and address
     search_fields = ('name', 'city', 'address', 'npa')
+
+@admin.register(Commentary)
+class ModelAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'user', 'place', 'content', 'date')
+    list_filter = ('user', 'place', 'date')
+    search_fields = ('user', 'place', 'content', 'date')
