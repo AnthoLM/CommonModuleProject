@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img
-          src="@/assets/images/logo_fennec.jpg"
+          src="@/assets/images/logo_fennec.png"
           alt="Logo"
           width="30"
           height="24"
@@ -88,7 +88,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #FF6F00;;
 }
 
 #nav {
@@ -97,10 +97,18 @@ export default {
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #FF6F00;
 }
 
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+.navbar {
+  background-color: #FF6F00; /* Orange */
+}
+.nav-link:hover, .btn-primary:hover {
+  color: #FF6F00; /* Orange */
+  background-color: white;
+}
+
 </style>

@@ -46,4 +46,14 @@ export default {
   width: 100px;
   height: auto;
 }
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+h1 {
+  animation: pulse 2s infinite ease-in-out;
+}
 </style>

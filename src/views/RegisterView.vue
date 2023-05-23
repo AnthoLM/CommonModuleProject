@@ -5,7 +5,7 @@
       <div class="col-8 text-center">
         <div class="card w-100 mt-5 text-center border-dark" style="width: 18rem">
           <div class="card-header">
-            <img src="@/assets/images/logo_fennec.jpg" style="width: 200px" />
+            <img src="@/assets/images/logo_fennec.png" style="width: 200px" />
             <h1>Inscription</h1>
           </div>
           <div class="card-body">
@@ -132,6 +132,22 @@ export default {
   }
 }
 </script>
+<!-- <style scoped>
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+</style> -->
+
 <style scoped>
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;
@@ -146,4 +162,61 @@ export default {
   transform: translateX(20px);
   opacity: 0;
 }
+
+.container {
+  background: white;
+}
+
+.card {
+  border: 2px solid #FF6F00;
+  color : #FF6F00;
+  box-shadow: 0px 0px 0px 10px #FF6F00;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card-header {
+  background-color: #fcfcfc;
+  color: #FF6F00;
+}
+
+.btn-primary {
+  background-color: #FF6F00;
+  border-color: #FF6F00;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.alert-danger {
+  color: #FF6F00;
+  border-color: #FF6F00;
+  background-color: white;
+}
+
+.card-footer a {
+  color: #FF6F00;
+}
+.form-control {
+  border-color: #FF6F00;
+}
+
+.form-control:focus {
+  border-color: #FF6F00;
+  box-shadow: 0 0 0 0.25rem rgba(255, 111, 0, 0.25);
+}
+
+.border-orange {
+  border-color: #FF6F00 !important;
+}
+
 </style>

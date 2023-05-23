@@ -85,7 +85,7 @@ export default {
   }
 }
 </script>
-<style>
+<!-- <style>
   table {
     border-collapse: collapse;
   }
@@ -94,4 +94,69 @@ export default {
     border: 1px solid black;
     padding: 5px;
   }
+</style> -->
+
+<style scoped>
+h3 {
+  color: #FF6F00;
+  font-weight: bold;
+  text-align: center;
+}
+
+table {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 0 auto;
+}
+
+table td, table th {
+  border: 1px solid #FF4500;
+  padding: 5px;
+  text-align: center;
+}
+
+button {
+  border: 2px solid #FF6F00;
+  background-color: white;
+  color: #FF6F00;
+  padding: 5px 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: auto;
+}
+
+button:hover {
+  background-color: #FF6F00;
+  color: white;
+}
+
+label {
+  color: #FF6F00;
+}
+
+input[type="text"] {
+  border: 2px solid #FF6F00;
+  border-radius: 5px;
+  transition: border-color 0.3s ease-in-out;
+}
+
+input[type="text"]:focus {
+  border-color: #FF4500;
+  box-shadow: 0 0 0 0.2rem rgba(255, 165, 0, 0.25);
+}
+
+form button:disabled {
+  background-color: #CCCCCC;
+  border-color: #CCCCCC;
+  color: #666666;
+  cursor: not-allowed;
+}
+form label {
+  display: block;
+  margin-bottom: 0.5em;
+}
+
+form input {
+  margin-bottom: 1em;
+}
 </style>
