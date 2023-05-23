@@ -47,13 +47,20 @@ export default {
   height: auto;
 }
 
+
+
+h1 {
+  font-size: 3rem;
+  color: #FF6F00;
+  font-weight: bold;
+  text-align: center;
+  animation : pulse 1.5s infinite;
+}
+
+
 @keyframes pulse {
   0% { transform: scale(1); }
   50% { transform: scale(1.05); }
   100% { transform: scale(1); }
-}
-
-h1 {
-  animation: pulse 2s infinite ease-in-out;
 }
 </style>
