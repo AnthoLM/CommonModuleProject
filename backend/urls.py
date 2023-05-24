@@ -17,13 +17,14 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from .api.views import index_view, UserViewSet, GroupViewSet, MessageViewSet, PlaceViewSet
+from .api.views import index_view, UserViewSet, GroupViewSet, MessageViewSet, PlaceViewSet, CommentaryViewSet
 
 router = routers.DefaultRouter()
 router.register('messages', MessageViewSet)
 router.register('users', UserViewSet)
 router.register('groups', GroupViewSet)
 router.register('places', PlaceViewSet)
+router.register('commentaries', CommentaryViewSet)
 
 urlpatterns = [
     # http://localhost:8000/
