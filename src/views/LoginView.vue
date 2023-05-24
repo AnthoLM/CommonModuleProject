@@ -56,6 +56,11 @@ export default {
       loginError: ""
     }
   },
+  watch: {
+    user(user) {
+      if (user) this.$router.push("/")
+    }
+  },
   computed: {
     user() {
       return authService.user.value
