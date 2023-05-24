@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
 from rest_framework import viewsets, permissions
 from .models import Message, Place, Commentary
-from .serializers import UserSerializer, GroupSerializer, MessageSerializer, PlaceSerializer, ReadCommentarySerializer, PostCommentarySerializer
+from .serializers import UserSerializer, GroupSerializer, MessageSerializer, ReadPlaceSerializer, PostPlaceSerializer, ReadCommentarySerializer, PostCommentarySerializer
 from django.utils import timezone
 
 current_time = timezone.now()
@@ -48,7 +48,7 @@ class PlaceViewSet(viewsets.ModelViewSet):
     API endpoint that allows places to be viewed or edited.
     """
     queryset = Place.objects.all()
-    serializer_class = PlaceSerializer
+    serializer_class = ReadPlaceSerializer
     permissions_classes = [permissions.AllowAny]
 
     def get_queryset(self):
@@ -62,6 +62,11 @@ class PlaceViewSet(viewsets.ModelViewSet):
         elif npa is not None:
             queryset = queryset.filter(npa=npa)
         return queryset
+    
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update", "destroy"]:
+            return PostPlaceSerializer
+        return ReadPlaceSerializer
 
     # SHOULD IMPLEMENT CUSTOM PERMISSIONS FOR OBJECT LEVEL SECURITY
 
