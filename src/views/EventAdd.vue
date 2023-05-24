@@ -92,6 +92,7 @@
         dateDebutEvent: "",
         dateFinEvent: "",
         ageLimitEvent: "",
+        maxParticipantEvent: "",
       }
     },
     watch: {
