@@ -1,6 +1,6 @@
 <template>
   <div class="container text-center">
-    <div class="col">
+    <div class="col-8 offset-2">
       <div class="row" v-if="!isPlaceLoading">
         <div class="spinner-border" role="status">
           <span class="visually-hidden">Chargement...</span>
@@ -11,16 +11,26 @@
         <p>{{ place.address }}</p>
         <p>{{ place.city }}</p>
         <p>{{ place.npa }}</p>
+        <p>{{ place.pk }}</p>
         <hr>
       </div>
       <div class="row">
         <h2>Commentaires</h2>
-        <div v-if="!user">Il est nécessaire de <RouterLink to="/register">créer un compte</RouterLink> et de <RouterLink to="/login">se connecter</RouterLink> pour pouvoir poster des commentaires.</div>
+        <div v-if="!user">
+          Il est nécessaire de 
+          <RouterLink to="/register">créer un compte</RouterLink> et de 
+          <RouterLink to="/login">se connecter</RouterLink> pour pouvoir poster des commentaires.
+        </div>
         <div v-else>
           <form>
             <div class="input-group mb-3">
               <input type="text" class="form-control" placeholder="Ton commentaire" v-model="commentContent">
-              <button class="btn btn-outline-secondary" type="button" id="button-addon2" v-on:click="sendMessage({content: this.commentContent, place_id: this.idPlace, user_id: this.user.pk})">Envoyer !</button>
+              <button 
+              class="btn btn-outline-secondary" 
+              type="button" id="button-addon2" 
+              v-on:click="sendMessage()"
+                >Envoyer !
+              </button>
             </div>
           </form>
         </div>
@@ -31,8 +41,21 @@
         </div>
       </div>
       <div class="row">
-        <div v-for="comment in comments" :key="comment.id">
-          <div>{{ comment.content }}</div>
+        <div>
+          <div class="accordion" id="accordionExample">
+            <div class="accordion-item" v-for="comment in filteredComments" :key="comment.id">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  Comment by {{ comment.user.username }}
+                </button>
+              </h2>
+              <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                  {{ comment.content }}
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -41,48 +64,28 @@
 
 <script>
 import authService from "@/services/authService"
-//import placeService from "@/services/placeService"
-//import commentService from "@/services/commentService"
+import placeService from "@/services/placeService"
+import commentService from "@/services/commentService"
 
 export default {
   data() {
     return {
       idPlace: this.$route.params.id,
       commentContent: "",
-      place:{"pk":2,"name":"Bar du coin sympathique tout cool et tout ouaisssss","address":"Droit des convers 108","city":"Lausanne","npa":1011},
-      comments: [
-        {
-        id: 1,
-        content: "C'est un super endroit !1",
-        created_at: "2021-03-01T10:00:00.000000Z",
-        parent_id: null,
-        user_id: 1,
-      },
-      {
-        id: 2,
-        content: "C'est un super endroit !2",
-        created_at: "2021-03-01T10:00:00.000000Z",
-        parent_id: null,
-        user_id: 1,
-      },
-      {
-        id: 3,
-        content: "C'est un super endroit !3",
-        created_at: "2021-03-01T10:00:00.000000Z",
-        parent_id: null,
-        user_id: 1,
-      }
-    ],
+      place:"",
+      comments: [],
     }
   },
-  mounted() {
+  async mounted() {
     authService.getUser()
-    //this.place = await placeService.fetchPlace(this.idPlace)
+    this.place = await placeService.fetchIdPlace(this.idPlace)
   },
   watch: {
-    place() {
+    async place() {
       if (this.place !== null) {
-        //this.comments = await commentService.fetchComments(this.idPlace)
+        //Yes this pulls ALL COMMENTS, even those who have nothing with this place, and then filter them afterward.
+        //No this isn't efficient.
+        this.comments = await commentService.getComments()
       }
     }
   },
@@ -95,13 +98,22 @@ export default {
     },
     isPlaceLoading() {
       return this.place
+    },
+    filteredComments() {
+      return this.comments.filter(comment => comment.place.toLowerCase().includes("http://localhost:8000/api/places/"+ this.idPlace + "/"))
     }
   },
   methods: {
-    sendMessage(payload) {
+    sendMessage() {
+      let payload = {
+        user : "http://127.0.0.1:8000/api/users/" + this.user.pk + "/",
+        place: "http://127.0.0.1:8000/api/places/"+ this.idPlace+"/",
+        content: this.commentContent,
+      }
       //Just to have instant feedback
       this.comments.push(payload)
-      //commentService.postComment(payload)
+      //actually sending it to the backend
+      commentService.addComment(payload)
       this.commentContent = ""
     }
   }
