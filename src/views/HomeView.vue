@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="center">
-      <img alt="Fennec_logo" src="../assets/images/fennec-anime.gif" />
+      <img alt="Fennec_logo" src="@/assets/images/fennec-anime.gif" />
       <h1>Welcome to Fennec Website</h1> 
 
       <!-- Ajout d'un gif de fennec -->
