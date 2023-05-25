@@ -41,8 +41,18 @@
         </div>
       </div>
       <div class="row">
-        <div>
-          <div class="accordion" id="accordionExample">
+        <div class="card text-center mt-3 " v-for="comment in filteredComments" :key="comment.id">
+          <div class="card-header">
+            Comment by {{comment.user.username}}
+          </div>
+          <div class="card-body">
+            <p>{{ comment.content }}</p>
+          </div>
+          <div class="card-footer text-muted">
+            {{ formatDate(comment.date) }}
+          </div>
+        </div>
+        <!-- <div class="accordion" id="accordionExample">
             <div class="accordion-item" v-for="comment in filteredComments" :key="comment.id">
               <h2 class="accordion-header" id="headingOne">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
@@ -55,8 +65,7 @@
                 </div>
               </div>
             </div>
-          </div>
-        </div>
+          </div> -->
       </div>
     </div>
   </div>
@@ -66,10 +75,12 @@
 import authService from "@/services/authService"
 import placeService from "@/services/placeService"
 import commentService from "@/services/commentService"
+import decoration from "../models/decoration"
 
 export default {
   data() {
     return {
+      decoration,
       idPlace: this.$route.params.id,
       commentContent: "",
       place:"",
@@ -85,6 +96,12 @@ export default {
       if (this.place !== null) {
         //Yes this pulls ALL COMMENTS, even those who have nothing with this place, and then filter them afterward.
         //No this isn't efficient.
+        //Yes it would be better to have a backend route that pulls only the comments of a place.
+        this.comments = await commentService.getComments()
+      }
+    },
+    async comments() {
+      if (this.comments !== null) {
         this.comments = await commentService.getComments()
       }
     }
@@ -100,14 +117,25 @@ export default {
       return this.place
     },
     filteredComments() {
-      return this.comments.filter(comment => comment.place.toLowerCase().includes("http://localhost:8000/api/places/"+ this.idPlace + "/"))
+      return this.comments.filter(comment => comment.place.toLowerCase().includes(decoration.path + "places/" + this.idPlace + "/"))
     }
   },
   methods: {
+    formatDate(dateString) {
+      const options = {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+        hour: "numeric",
+        minute: "numeric",
+      };
+      const date = new Date(dateString);
+      return date.toLocaleString("en-CH", options);
+    },
     sendMessage() {
       let payload = {
-        user : "http://127.0.0.1:8000/api/users/" + this.user.pk + "/",
-        place: "http://127.0.0.1:8000/api/places/"+ this.idPlace+"/",
+        user : decoration.path + "users/" + this.user.pk + "/",
+        place: decoration.path + "places/" + this.idPlace+"/",
         content: this.commentContent,
       }
       //Just to have instant feedback
