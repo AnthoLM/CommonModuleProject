@@ -72,7 +72,7 @@
                   </div>
                   <div class="form-row">
                     <div class="col">
-                      <label for="startDate">Une date de fin, pour bientôt j'espère !</label>
+                      <label for="startDate">Une date de début, pour bientôt j'espère !</label>
                       <input type="date" class="form-control" v-model="dateDebutInput" required>
                     </div>
                     <div class="col">
@@ -208,8 +208,8 @@
           description: this.descriptionEvent,
           startDate: this.dateDebutEvent,
           endDate: this.dateFinEvent,
-          place: decoration.path + "events/" + this.placeSelected.pk + "/",
-          user: decoration.path + "events/" + this.user.pk + "/",
+          place: decoration.path + "places/" + this.placeSelected.pk + "/",
+          user: decoration.path + "users/" + this.user.pk + "/",
           maxParticipants: this.maxParticipantEvent,
         }
 
