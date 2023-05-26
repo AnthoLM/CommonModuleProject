@@ -60,7 +60,16 @@
           </li>
           <li class="nav-item">
             <h4>
-              <span class="badge text-bg-warning">Bienvenue {{ user.username }} !</span>
+              <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Logged in as {{ user.username }}
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <button type="button" class="btn btn-danger dropdown-item" @click="logout">Loggout</button>
+                  </li>
+                </ul>
+              </div>
             </h4>
           </li>
         </ul>
@@ -86,6 +95,11 @@ export default {
   computed: {
     user() {
       return authService.user.value
+    }
+  },
+  methods: {
+    logout() {
+      authService.logout()
     }
   }
 }

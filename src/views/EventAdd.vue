@@ -1,4 +1,4 @@
-<template>
+  <template>
     <div class="container">
       <div class="row">
         <div class="col-8 offset-2">
@@ -59,14 +59,44 @@
           </Transition>
           <Transition name="fade">
             <div v-if="this.placeSelected !== null">
-              <h5>Remplis ce formulaire et c'est parti !</h5>
-              <label class="form-label">Chercher par le nom d'une place</label>
-              <div class="input-group">
-                <span class="input-group-text">First and last name</span>
-                <input type="text" aria-label="First name" class="form-control">
-                <input type="text" aria-label="Last name" class="form-control">
+              <div class="container">
+                <h4>Remplis ce formulaire et c'est parti !</h4>
+                <form>
+                  <div class="form-group">
+                      <label for="eventName">Le nom de votre event !</label>
+                      <input type="text" class="form-control" required v-model="nameEvent">
+                  </div>
+                  <div class="form-group">
+                      <label for="eventDescription">Une brève description, pour attirer les foules...</label>
+                      <textarea class="form-control" v-model="descriptionEvent" required></textarea>
+                  </div>
+                  <div class="form-row">
+                    <div class="col">
+                      <label for="startDate">Une date de début, pour bientôt j'espère !</label>
+                      <input type="date" class="form-control" v-model="dateDebutInput" required>
+                    </div>
+                    <div class="col">
+                      <label for="endDate">Et une date de fin, parce que toutes les bonnes chose en ont une malheureusement</label>
+                      <input type="date" class="form-control" v-model="dateFinInput" required>
+                      <Transition name="fade">
+                        <div class="alert alert-danger" role="alert" v-if="!datesAreOk">
+                          La date de fin doit être après la date de début !
+                        </div>
+                      </Transition>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="maxCapacity">La capacité max de votre event, en nombre de personne</label>
+                    <input type="number" class="form-control" v-model="maxParticipantEvent" min="1" required>
+                    <Transition name="fade">
+                        <div class="alert alert-danger" role="alert" v-if="!maxParticipantEventIsOk">
+                          La capacité minimale doit être supérieur à 0 !
+                        </div>
+                      </Transition>
+                  </div>
+                  <button type="submit" class="btn btn-primary" :disabled="!isEventReadyForSend" :on-click="addEvent">{{textButtonSend}}</button>
+                </form>
               </div>
-              <button type="button" class="btn btn-primary" :disabled=!isEventReadyForSend>{{textButtonSend}}</button>
             </div>
           </Transition>
         </div>
@@ -77,10 +107,13 @@
   <script>
   import authService from "@/services/authService"
   import placeService from "@/services/placeService"
+  //import eventService from "@/services/eventService"
+  import decoration from "../models/decoration"
   
   export default {
     data() {
       return {
+        decoration,
         listPlaces: [],
         placeSelected: null,
         addressSearch: "",
@@ -89,9 +122,8 @@
         npaSearch: "",
         nameEvent: "",
         descriptionEvent: "",
-        dateDebutEvent: "",
-        dateFinEvent: "",
-        ageLimitEvent: "",
+        dateDebutInput: "",
+        dateFinInput: "",
         maxParticipantEvent: "",
       }
     },
@@ -99,14 +131,43 @@
       placeSelected() {
         this.nameEvent = ""
         this.descriptionEvent = ""
-        this.dateDebutEvent = ""
-        this.dateFinEvent = ""
-        this.ageLimitEvent = ""
+        this.dateDebutInput = ""
+        this.dateFinInput = ""
+        this.maxParticipantEvent = ""
       },
     },
     computed: {
       user() {
         return authService.user.value
+      },
+      dateDebutEvent(){
+        if(this.dateDebutInput !== ""){
+          return new Date(this.dateDebutInput)
+        }
+        return ""
+      },
+      dateFinEvent(){
+        if(this.dateFinInput !== ""){
+          return new Date(this.dateFinInput)
+        }
+        return ""
+      },
+      datesAreOk(){
+        if (this.dateDebutEvent === "" || this.dateFinEvent === "") {
+          return true
+        }
+        if(this.dateDebutEvent !== "" && this.dateFinEvent !== ""){
+          return this.dateDebutEvent < this.dateFinEvent
+        }
+        return false
+      },
+      maxParticipantEventIsOk(){
+        if(this.maxParticipantEvent === ""){
+          return true
+        } else if(this.maxParticipantEvent > 0){
+          return true
+        }
+        return false
       },
       textButtonSend(){
         if(!this.isEventReadyForSend){
@@ -119,9 +180,11 @@
         return (
           this.nameEvent !== "" &&
           this.descriptionEvent !== "" &&
-          this.dateDebutEvent !== "" &&
-          this.dateFinEvent !== "" &&
-          this.ageLimitEvent !== ""
+          this.dateDebutInput !== "" &&
+          this.dateFinInput !== "" &&
+          this.maxParticipantEvent !== "" && 
+          this.maxParticipantEvent > 0 &&
+          this.dateDebutEvent < this.dateFinEvent
         )
       },
       filteredPlace(){
@@ -137,6 +200,21 @@
     },
     async mounted() {
         this.listPlaces = await placeService.fetchPlaces()
+    },
+    methods: {
+      addEvent(){
+/*         let payload = {
+          name: this.nameEvent,
+          description: this.descriptionEvent,
+          startDate: this.dateDebutEvent,
+          endDate: this.dateFinEvent,
+          place: decoration.path + "places/" + this.placeSelected.pk + "/",
+          user: decoration.path + "users/" + this.user.pk + "/",
+          maxParticipants: this.maxParticipantEvent,
+        }
+
+        eventService.addEvent(payload) */
+      }
     },
   }
   </script>
