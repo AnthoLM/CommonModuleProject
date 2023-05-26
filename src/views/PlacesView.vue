@@ -32,7 +32,7 @@
     </div>
     <div class="row mt-3" v-if="filteredPlaces.length === 0 && places.length > 0">
       <div class="col-6 offset-3">
-        <p>Looks like we don't have any info about what you're looking for, sowwyyy</p>
+        <p>Looks like we don't have any info about what you're looking for, sowwyyy </p>
         <i class="fa-regular fa-face-sad-tear fa-beat fa-2xl"></i>
         <!--Faut probablement changé ce texte mais voila.-->
       </div>
@@ -54,6 +54,19 @@
                 {{ place.npa }}<br />
                 {{ index }}
               </p>
+              Share on: <br>
+              <ShareNetwork network="facebook" :url="placeUrl(index)" :title="placeTitle(place)">
+                <i class="fab fa-facebook fa-lg logo-icon" @click="$emit('click')"></i>
+              </ShareNetwork>
+              <ShareNetwork network="twitter" :url="placeUrl(index)" :title="placeTitle(place)">
+                <i class="fab fa-twitter fa-lg logo-icon" @click="$emit('click')"></i>
+              </ShareNetwork>
+              <ShareNetwork network="whatsapp" :url="placeUrl(index)" :title="placeTitle(place)">
+                <i class="fab fa-whatsapp fa-lg logo-icon" @click="$emit('click')"></i>
+              </ShareNetwork>
+              <ShareNetwork network="reddit" :url="placeUrl(index)" :title="placeTitle(place)">
+                <i class="fab fa-reddit fa-lg logo-icon" @click="$emit('click')"></i>
+              </ShareNetwork>
             </div>
           </li>
         </TransitionGroup>
@@ -64,6 +77,7 @@
 <script>
 import authService from "@/services/authService"
 import placeService from "@/services/placeService"
+import { ShareNetwork } from 'vue-social-sharing';
 
 export default {
   data() {
@@ -99,7 +113,19 @@ export default {
           } else return place.npa === this.npaSearch
         })
     }
-  }
+  
+  },
+  methods: {
+    placeUrl(index){
+      return `http://localhost:5173/#/places/${index}`;
+    },
+    placeTitle(place){
+      return `Venez découvrir ${place.name} à ${place.city}`
+    },
+  },
+  components: {
+    ShareNetwork
+}
 }
 </script>
 
@@ -132,6 +158,10 @@ export default {
    animations can be calculated correctly. */
 .list-leave-active {
   position: absolute;
+}
+
+.logo-icon{
+  margin-right: 10px;
 }
 </style>
 ```

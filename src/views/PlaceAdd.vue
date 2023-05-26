@@ -38,7 +38,7 @@
           <Transition name="slide-fade">
             <div class="mb-3" v-if="hasMultipleZipCode">
               <label for="exampleInputPassword1" class="form-label"
-                >Nous ne parvenons pas a determiner le code postal de cette ville, lequel est le bon
+                >Nous ne parvenons pas a determiner le code postal de cette ville, lequel est le bon 
                 ?</label
               >
               <select
@@ -85,7 +85,7 @@
               })
             "
           >
-            <p v-if="!isReadyToAdd">Tout les champs doivent être Remplis</p>
+            <p v-if="!isReadyToAdd">Tout les champs doivent être Remplis </p>
             <p v-else>Enregistre ta place !</p>
           </button>
         </form>
