@@ -12,10 +12,10 @@ class ModelAdmin(admin.ModelAdmin):
 
 @admin.register(Place)
 class ModelAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'name', 'address', 'city', 'npa')
+    list_display = ('pk', 'name', 'address', 'city', 'npa', 'user')
     list_filter = ('city', 'npa')
     # Try to delete name and address
-    search_fields = ('name', 'city', 'address', 'npa')
+    search_fields = ('name', 'city', 'address', 'npa', 'user')
 
 @admin.register(Commentary)
 class ModelAdmin(admin.ModelAdmin):

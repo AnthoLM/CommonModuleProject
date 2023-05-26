@@ -22,11 +22,11 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
         fields = ('url', 'subject', 'body', 'pk', 'created_date', 'updated_date')
 
 
-class PlaceSerializer(serializers.HyperlinkedModelSerializer):
+class PostPlaceSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Place
-        fields = ('pk','name', 'address', 'city', 'npa')
+        fields = ('pk','name', 'address', 'city', 'npa', 'user')
 
     # Test can be deleted in the future
     def create(self, validated_data):
@@ -54,7 +54,11 @@ class PlaceSerializer(serializers.HyperlinkedModelSerializer):
     def get_npa(self, obj):
         return obj.npa
     
-
+class ReadPlaceSerializer(serializers.HyperlinkedModelSerializer):
+    user = UserSerializer(read_only=True)
+    class Meta:
+        model = Place
+        fields = ('pk','name', 'address', 'city', 'npa', 'user')
 
 class ReadCommentarySerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer(read_only=True)

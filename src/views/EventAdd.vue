@@ -73,7 +73,7 @@
       </div>
     </div>
   </template>
-  
+  <!--Add user id as Integer-->
   <script>
   import authService from "@/services/authService"
   import placeService from "@/services/placeService"
