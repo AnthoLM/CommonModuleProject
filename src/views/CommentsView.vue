@@ -61,8 +61,8 @@ export default {
     authService.getUsers();
   },
   computed: {
-    users() {
-      return authService.users.value
+    user() {
+      return authService.user.value
     }
   },
   methods: {
