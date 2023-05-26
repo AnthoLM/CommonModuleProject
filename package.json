@@ -15,6 +15,8 @@
     "bootstrap": "^5.2.3",
     "bootstrap-vue": "^2.23.1",
     "social-sharing": "^0.2.2",
+    "lint": "^0.8.19",
+    "popper.js": "^1.16.1",
     "vue": "^3.2.47",
     "vue-router": "4.1.6",
     "vue-social-sharing": "^4.0.0-alpha4"
@@ -25,7 +27,7 @@
     "@vue/eslint-config-prettier": "7.1.0",
     "eslint": "8.38.0",
     "eslint-plugin-vue": "9.11.0",
-    "prettier": "2.8.7",
+    "prettier": "^2.8.7",
     "vite": "4.3.1"
   }
 }

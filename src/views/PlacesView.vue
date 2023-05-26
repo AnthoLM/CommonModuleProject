@@ -10,12 +10,24 @@
     </div>
     <div class="row">
       <div class="col-6 offset-3">
-        <label class="form-label">Entrez votre recherche</label>
+        <label class="form-label">Chercher par une address</label>
         <input
           type="text"
           class="form-control"
-          v-model="searchTerm"
+          v-model="addressSearch"
         /><!--Searching by name, address or cityname-->
+        <label class="form-label">Chercher par le nom d'une place</label>
+        <input
+          type="text"
+          class="form-control"
+          v-model="nameSearch"
+        />
+        <label class="form-label">Cherchez une ville</label>
+        <input
+          type="text"
+          class="form-control"
+          v-model="citySearch"
+        />
         <label class="form-label">Recherche une place par son code postal</label>
         <input type="number" class="form-control" v-model="npaSearch" />
         <!--Searching by NPA-->
@@ -52,7 +64,7 @@
                 {{ place.address }}<br />
                 {{ place.city }}<br />
                 {{ place.npa }}<br />
-                {{ index }}
+                <RouterLink class="btn btn-primary" :to="{ name: 'placeDetail', params: { id: place.pk } }">See this event !</RouterLink>
               </p>
               Share on: <br>
               <ShareNetwork network="facebook" :url="placeUrl(index)" :title="placeTitle(place)">
@@ -74,6 +86,7 @@
     </div>
   </div>
 </template>
+
 <script>
 import authService from "@/services/authService"
 import placeService from "@/services/placeService"
@@ -84,6 +97,9 @@ export default {
     return {
       searchTerm: "",
       npaSearch: "",
+      addressSearch: "",
+      nameSearch: "",
+      citySearch: "",
       places: []
     }
   },
@@ -102,15 +118,11 @@ export default {
       return this.places
         .filter((place) => {
           return (
-            place.name.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-            place.address.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-            place.city.toLowerCase().includes(this.searchTerm.toLowerCase())
+            place.name.toLowerCase().includes(this.nameSearch.toLowerCase()) &&
+            place.address.toLowerCase().includes(this.addressSearch.toLowerCase()) &&
+            place.city.toLowerCase().includes(this.citySearch.toLowerCase()) &&
+            place.npa.toString().includes(this.npaSearch.toString())
           )
-        })
-        .filter((place) => {
-          if (this.npaSearch === "") {
-            return true
-          } else return place.npa === this.npaSearch
         })
     }
   

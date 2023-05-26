@@ -4,6 +4,9 @@ export default {
     fetchPlaces(){
         return api.get(`places/`).then((response) => response.data)
     },
+    fetchIdPlace(placeId){
+        return api.get(`places/${placeId}`).then((response) => response.data)
+    },
     fetchCity(cityName){
         return api.get(`places/`, {params: {city: cityName}}).then((response) => response.data.map(place => place.city))
     },

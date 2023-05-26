@@ -4,6 +4,8 @@ import LoginView from "../views/LoginView.vue"
 import RegisterView from "../views/RegisterView.vue"
 import PlaceAdd from "../views/PlaceAdd.vue"
 import PlacesView from "../views/PlacesView.vue"
+import PlaceDetail from "../views/PlaceDetail.vue"
+import EventAdd from "../views/EventAdd.vue"
 
 const routes = [
   {
@@ -27,9 +29,19 @@ const routes = [
     component: PlaceAdd
   },
   {
+    path: "/eventAdd",
+    name: "eventAdd",
+    component: EventAdd
+  },
+  {
     path: "/places",
     name: "places",
     component: PlacesView
+  },
+  {
+    path: "/places/:id",
+    name: "placeDetail",
+    component: PlaceDetail
   },
   {
     path: "/messages",
@@ -45,7 +57,16 @@ const routes = [
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ "../views/PostgetView.vue")
+    component: () => import(/* webpackChunkName: "about" */ "../views/PostGetView.vue")
+  },
+
+  {
+    path: "/commentary",
+    name: "commentary",
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import(/* webpackChunkName: "about" */ "../views/CommentsView.vue")
   },
 ]
 

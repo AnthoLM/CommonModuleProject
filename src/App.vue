@@ -34,6 +34,8 @@
           <li class="nav-item">
             <RouterLink class="nav-link" to="/places">Places</RouterLink>
           </li>
+          <li class="nav-item">
+          </li>
         </ul>
         <!-- <form class="d-flex" role="search">
           <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
@@ -52,13 +54,20 @@
             ></RouterLink>
           </li>
           <li class="nav-item">
+            <RouterLink class="nav-link" to="/eventAdd"
+              >Ajouter un event <i class="fa-solid fa-plus"></i
+            ></RouterLink>
+          </li>
+          <li class="nav-item">
             <h4>
               <span class="badge text-bg-warning">Bienvenue {{ user.username }} !</span>
             </h4>
           </li>
         </ul>
       </div> |
+      <!--TO BE DELETED V here V DONT FORGET TO ALSO DELETE THE .vue ITSELF, AND THE ROUTER ELEMENT TOO!!!-->
     <router-link :to="{ name: 'postget'}">GET POST</router-link>
+    <router-link :to="{ name: 'commentary'}">Commentary</router-link>
     </div>
   </nav>
   <router-view />

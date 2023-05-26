@@ -1,0 +1,82 @@
+[
+    {
+        "model": "api.place",
+        "pk": 1,
+        "fields": {
+            "name": "Bar",
+            "address": "Rue de la Brue 25",
+            "city": "Sierre",
+            "npa": 3960
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 4,
+        "fields": {
+            "name": "Paintball",
+            "address": "Avenue de la gare 32",
+            "city": "Martigny",
+            "npa": 1920
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 6,
+        "fields": {
+            "name": "Mario Kart Tournement",
+            "address": "Route Cantonale 65",
+            "city": "Chermignon",
+            "npa": 3971
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 7,
+        "fields": {
+            "name": "BeerPong",
+            "address": "Route de la soif 14",
+            "city": "Crans-Montana",
+            "npa": 3963
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 8,
+        "fields": {
+            "name": "Rooftop",
+            "address": "Rue de la Sauge 75",
+            "city": "Lausanne",
+            "npa": 1000
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 9,
+        "fields": {
+            "name": "Pétanque",
+            "address": "Route de la soie 55",
+            "city": "Neuchâtel",
+            "npa": 2000
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 10,
+        "fields": {
+            "name": "Pétanque",
+            "address": "Route Cantonale 65",
+            "city": "Chermignon - Chermignon-d'en-Bas - Ollon",
+            "npa": 3971
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 11,
+        "fields": {
+            "name": "Soirée Karaoké",
+            "address": "Avenue de la gare 55",
+            "city": "Sion",
+            "npa": 1950
+        }
+    }
+]
