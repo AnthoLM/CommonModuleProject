@@ -3,7 +3,7 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img
-          src="@/assets/images/logo_fennec.jpg"
+          src="@/assets/images/logo_fennec.png"
           alt="Logo"
           width="30"
           height="24"
@@ -60,7 +60,16 @@
           </li>
           <li class="nav-item">
             <h4>
-              <span class="badge text-bg-warning">Bienvenue {{ user.username }} !</span>
+              <div class="dropdown">
+                <button class="btn btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Logged in as {{ user.username }}
+                </button>
+                <ul class="dropdown-menu">
+                  <li>
+                    <button type="button" class="btn btn-danger dropdown-item" @click="logout">Loggout</button>
+                  </li>
+                </ul>
+              </div>
             </h4>
           </li>
         </ul>
@@ -87,6 +96,11 @@ export default {
     user() {
       return authService.user.value
     }
+  },
+  methods: {
+    logout() {
+      authService.logout()
+    }
   }
 }
 </script>
@@ -97,7 +111,7 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #FF6F00;;
 }
 
 #nav {
@@ -106,10 +120,18 @@ export default {
 
 #nav a {
   font-weight: bold;
-  color: #2c3e50;
+  color: #FF6F00;
 }
 
 #nav a.router-link-exact-active {
   color: #42b983;
 }
+.navbar {
+  background-color: #FF6F00; /* Orange */
+}
+.nav-link:hover, .btn-primary:hover {
+  color: #FF6F00; /* Orange */
+  background-color: white;
+}
+
 </style>

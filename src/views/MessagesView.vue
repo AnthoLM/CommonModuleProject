@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-    <img src="@/assets/logo-django.png" style="width: 250px" />
+    <img src="@/assets/images/logo_fennec.png" style="width: 250px" />
     <p>
       The data below is added/removed from the SQLite Database using Django's ORM and Rest
       Framework.
@@ -116,22 +116,28 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+body {
+  background-color: white;
+  color: #FF6F00; /* Orange */
+}
+
 hr {
   max-width: 65%;
+  border-color: #FF6F00; /* Orange */
 }
 
 .msg {
   margin: 0 auto;
   max-width: 30%;
   text-align: left;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid #FF6F00; /* Orange */
   padding: 1rem;
+  background-color: #FFF5EB; /* Light Orange */
 }
 
 .msg-index {
-  color: #ccc;
+  color: #FF6F00; /* Orange */
   font-size: 0.8rem;
-  /* margin-bottom: 0; */
 }
 
 img {
@@ -139,4 +145,45 @@ img {
   padding-top: 50px;
   padding-bottom: 50px;
 }
+
+@keyframes pulse {
+  0% { 
+    border-color: #FF6F00;
+  }
+  50% { 
+    border-color: white;
+  }
+  100% { 
+    border-color: #FF6F00;
+  }
+}
+
+input[type="submit"] {
+  border: 2px solid #FF6F00;
+  border-radius: 4px;
+  animation: pulse 2s linear infinite;
+}
+
+input[type="submit"] {
+  background-color: #FF6F00; /* Orange */
+  color: white; 
+  border-color: #FF6F00;
+  border-radius: 10%;
+  margin-top: 10px;
+}
+
+input[type="submit"]:hover {
+  background-color: #FFA040; /* Light Orange */
+  border-radius: 10%;
+}
+
+input[type="text"], input[type="password"] {
+  border: 2px solid #FF6F00; /* Orange */
+  border-radius: 4px;
+}
+
+p {
+  color: #FF6F00; /* Orange */
+}
 </style>
+

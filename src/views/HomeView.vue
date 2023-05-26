@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <div class="center">
-      <img alt="Fennec_logo" src="../assets/images/fennec-anime.gif" />
+      <img alt="Fennec_logo" src="@/assets/images/fennec-anime.gif" />
       <h1>Welcome to Fennec Website</h1> 
 
       <!-- Ajout d'un gif de fennec -->
@@ -45,5 +45,22 @@ export default {
 .fennec img, .event-calendar img {
   width: 100px;
   height: auto;
+}
+
+
+
+h1 {
+  font-size: 3rem;
+  color: #FF6F00;
+  font-weight: bold;
+  text-align: center;
+  animation : pulse 1.5s infinite;
+}
+
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
 }
 </style>
