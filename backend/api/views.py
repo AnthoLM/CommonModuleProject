@@ -2,7 +2,7 @@ from django.contrib.auth.models import User, Group
 from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
 from rest_framework import viewsets, permissions
-from .models import Message, Place, Commentary
+from .models import Message, Place, Commentary, Event
 from .serializers import UserSerializer, GroupSerializer, MessageSerializer, ReadPlaceSerializer, PostPlaceSerializer, ReadCommentarySerializer, PostCommentarySerializer
 from django.utils import timezone
 
@@ -78,3 +78,7 @@ class CommentaryViewSet(viewsets.ModelViewSet):
         if self.action in ["create", "update", "partial_update", "destroy"] :
             return PostCommentarySerializer
         return ReadCommentarySerializer
+    
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Message, Place, Commentary
+from .models import Message, Place, Commentary, Event
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -73,3 +73,19 @@ class PostCommentarySerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Commentary
         fields = ['id', 'user', 'place', 'content', 'date']
+
+
+
+class ReadEventSerializer(serializers.HyperlinkedModelSerializer):
+    user = UserSerializer(read_only=True)
+    comments = ReadCommentarySerializer(many=True, read_only=True)
+    place = ReadPlaceSerializer(many=True, read_only=True)
+
+    class Meta:
+        model = Event
+        fields = ['id', 'name', 'description', 'startDate', 'endDate', 'place', 'user', 'comments', 'maxParticipants']
+
+class PostEventSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Event
+        fields = ['id', 'name', 'description', 'startDate', 'endDate', 'place', 'user', 'comments', 'maxParticipants']
