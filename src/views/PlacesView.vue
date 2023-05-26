@@ -172,8 +172,24 @@ export default {
   position: absolute;
 }
 
-.logo-icon{
-  margin-right: 10px;
+.form-control {
+  border: 2px solid #FF6F00; /* Adjust border thickness and color here */
+  box-shadow: 0px 0px 0px 2px #FF6F00;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.form-control:focus {
+  border-color: #ff4500; /* Adjust border color on focus here */
+  box-shadow: 0px 0px 0px 2px #ff4500;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+h1 {
+  animation: pulse 2s infinite ease-in-out;
 }
 </style>
 ```

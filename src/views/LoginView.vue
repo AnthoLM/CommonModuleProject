@@ -5,7 +5,7 @@
       <div class="col text-center">
         <div class="card w-100 mt-5 text-center border-dark" style="width: 18rem">
           <div class="card-header">
-            <img src="@/assets/images/logo_fennec.jpg" style="width: 200px" />
+            <img src="@/assets/images/logo_fennec.png" style="width: 200px" />
             <h1>Connexion</h1>
           </div>
           <div class="card-body">
@@ -92,7 +92,73 @@ export default {
   }
 }
 </script>
-<style>
+
+<!-- <style>
+
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+} -->
+
+<style scoped>
+.container {
+  background-color: transparent;
+  color: #FF6F00; /* Orange */
+}
+
+.card {
+  border: 2px solid #FF6F00;
+  border-color : #FF6F00;
+  box-shadow: 0px 0px 0px 10px #FF6F00;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.card-header {
+  background-color: #ffffff; /* Orange */
+  color: #FF6F00; 
+}
+
+.card-footer {
+  background-color: white; /* Orange */
+  color: #FF6F00; 
+}
+
+input[type="submit"] {
+  background-color: #FF6F00; /* Orange */
+  color: white; 
+  border: none;
+}
+
+input[type="submit"]:hover {
+  background-color: #FFA040; /* Light Orange */
+}
+
+input[type="text"], input[type="password"] {
+  border: 2px solid #FF6F00; /* Orange */
+}
+
+.alert {
+  background-color: #FFA040; /* Light Orange */
+  color: white; 
+}
+
+.router-link {
+  color: white;
+}
+
+.router-link:hover {
+  color: #FFF5EB; /* Light Orange */
+}
+
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;
 }
@@ -106,4 +172,5 @@ export default {
   transform: translateX(20px);
   opacity: 0;
 }
+
 </style>
