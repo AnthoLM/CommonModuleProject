@@ -33,7 +33,7 @@
     </div>
     <div class="row mt-3" v-if="filteredPlaces.length === 0">
       <div class="col-6 offset-3">
-        <p>Looks like we don't have any info about what you're looking for, sowwyyy</p>
+        <p>Looks like we don't have any info about what you're looking for, sowwyyy </p>
         <i class="fa-regular fa-face-sad-tear fa-beat fa-2xl"></i>
         <!--Faut probablement changé ce texte mais voila.-->
       </div>
@@ -64,6 +64,9 @@
               </ShareNetwork>
               <ShareNetwork network="whatsapp" :url="placeUrl(index)" :title="placeTitle(place)">
                 <i class="fab fa-whatsapp fa-lg logo-icon" @click="$emit('click')"></i>
+              </ShareNetwork>
+              <ShareNetwork network="reddit" :url="placeUrl(index)" :title="placeTitle(place)">
+                <i class="fab fa-reddit fa-lg logo-icon" @click="$emit('click')"></i>
               </ShareNetwork>
             </div>
           </li>
