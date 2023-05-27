@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
 from rest_framework import viewsets, permissions
 from .models import Message, Place, Commentary, Event
-from .serializers import UserSerializer, GroupSerializer, MessageSerializer, ReadPlaceSerializer, PostPlaceSerializer, ReadCommentarySerializer, PostCommentarySerializer
+from .serializers import UserSerializer, GroupSerializer, MessageSerializer, ReadPlaceSerializer, PostPlaceSerializer, ReadCommentarySerializer, PostCommentarySerializer, ReadEventSerializer, PostEventSerializer
 from django.utils import timezone
 
 current_time = timezone.now()
@@ -81,4 +81,10 @@ class CommentaryViewSet(viewsets.ModelViewSet):
     
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
+    serializer_class = ReadEventSerializer
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update", "destroy"]:
+            return PostEventSerializer
+        return ReadEventSerializer
     

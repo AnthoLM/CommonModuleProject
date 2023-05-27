@@ -60,6 +60,7 @@ class ReadPlaceSerializer(serializers.HyperlinkedModelSerializer):
         model = Place
         fields = ('pk','name', 'address', 'city', 'npa', 'user')
 
+
 class ReadCommentarySerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer(read_only=True)
 
@@ -68,7 +69,6 @@ class ReadCommentarySerializer(serializers.HyperlinkedModelSerializer):
         fields = ['id', 'user', 'place', 'content', 'date']
 
 class PostCommentarySerializer(serializers.HyperlinkedModelSerializer):
-    #user = UserSerializer()
 
     class Meta:
         model = Commentary
@@ -78,14 +78,13 @@ class PostCommentarySerializer(serializers.HyperlinkedModelSerializer):
 
 class ReadEventSerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer(read_only=True)
-    comments = ReadCommentarySerializer(many=True, read_only=True)
-    place = ReadPlaceSerializer(many=True, read_only=True)
+    place = PostPlaceSerializer(read_only=True)
 
     class Meta:
         model = Event
-        fields = ['id', 'name', 'description', 'startDate', 'endDate', 'place', 'user', 'comments', 'maxParticipants']
+        fields = ['id', 'name', 'description', 'startDate', 'endDate', 'place', 'user', 'maxParticipants']
 
 class PostEventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Event
-        fields = ['id', 'name', 'description', 'startDate', 'endDate', 'place', 'user', 'comments', 'maxParticipants']
+        fields = ['id', 'name', 'description', 'startDate', 'endDate', 'place', 'user', 'maxParticipants']
