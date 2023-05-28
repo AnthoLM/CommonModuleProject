@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from .models import Message, Place, Commentary
+from .models import Message, Place, Commentary, Event
 
 
 @admin.register(Message)
@@ -22,3 +22,10 @@ class ModelAdmin(admin.ModelAdmin):
     list_display = ('pk', 'user', 'place', 'content', 'date')
     list_filter = ('user', 'place', 'date')
     search_fields = ('user', 'place', 'content', 'date')
+
+@admin.register(Event)
+class ModelAdmin(admin.ModelAdmin):
+    list_display = ('pk', 'name', 'description', 'startDate', 'endDate', 'place', 'user', 'maxParticipants')
+    list_filter = ('startDate', 'endDate', 'place', 'user')
+    search_fields = ('name', 'description', 'startDate', 'endDate', 'place', 'user', 'maxParticipants')
+

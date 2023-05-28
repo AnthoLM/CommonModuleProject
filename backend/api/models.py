@@ -28,3 +28,17 @@ class Commentary(models.Model):
 
     def __str__(self):
         return f'Comment by {self.user.username}'
+
+
+class Event(models.Model):
+    name = models.CharField(max_length=255)
+    description = models.TextField()
+    startDate = models.DateTimeField()
+    endDate = models.DateTimeField()
+    place = models.ForeignKey('Place', on_delete=models.CASCADE, null=True, blank=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    users_registered = models.ManyToManyField(User, related_name='registered_events', blank=True)
+    maxParticipants = models.IntegerField()
+
+    def __str__(self):
+        return self.name

@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Message, Place, Commentary
+from .models import Message, Place, Commentary, Event
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -34,7 +34,8 @@ class PostPlaceSerializer(serializers.HyperlinkedModelSerializer):
             name=validated_data['name'],
             address=validated_data['address'],
             city=validated_data['city'],
-            npa=validated_data['npa']
+            npa=validated_data['npa'],
+            user=self.context['request'].user
         )
         return place
 
@@ -60,6 +61,7 @@ class ReadPlaceSerializer(serializers.HyperlinkedModelSerializer):
         model = Place
         fields = ('pk','name', 'address', 'city', 'npa', 'user')
 
+
 class ReadCommentarySerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer(read_only=True)
 
@@ -68,8 +70,22 @@ class ReadCommentarySerializer(serializers.HyperlinkedModelSerializer):
         fields = ['id', 'user', 'place', 'content', 'date']
 
 class PostCommentarySerializer(serializers.HyperlinkedModelSerializer):
-    #user = UserSerializer()
 
     class Meta:
         model = Commentary
         fields = ['id', 'user', 'place', 'content', 'date']
+
+
+
+class ReadEventSerializer(serializers.HyperlinkedModelSerializer):
+    user = UserSerializer(read_only=True)
+    place = PostPlaceSerializer(read_only=True)
+
+    class Meta:
+        model = Event
+        fields = ['id', 'name', 'description', 'startDate', 'endDate', 'place', 'user','users_registered', 'maxParticipants']
+
+class PostEventSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Event
+        fields = ['id', 'name', 'description', 'startDate', 'endDate', 'place', 'user', 'maxParticipants']

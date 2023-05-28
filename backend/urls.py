@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from .api.views import index_view, UserViewSet, GroupViewSet, MessageViewSet, PlaceViewSet, CommentaryViewSet
+from .api.views import index_view, UserViewSet, GroupViewSet, MessageViewSet, PlaceViewSet, CommentaryViewSet, EventViewSet
 
 router = routers.DefaultRouter()
 router.register('messages', MessageViewSet)
@@ -25,6 +25,8 @@ router.register('users', UserViewSet)
 router.register('groups', GroupViewSet)
 router.register('places', PlaceViewSet)
 router.register('commentaries', CommentaryViewSet)
+router.register('events', EventViewSet)
+
 
 urlpatterns = [
     # http://localhost:8000/
