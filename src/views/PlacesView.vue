@@ -64,7 +64,7 @@
                 {{ place.address }}<br />
                 {{ place.city }}<br />
                 {{ place.npa }}<br />
-                <RouterLink class="btn btn-primary" :to="{ name: 'placeDetail', params: { id: place.pk } }">See this event !</RouterLink>
+                <RouterLink class="btn btn-primary" :to="{ name: 'placeDetail', params: { id: place.pk } }">See this place !</RouterLink>
               </p>
               Share on: <br>
               <ShareNetwork network="facebook" :url="placeUrl(index)" :title="placeTitle(place)">
@@ -123,6 +123,9 @@ export default {
             place.city.toLowerCase().includes(this.citySearch.toLowerCase()) &&
             place.npa.toString().includes(this.npaSearch.toString())
           )
+        })
+        .sort((a, b) => {
+          return a.name.localeCompare(b.name)
         })
     }
   
