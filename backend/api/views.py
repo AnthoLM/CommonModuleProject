@@ -1,10 +1,11 @@
 from django.contrib.auth.models import User, Group
 from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, status
 from .models import Message, Place, Commentary, Event
 from .serializers import UserSerializer, GroupSerializer, MessageSerializer, ReadPlaceSerializer, PostPlaceSerializer, ReadCommentarySerializer, PostCommentarySerializer, ReadEventSerializer, PostEventSerializer
 from django.utils import timezone
+from rest_framework.response import Response
 
 current_time = timezone.now()
 
@@ -49,7 +50,7 @@ class PlaceViewSet(viewsets.ModelViewSet):
     """
     queryset = Place.objects.all()
     serializer_class = ReadPlaceSerializer
-    permissions_classes = [permissions.AllowAny]
+    permissions_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         queryset = Place.objects.all()
@@ -73,6 +74,7 @@ class PlaceViewSet(viewsets.ModelViewSet):
 class CommentaryViewSet(viewsets.ModelViewSet):
     queryset = Commentary.objects.all()
     serializer_class = ReadCommentarySerializer
+    permissions_classes = [permissions.IsAuthenticated]
     
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update", "destroy"] :
@@ -82,9 +84,25 @@ class CommentaryViewSet(viewsets.ModelViewSet):
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = ReadEventSerializer
+    permissions_classes = [permissions.IsAuthenticated]
 
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update", "destroy"]:
             return PostEventSerializer
         return ReadEventSerializer
+    
+    def register(self, request, pk=None):
+        event = self.get_object()
+        user = request.user
+
+        if event.users_registered.filter(pk=user.pk).exists():
+            # User is already registered for the event
+            return Response({'detail': 'User is already registered for this event.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        if event.users_registered.count() >= event.maxParticipants:
+            # Maximum number of participants reached
+            return Response({'detail': 'Maximum number of participants reached for this event.'}, status=status.HTTP_400_BAD_REQUEST)
+
+        event.users_registered.add(user)
+        return Response({'detail': 'User successfully registered for the event.'}, status=status.HTTP_200_OK)
     

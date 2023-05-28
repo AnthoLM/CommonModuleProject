@@ -37,6 +37,7 @@ class Event(models.Model):
     endDate = models.DateTimeField()
     place = models.ForeignKey('Place', on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    users_registered = models.ManyToManyField(User, related_name='registered_events', blank=True)
     maxParticipants = models.IntegerField()
 
     def __str__(self):

@@ -34,7 +34,8 @@ class PostPlaceSerializer(serializers.HyperlinkedModelSerializer):
             name=validated_data['name'],
             address=validated_data['address'],
             city=validated_data['city'],
-            npa=validated_data['npa']
+            npa=validated_data['npa'],
+            user=self.context['request'].user
         )
         return place
 
@@ -82,7 +83,7 @@ class ReadEventSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Event
-        fields = ['id', 'name', 'description', 'startDate', 'endDate', 'place', 'user', 'maxParticipants']
+        fields = ['id', 'name', 'description', 'startDate', 'endDate', 'place', 'user','users_registered', 'maxParticipants']
 
 class PostEventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
