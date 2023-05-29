@@ -69,6 +69,7 @@
               class="form-control"
               id="exampleInputPassword1"
               placeholder="Le bar du coin !"
+              maxlength="255"
             />
           </div>
           <button

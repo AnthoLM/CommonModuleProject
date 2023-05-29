@@ -106,7 +106,7 @@ export default {
         return "Les mots de passe ne correspondent pas"
       } else if (this.password.length < 8) {
         return "Le mot de passe doit contenir au moins 8 caractères"
-      } else return null
+      } else return this.loginError
     },
     textErrorRegister() {
       if (this.loginError.username) {

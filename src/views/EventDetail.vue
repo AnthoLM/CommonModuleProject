@@ -3,13 +3,16 @@
         <div class="row">
             <div class="col-8 offset-2" v-if="isEventLoading">
                 <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Chargement...</span>
+                    <span class="visually-hidden">Loading...</span>
                 </div>
+                <hr>
             </div>
             <div class="col-8 offset-2" v-else>
                 <h1>{{ event.name }}</h1>
                 <p class="border">{{ event.description }}</p>
-                <p class="border">Cet event commencera le {{ formatDate(event.startDate) }} et finira le {{ formatDate(event.endDate) }}</p>
+                <p class="border">This event will start on the {{ formatDate(event.startDate) }} and will end the {{ formatDate(event.endDate) }}</p>
+                <button type="button" class="btn btn-primary" v-if="user">Register</button>
+                <hr>
             </div>
         </div>
     </div>
