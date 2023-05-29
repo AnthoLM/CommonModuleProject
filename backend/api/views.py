@@ -2,8 +2,8 @@ from django.contrib.auth.models import User, Group
 from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
 from rest_framework import viewsets, permissions, status
-from .models import Message, Place, Commentary, Event
-from .serializers import UserSerializer, GroupSerializer, MessageSerializer, ReadPlaceSerializer, PostPlaceSerializer, ReadCommentarySerializer, PostCommentarySerializer, ReadEventSerializer, PostEventSerializer
+from .models import Message, Place, PlaceCommentary, EventCommentary, Event
+from .serializers import UserSerializer, GroupSerializer, MessageSerializer, ReadPlaceSerializer, PostPlaceSerializer, ReadPlaceCommentarySerializer, PostPlaceCommentarySerializer, ReadEventCommentarySerializer, PostEventCommentarySerializer, ReadEventSerializer, PostEventSerializer
 from django.utils import timezone
 from rest_framework.response import Response
 
@@ -71,15 +71,25 @@ class PlaceViewSet(viewsets.ModelViewSet):
 
     # SHOULD IMPLEMENT CUSTOM PERMISSIONS FOR OBJECT LEVEL SECURITY
 
-class CommentaryViewSet(viewsets.ModelViewSet):
-    queryset = Commentary.objects.all()
-    serializer_class = ReadCommentarySerializer
+class PlaceCommentaryViewSet(viewsets.ModelViewSet):
+    queryset = PlaceCommentary.objects.all()
+    serializer_class = ReadPlaceCommentarySerializer
     permissions_classes = [permissions.IsAuthenticated]
     
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update", "destroy"] :
-            return PostCommentarySerializer
-        return ReadCommentarySerializer
+            return PostPlaceCommentarySerializer
+        return ReadPlaceCommentarySerializer
+    
+class EventCommentaryViewSet(viewsets.ModelViewSet):
+    queryset = EventCommentary.objects.all()
+    serializer_class = ReadEventCommentarySerializer
+    permissions_classes = [permissions.IsAuthenticated]
+    
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update", "destroy"] :
+            return PostEventCommentarySerializer
+        return ReadEventCommentarySerializer
     
 class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
@@ -104,5 +114,10 @@ class EventViewSet(viewsets.ModelViewSet):
             return Response({'detail': 'Maximum number of participants reached for this event.'}, status=status.HTTP_400_BAD_REQUEST)
 
         event.users_registered.add(user)
-        return Response({'detail': 'User successfully registered for the event.'}, status=status.HTTP_200_OK)
+        event.save()
+
+        # Update the registration count
+        registration_count = event.users_registered.count()
+
+        return Response({'detail': 'User successfully registered for the event.', 'registration_count': registration_count}, status=status.HTTP_200_OK)
     

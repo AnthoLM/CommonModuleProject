@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Message, Place, Commentary, Event
+from .models import Message, Place, PlaceCommentary, EventCommentary, Event
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -24,9 +24,10 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
 
 class PostPlaceSerializer(serializers.HyperlinkedModelSerializer):
 
+    createdDate = serializers.DateTimeField(read_only=True)
     class Meta:
         model = Place
-        fields = ('pk','name', 'address', 'city', 'npa', 'user')
+        fields = ('pk','name', 'address', 'city', 'npa','createdDate', 'user')
 
     # Test can be deleted in the future
     def create(self, validated_data):
@@ -59,21 +60,35 @@ class ReadPlaceSerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer(read_only=True)
     class Meta:
         model = Place
-        fields = ('pk','name', 'address', 'city', 'npa', 'user')
+        fields = ('pk','name', 'address', 'city', 'npa','createdDate', 'user')
 
 
-class ReadCommentarySerializer(serializers.HyperlinkedModelSerializer):
+class ReadPlaceCommentarySerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer(read_only=True)
 
     class Meta:
-        model = Commentary
+        model = PlaceCommentary
         fields = ['id', 'user', 'place', 'content', 'date']
 
-class PostCommentarySerializer(serializers.HyperlinkedModelSerializer):
+class PostPlaceCommentarySerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
-        model = Commentary
+        model = PlaceCommentary
         fields = ['id', 'user', 'place', 'content', 'date']
+
+
+class ReadEventCommentarySerializer(serializers.HyperlinkedModelSerializer):
+    user = UserSerializer(read_only=True)
+
+    class Meta:
+        model = EventCommentary
+        fields = ['id', 'user', 'event', 'content', 'date']
+
+class PostEventCommentarySerializer(serializers.HyperlinkedModelSerializer):
+
+    class Meta:
+        model = EventCommentary
+        fields = ['id', 'user', 'event', 'content', 'date']
 
 
 

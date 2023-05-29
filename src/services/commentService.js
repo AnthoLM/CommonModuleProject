@@ -15,5 +15,9 @@ export default {
 
     deleteComment(commentId){
       return api.delete(`commentaries/${commentId}`).then((response) => response.data);
+    },
+
+    updateComment(commentId, updatedData){
+      return api.put(`commentaries/${commentId}/`, updatedData).then((response) => response.data);
     }
 }

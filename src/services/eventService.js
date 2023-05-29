@@ -15,5 +15,9 @@ export default {
 
     deleteEvent(eventId){
         return api.delete(`events/${eventId}`).then((response) => response.data);
+    },
+
+    updateEvent(eventId, updatedData){
+        return api.put(`events/${eventId}`, updatedData).then((response) => response.data);
     }
 }
