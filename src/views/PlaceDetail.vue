@@ -84,7 +84,7 @@ export default {
       idPlace: this.$route.params.id,
       commentContent: "",
       place:"",
-      comments: null,
+      comments: [],
     }
   },
   async mounted() {
