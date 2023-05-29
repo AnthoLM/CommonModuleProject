@@ -117,7 +117,7 @@ export default {
       return this.place
     },
     filteredComments() {
-      return this.comments.filter(comment => comment.place.toLowerCase().includes(decoration.path + "places/" + this.idPlace + "/"))
+      return this.comments.filter(comment => comment.place.toLowerCase().includes(decoration.path + "places/" + this.idPlace + "/")).sort((a, b) => new Date(b.date) - new Date(a.date))
     }
   },
   methods: {
