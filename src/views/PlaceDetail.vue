@@ -24,7 +24,7 @@
         <div v-else>
           <form>
             <div class="input-group mb-3">
-              <input type="text" class="form-control" placeholder="Ton commentaire" v-model="commentContent">
+              <input type="text" class="form-control" placeholder="Ton commentaire" maxlength="500" v-model="commentContent">
               <button 
               class="btn btn-outline-secondary" 
               type="button" id="button-addon2" 

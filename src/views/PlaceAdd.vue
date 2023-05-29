@@ -52,6 +52,7 @@
             <label for="exampleInputPassword1" class="form-label">Adresse</label>
             <input
               v-model="address"
+              maxlength="255"
               type="text"
               class="form-control"
               id="exampleInputPassword1"
