@@ -92,9 +92,9 @@
                         <div class="alert alert-danger" role="alert" v-if="!maxParticipantEventIsOk">
                           La capacité minimale doit être supérieur à 0 !
                         </div>
-                      </Transition>
+                    </Transition>
                   </div>
-                  <button type="submit" class="btn btn-primary" :disabled="!isEventReadyForSend" :on-click="addEvent">{{textButtonSend}}</button>
+                  <button type="submit" class="btn btn-primary" :disabled="!isEventReadyForSend" v-on:click="addEvent()">{{textButtonSend}}</button>
                 </form>
               </div>
             </div>
@@ -107,7 +107,7 @@
   <script>
   import authService from "@/services/authService"
   import placeService from "@/services/placeService"
-  //import eventService from "@/services/eventService"
+  import eventService from "@/services/eventService"
   import decoration from "../models/decoration"
   
   export default {
@@ -157,7 +157,7 @@
           return true
         }
         if(this.dateDebutEvent !== "" && this.dateFinEvent !== ""){
-          return this.dateDebutEvent < this.dateFinEvent
+          return this.dateDebutEvent <= this.dateFinEvent
         }
         return false
       },
@@ -199,11 +199,11 @@
       }
     },
     async mounted() {
-        this.listPlaces = await placeService.fetchPlaces()
+      this.listPlaces = await placeService.fetchPlaces()
     },
     methods: {
       addEvent(){
-/*         let payload = {
+        let payload = {
           name: this.nameEvent,
           description: this.descriptionEvent,
           startDate: this.dateDebutEvent,
@@ -212,8 +212,7 @@
           user: decoration.path + "users/" + this.user.pk + "/",
           maxParticipants: this.maxParticipantEvent,
         }
-
-        eventService.addEvent(payload) */
+        eventService.addEvent(payload)
       }
     },
   }

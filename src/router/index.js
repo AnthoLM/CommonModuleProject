@@ -6,6 +6,7 @@ import PlaceAdd from "../views/PlaceAdd.vue"
 import PlacesView from "../views/PlacesView.vue"
 import PlaceDetail from "../views/PlaceDetail.vue"
 import EventAdd from "../views/EventAdd.vue"
+import EventView from "../views/EventView.vue"
 
 const routes = [
   {
@@ -37,6 +38,11 @@ const routes = [
     path: "/places",
     name: "places",
     component: PlacesView
+  },
+  {
+    path: "/events",
+    name: "events",
+    component: EventView
   },
   {
     path: "/places/:id",

@@ -111,12 +111,15 @@ export default {
       return authService.user.value
     },
     areCommentsLoading() {
-      return this.comments.length === 0
+      return this.comments === null
     },
     isPlaceLoading() {
       return this.place
     },
     filteredComments() {
+      if (this.comments === null) {
+        return []
+      }
       return this.comments.filter(comment => comment.place.toLowerCase().includes(decoration.path + "places/" + this.idPlace + "/")).sort((a, b) => new Date(b.date) - new Date(a.date))
     }
   },
