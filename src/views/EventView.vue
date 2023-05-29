@@ -46,7 +46,7 @@
                             <div>{{ event.place.city }}, {{ event.place.address }}</div>
                             <div> From the {{ formatDate(event.startDate) }} to the {{ formatDate(event.endDate) }}</div>
                         </div>
-                        <RouterLink class="btn btn-primary" :to="{ name: 'placeDetail', params: { id: event.id } }">See this event !</RouterLink>
+                        <RouterLink class="btn btn-primary" :to="{ name: 'eventDetail', params: { id: event.id } }">See this event !</RouterLink>
                     </div>
                 </div>
             </div>
