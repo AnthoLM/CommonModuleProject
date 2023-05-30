@@ -73,11 +73,11 @@
                   <div class="form-row">
                     <div class="col">
                       <label for="startDate">Une date de début, pour bientôt j'espère !</label>
-                      <input type="date" class="form-control" v-model="dateDebutInput" required>
+                      <input type="datetime-local" class="form-control" v-model="dateDebutInput" required>
                     </div>
                     <div class="col">
                       <label for="endDate">Et une date de fin, parce que toutes les bonnes chose en ont une malheureusement</label>
-                      <input type="date" class="form-control" v-model="dateFinInput" required>
+                      <input type="datetime-local" class="form-control" v-model="dateFinInput" required>
                       <Transition name="fade">
                         <div class="alert alert-danger" role="alert" v-if="!datesAreOk">
                           La date de fin doit être après la date de début !
@@ -157,7 +157,7 @@
           return true
         }
         if(this.dateDebutEvent !== "" && this.dateFinEvent !== ""){
-          return this.dateDebutEvent <= this.dateFinEvent
+          return this.dateDebutEvent < this.dateFinEvent
         }
         return false
       },
