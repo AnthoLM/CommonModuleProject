@@ -19,5 +19,9 @@ export default {
 
     updateEvent(eventId, updatedData){
         return api.put(`events/${eventId}`, updatedData).then((response) => response.data);
-    }
+    },
+
+    getEventsByPlaceID(placeID) {
+        return api.get(`places/${placeID}/events/`).then((response) => response.data);
+      },
 }
