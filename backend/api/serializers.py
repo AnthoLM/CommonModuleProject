@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User, Group
 from rest_framework import serializers
-from .models import Message, Place, PlaceCommentary, EventCommentary, Event
+from .models import Message, Place, PlaceCommentary, EventCommentary, Event, Registered_to_Event
 
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
@@ -25,11 +25,10 @@ class MessageSerializer(serializers.HyperlinkedModelSerializer):
 class PostPlaceSerializer(serializers.HyperlinkedModelSerializer):
 
     createdDate = serializers.DateTimeField(read_only=True)
-    event_ids = serializers.SerializerMethodField()
 
     class Meta:
         model = Place
-        fields = ('pk','name', 'address', 'city', 'npa','createdDate', 'user', 'event_ids')
+        fields = ('pk','name', 'address', 'city', 'npa','createdDate', 'user')
 
     def get_event_ids(self, obj):
         events = obj.events.all()
@@ -73,11 +72,10 @@ class PostPlaceSerializer(serializers.HyperlinkedModelSerializer):
 
 class ReadPlaceSerializer(serializers.HyperlinkedModelSerializer):
     user = UserSerializer(read_only=True)
-    event_ids = serializers.SerializerMethodField()
     
     class Meta:
         model = Place
-        fields = ('pk','name', 'address', 'city', 'npa','createdDate', 'user', 'event_ids')
+        fields = ('pk','name', 'address', 'city', 'npa','createdDate', 'user')
 
     def get_event_ids(self, obj):
         events = obj.events.all()
@@ -119,9 +117,14 @@ class ReadEventSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Event
-        fields = ['id', 'name', 'description', 'startDate', 'endDate', 'place', 'user','users_registered', 'maxParticipants']
+        fields = ['id', 'name', 'description', 'startDate', 'endDate', 'place', 'user', 'maxParticipants']
 
 class PostEventSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Event
         fields = ['id', 'name', 'description', 'startDate', 'endDate', 'place', 'user', 'maxParticipants']
+
+class Registered_to_EventSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Registered_to_Event
+        fields = ['id', 'user', 'event']

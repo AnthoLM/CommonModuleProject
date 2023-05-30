@@ -22,6 +22,6 @@ export default {
     },
 
     getEventsByPlaceID(placeID) {
-        return api.get(`places/${placeID}/events/`).then((response) => response.data);
+        return api.get('events/',{params: {place : placeID}}.then((response) => response.data));
       },
 }

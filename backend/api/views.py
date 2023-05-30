@@ -2,8 +2,8 @@ from django.contrib.auth.models import User, Group
 from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
 from rest_framework import viewsets, permissions, status
-from .models import Message, Place, PlaceCommentary, EventCommentary, Event
-from .serializers import UserSerializer, GroupSerializer, MessageSerializer, ReadPlaceSerializer, PostPlaceSerializer, ReadPlaceCommentarySerializer, PostPlaceCommentarySerializer, ReadEventCommentarySerializer, PostEventCommentarySerializer, ReadEventSerializer, PostEventSerializer
+from .models import Message, Place, PlaceCommentary, EventCommentary, Event, Registered_to_Event
+from .serializers import UserSerializer, GroupSerializer, MessageSerializer, ReadPlaceSerializer, PostPlaceSerializer, ReadPlaceCommentarySerializer, PostPlaceCommentarySerializer, ReadEventCommentarySerializer, PostEventCommentarySerializer, ReadEventSerializer, PostEventSerializer, Registered_to_EventSerializer
 from django.utils import timezone
 from rest_framework.response import Response
 
@@ -95,29 +95,33 @@ class EventViewSet(viewsets.ModelViewSet):
     queryset = Event.objects.all()
     serializer_class = ReadEventSerializer
     permissions_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        queryset = Event.objects.all()
+        place = self.request.query_params.get('place')
+        if place is not None:
+            queryset = queryset.filter(place = place)
+        return queryset
 
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update", "destroy"]:
             return PostEventSerializer
         return ReadEventSerializer
     
-    def register(self, request, pk=None):
-        event = self.get_object()
-        user = request.user
+class Registered_to_EventViewSet(viewsets.ModelViewSet):
+    queryset = Registered_to_Event.objects.all()
+    serializer_class = Registered_to_EventSerializer
+    permissions_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        queryset = Registered_to_Event.objects.all()
+        event = self.request.query_params.get('event')
+        if event is not None:
+            queryset = queryset.filter(event = event)
+        return queryset
 
-        if event.users_registered.filter(pk=user.pk).exists():
-            # User is already registered for the event
-            return Response({'detail': 'User is already registered for this event.'}, status=status.HTTP_400_BAD_REQUEST)
-
-        if event.users_registered.count() >= event.maxParticipants:
-            # Maximum number of participants reached
-            return Response({'detail': 'Maximum number of participants reached for this event.'}, status=status.HTTP_400_BAD_REQUEST)
-
-        event.users_registered.add(user)
-        event.save()
-
-        # Update the registration count
-        registration_count = event.users_registered.count()
-
-        return Response({'detail': 'User successfully registered for the event.', 'registration_count': registration_count}, status=status.HTTP_200_OK)
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update", "destroy"]:
+            return Registered_to_EventSerializer
+        return Registered_to_EventSerializer
     

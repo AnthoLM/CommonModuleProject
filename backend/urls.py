@@ -17,7 +17,7 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework import routers
 
-from .api.views import index_view, UserViewSet, GroupViewSet, MessageViewSet, PlaceViewSet, PlaceCommentaryViewSet, EventCommentaryViewSet, EventViewSet
+from .api.views import index_view, UserViewSet, GroupViewSet, MessageViewSet, PlaceViewSet, PlaceCommentaryViewSet, EventCommentaryViewSet, EventViewSet, Registered_to_EventViewSet
 
 router = routers.DefaultRouter()
 router.register('messages', MessageViewSet)
@@ -27,6 +27,7 @@ router.register('places', PlaceViewSet)
 router.register('placecommentaries', PlaceCommentaryViewSet)
 router.register('eventcommentaries', EventCommentaryViewSet)
 router.register('events', EventViewSet)
+router.register('register_to_Event', Registered_to_EventViewSet)
 
 
 urlpatterns = [

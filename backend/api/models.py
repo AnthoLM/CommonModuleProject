@@ -16,7 +16,6 @@ class Place(models.Model):
     npa = models.IntegerField(default='0001')
     createdDate = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    events = models.ManyToManyField('Event', related_name='places', blank=True)
 
 
     def __str__(self):
@@ -50,8 +49,15 @@ class Event(models.Model):
     endDate = models.DateTimeField()
     place = models.ForeignKey('Place', on_delete=models.CASCADE, null=True, blank=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
-    users_registered = models.ManyToManyField(User, related_name='registered_events', blank=True)
+    #users_registered = models.ManyToManyField(User, related_name='registered_events', blank=True)
     maxParticipants = models.IntegerField()
 
     def __str__(self):
         return self.name
+    
+class Registered_to_Event(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
+    event = models.ForeignKey('Event', on_delete=models.CASCADE, null=True, blank=True)
+
+    def __str__(self):
+        return f'Registered to {self.event.name}'
