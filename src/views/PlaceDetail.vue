@@ -62,7 +62,7 @@
       <div v-else>
         <h2>Events</h2>
         <div v-if="relatedEvents.length === 0">Looks like there are no events for this place yet ! 
-          <RouterLink v-if="user" class="link" to="/placeAdd">
+          <RouterLink v-if="user" class="link" to="/eventAdd">
             Why not add one ?
           </RouterLink>
         </div>
@@ -73,6 +73,7 @@
             </div>
             <div class="card-body">
               <p>{{ event.description }}</p>
+              <RouterLink class="btn btn-primary" :to="{ name: 'eventDetail', params: { id: event.id } }">More info</RouterLink>
             </div>
             <div class="card-footer text-muted">
               From the {{ formatDate(event.startDate) }} to the {{ formatDate(event.endDate) }}
