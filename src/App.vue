@@ -90,7 +90,6 @@ export default {
   data() {
     return {
       decoration,
-      test: "test"
     }
   },
   computed: {
