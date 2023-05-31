@@ -47,6 +47,19 @@
                             <div> From the {{ formatDate(event.startDate) }} to the {{ formatDate(event.endDate) }}</div>
                         </div>
                         <RouterLink class="btn btn-primary" :to="{ name: 'eventDetail', params: { id: event.id } }">See this event !</RouterLink>
+                        <br><br>Share on : <br>
+                        <ShareNetwork network="facebook" :url="placeUrl(index)" :title="placeTitle(event)">
+                            <i class="fab fa-facebook fa-lg logo-icon" @click="$emit('click')"></i>
+                        </ShareNetwork>
+                        <ShareNetwork network="twitter" :url="placeUrl(index)" :title="placeTitle(event)">
+                            <i class="fab fa-twitter fa-lg logo-icon" @click="$emit('click')"></i>
+                        </ShareNetwork>
+                        <ShareNetwork network="whatsapp" :url="placeUrl(index)" :title="placeTitle(event)">
+                            <i class="fab fa-whatsapp fa-lg logo-icon" @click="$emit('click')"></i>
+                        </ShareNetwork>
+                        <ShareNetwork network="reddit" :url="placeUrl(index)" :title="placeTitle(event)">
+                            <i class="fab fa-reddit fa-lg logo-icon" @click="$emit('click')"></i>
+                        </ShareNetwork>
                     </div>
                 </div>
             </div>
@@ -57,6 +70,8 @@
 <script>
 import authService from "@/services/authService"
 import eventService from "@/services/eventService"
+import {SocialSharing} from 'vue-social-sharing';
+
 
 export default {
     data() {
@@ -96,6 +111,12 @@ export default {
             const date = new Date(dateString);
             return date.toLocaleString("en-CH", options);
         },
+        placeUrl(index){
+            return `http://localhost:5173/#/events/${index}`;
+        },
+        placeTitle(event){
+            return `Venez vous amuser et rencontrer de nouvelles personnes à l'événement ${event.name}!`
+        },
     },
     computed: {
         user() {
@@ -125,6 +146,9 @@ export default {
             }
 
         }
+    },
+    components: {
+        ShareNetwork
     }
 }
 </script>
