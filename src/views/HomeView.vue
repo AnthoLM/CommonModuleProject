@@ -40,6 +40,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: auto; /* Viewport Height */
+  max-height: 80vh;
 }
 
 .fennec img, .event-calendar img {
