@@ -1,0 +1,203 @@
+[
+    {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$9rgusfPWcP6hDzU1lSwVki$EZiLPKhvtDlS6wE53nk6QSE38RALvdXcBSMg8HF2+6A=",
+            "last_login": "2023-05-28T12:49:58.266Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "email": "admin@example.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-05-09T12:53:35.147Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$vJplE5xz17fp9V7XCK8w5L$O65goqhamRa42U9KWrRaIuWpv8S4SH5OBOHkSTiiwPw=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Antho",
+            "first_name": "",
+            "last_name": "",
+            "email": "antho@blabla.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-05-13T14:42:51.304Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$Aum4nNYhTGeyAuSi2np72w$LXaRTiUq5G0L/ASshcBf7ALHrDFYowidpwIx/Rtj+EY=",
+            "last_login": "2023-05-31T11:36:36.660Z",
+            "is_superuser": false,
+            "username": "Anthony",
+            "first_name": "",
+            "last_name": "",
+            "email": "antho@email.ch",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-05-21T19:05:27.004Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "sites.site",
+        "pk": 1,
+        "fields": {
+            "domain": "example.com",
+            "name": "example.com"
+        }
+    },
+    {
+        "model": "account.emailaddress",
+        "pk": 1,
+        "fields": {
+            "user": 2,
+            "email": "antho@blabla.com",
+            "verified": false,
+            "primary": true
+        }
+    },
+    {
+        "model": "account.emailaddress",
+        "pk": 2,
+        "fields": {
+            "user": 3,
+            "email": "antho@email.ch",
+            "verified": false,
+            "primary": true
+        }
+    },
+    {
+        "model": "api.message",
+        "pk": 1,
+        "fields": {
+            "subject": "DateTest",
+            "body": "DateTestContent",
+            "created_at": "2023-05-14T18:51:34.957Z",
+            "updated_at": "2023-05-14T18:51:34.957Z"
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 19,
+        "fields": {
+            "name": "Les Brasseurs",
+            "address": "Avenue de la Gare 23",
+            "city": "Sion",
+            "npa": 1951,
+            "createdDate": "2023-05-28T13:47:05.526Z",
+            "user": 3
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 20,
+        "fields": {
+            "name": "Chez David",
+            "address": "Route Cantonale 65",
+            "city": "Chermignon - Chermignon-d'en-Bas - Ollon",
+            "npa": 3971,
+            "createdDate": "2023-05-28T13:49:22.284Z",
+            "user": 3
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 21,
+        "fields": {
+            "name": "La plage du Tourbillon",
+            "address": "Avenue du Bietschhorn 15",
+            "city": "Sion",
+            "npa": 1951,
+            "createdDate": "2023-05-29T07:39:22.018Z",
+            "user": 3
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 22,
+        "fields": {
+            "name": "Le bar du Centre",
+            "address": "Avenue de Beaulieu 7",
+            "city": "Lausanne",
+            "npa": 1000,
+            "createdDate": "2023-05-29T12:00:10.915Z",
+            "user": 3
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 23,
+        "fields": {
+            "name": "Britannia Pub",
+            "address": "Avenue du Général Guisan 34",
+            "city": "Muraz (Sierre) - Sierre - Loc - Niouc - Corin-de-la-Crête",
+            "npa": 3960,
+            "createdDate": "2023-05-29T12:08:05.881Z",
+            "user": 3
+        }
+    },
+    {
+        "model": "api.placecommentary",
+        "pk": 12,
+        "fields": {
+            "user": 3,
+            "place": 20,
+            "content": "Nice place to have a drink with your friends. I recommend it!",
+            "date": "2023-05-31T11:37:12.220Z"
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 7,
+        "fields": {
+            "name": "Darts Tournement",
+            "description": "We invite you to participate to our darts tournement. Come with your friends!",
+            "startDate": "2023-06-02T00:00:00Z",
+            "endDate": "2023-06-03T00:00:00Z",
+            "place": 20,
+            "user": 3,
+            "maxParticipants": 25
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 10,
+        "fields": {
+            "name": "Karaoké",
+            "description": "If you want to show everyone your singing talent, come and join in our karaoke and sing your favourite songs with your friends.",
+            "startDate": "2023-06-08T00:00:00Z",
+            "endDate": "2023-06-09T00:00:00Z",
+            "place": 22,
+            "user": 3,
+            "maxParticipants": 30
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 11,
+        "fields": {
+            "name": "BeerPong Tournament",
+            "description": "Sign up with your friends to participate in our BeerPong tournament. The winning team will win vouchers for free drinks",
+            "startDate": "2023-06-08T18:00:00Z",
+            "endDate": "2023-06-08T23:00:00Z",
+            "place": 20,
+            "user": 3,
+            "maxParticipants": 50
+        }
+    }
+]

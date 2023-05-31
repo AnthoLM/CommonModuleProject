@@ -11,7 +11,8 @@
                 <h1>{{ event.name }}</h1>
                 <p class="border">{{ event.description }}</p>
                 <p class="border">This event will start on the {{ formatDate(event.startDate) }} and will end the {{ formatDate(event.endDate) }}</p>
-                <button type="button" class="btn btn-primary" v-if="user" @click="register" :disabled="isRegistrationPossible">{{textButtonRegister}}</button>
+                <p v-if="this.registration.length >0">{{ this.registration.length }} people already registered !</p>
+                <button type="button" class="btn btn-primary" v-if="user" @click="register" :disabled="!registrationPossible || instantFeebackRegistration">{{textButtonRegister}}</button>
                 <hr>
             </div>
         </div>
@@ -22,7 +23,7 @@
 import authService from "@/services/authService"
 import decoration from "../models/decoration"
 import eventService from "@/services/eventService"
-//import registerToEventService from "@/services/registerToEventService"
+import registerToEventService from "@/services/registerToEventService"
 
 export default {
   data() {
@@ -31,7 +32,8 @@ export default {
       idEvent: this.$route.params.id,
       commentContent: "",
       event:"",
-      registration: [],
+      registration: null,
+      instantFeebackRegistration: false,
     }
   },
   computed:{
@@ -41,23 +43,34 @@ export default {
     isEventLoading() {
       return this.event === ""
     },
-    isRegistrationPossible() {
+    userAlreadyRegistered(){
       if (this.registration !== null){
-        return this.event.maxParticipants > this.registration.length
+        return this.registration.some((register) => register.user === decoration.path + "users/" + this.user.pk + "/")
+      } else return false
+    },
+    registrationPossible() {
+      if (this.registration !== null){
+        return this.event.maxParticipants > this.registration.length && this.userAlreadyRegistered === false
       } else return false
     },
     textButtonRegister(){
-      if (!this.isRegistrationPossible){
+      if (this.registrationPossible && this.instantFeebackRegistration === false){
         return "Register"
-      } else return "Event at capacity"
+      } else if(this.userAlreadyRegistered && this.instantFeebackRegistration === false){
+        return "You are already registered"
+      } else if(this.instantFeebackRegistration === true){
+        return "You are registered !" 
+      } else {
+        return "Event at capacity"
+      }
     }
   },
   async mounted() {
     this.event = await eventService.getEvent(this.idEvent)
   },
   watch: {
-    event() {
-      //this.registration = registerToEventService.getRegisterId(this.idEvent)
+    async event() {
+      this.registration = await registerToEventService.getRegisterId(this.event.id)
     },
   },
   methods: {
@@ -73,10 +86,11 @@ export default {
         return date.toLocaleString("en-CH", options);
     },
     register() {
-      // registerToEventService.addRegister({
-      //   user: decoration.path + "register_to_Event/" + this.user.pk + "/",
-      //   event: decoration.path + "register_to_Event/" + this.event.id + "/",
-      // })
+      registerToEventService.addRegister({
+        user: decoration.path + "users/" + this.user.pk + "/",
+        event: decoration.path + "events/" + this.event.id + "/",
+      })
+      this.instantFeebackRegistration = true
     },
   },
 }
