@@ -39,7 +39,8 @@ export default {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: auto; /* Viewport Height ou 70vh à la place de auto*/ 
+  height: auto; 
+  max-height: 80vh; /* Viewport Height ou 80vh à la place de auto*/ 
 }
 
 .fennec img, .event-calendar img {
