@@ -1,37 +1,45 @@
 <template>
   <div class="container text-center">
+    <h1>Places !</h1>
     <div class="row">
-      <div class="col-6 offset-3">
-        <h1>Places !</h1>
+      <div class="col-3">
+        <Transition name="fade">
+          <div v-if="!advancedSearch">
+            <div class="text-start">
+              Search
+            </div>
+            <input type="text" class="form-control" v-model="generalSearch" />
+            
+          </div>
+        </Transition>
+        <input class="form-check-input" type="checkbox" v-model="advancedSearch">
+        <label class="form-check-label" for="flexCheckDefault">
+          Advanced search
+        </label>
+        <Transition name="fade">
+          <div v-if="advancedSearch">
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label text-start">Place name</label>
+              <input type="text" class="form-control" v-model="nameSearch">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label text-start">Address</label>
+              <input type="text" class="form-control" v-model="addressSearch">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label text-start">City</label>
+              <input type="text" class="form-control" v-model="citySearch">
+            </div>
+            <div class="mb-3">
+              <label for="exampleFormControlInput1" class="form-label text-start">NPA</label>
+              <input type="number" class="form-control" v-model="npaSearch">
+            </div>
+          </div>
+        </Transition>
+      </div>
+      <div class="col-6">
         <h2>Bars and theaters, circus and everything !</h2>
         <h2>Ready to be discovered by you !</h2>
-        <hr />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-6 offset-3">
-        <label class="form-label">Chercher par une address</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="addressSearch"
-        /><!--Searching by name, address or cityname-->
-        <label class="form-label">Chercher par le nom d'une place</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="nameSearch"
-        />
-        <label class="form-label">Cherchez une ville</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="citySearch"
-        />
-        <label class="form-label">Recherche une place par son code postal</label>
-        <input type="number" class="form-control" v-model="npaSearch" />
-        <!--Searching by NPA-->
-        <!--Now make it pretty-->
         <hr />
       </div>
     </div>
@@ -100,6 +108,8 @@ export default {
       addressSearch: "",
       nameSearch: "",
       citySearch: "",
+      generalSearch: "",
+      advancedSearch: false,
       places: []
     }
   },
@@ -115,16 +125,27 @@ export default {
       return this.places.length === 0
     },
     filteredPlaces() {
-      return this.places
-        .filter((place) => {
-          return (
-            place.name.toLowerCase().includes(this.nameSearch.toLowerCase()) &&
-            place.address.toLowerCase().includes(this.addressSearch.toLowerCase()) &&
-            place.city.toLowerCase().includes(this.citySearch.toLowerCase()) &&
-            place.npa.toString().includes(this.npaSearch.toString())
-          )
+      if (this.advancedSearch === false){
+        return this.places.filter((place) => {
+        return (
+          place.name.toLowerCase().includes(this.generalSearch.toLowerCase()) ||
+          place.address.toLowerCase().includes(this.generalSearch.toLowerCase()) ||
+          place.city.toLowerCase().includes(this.generalSearch.toLowerCase()) ||
+          place.npa.toString().includes(this.generalSearch.toString())
+        )
+      })
+      .sort((a, b) => {
+          return a.name.localeCompare(b.name)
         })
-        .sort((a, b) => {
+      } else return this.places.filter((place) => {
+        return (
+          place.name.toLowerCase().includes(this.nameSearch.toLowerCase()) &&
+          place.address.toLowerCase().includes(this.addressSearch.toLowerCase()) &&
+          place.city.toLowerCase().includes(this.citySearch.toLowerCase()) &&
+          place.npa.toString().includes(this.npaSearch.toString())
+        )
+      })
+      .sort((a, b) => {
           return a.name.localeCompare(b.name)
         })
     }
@@ -147,6 +168,16 @@ export default {
 <style scoped>
 /* DO NOT TOUCH ANY OF THOSE CSS THINGS; THEY ARE HERE TO MAKE THE SMOOTH TRANSITION OF THE LIST*/
 /* NO I DID NOT MAKE THEM; ITS FROM VUE.JS FRAMEWORK, YOU CAN JUST GRAB THEM ON THEIR WEBSITE. */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
