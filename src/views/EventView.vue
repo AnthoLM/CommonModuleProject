@@ -70,7 +70,7 @@
 <script>
 import authService from "@/services/authService"
 import eventService from "@/services/eventService"
-import {SocialSharing} from 'vue-social-sharing';
+import {ShareNetwork} from 'vue-social-sharing';
 
 
 export default {
