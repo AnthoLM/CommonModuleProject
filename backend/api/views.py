@@ -1,10 +1,11 @@
 from django.contrib.auth.models import User, Group
 from django.views.generic import TemplateView
 from django.views.decorators.cache import never_cache
-from rest_framework import viewsets, permissions
-from .models import Message, Place, Commentary
-from .serializers import UserSerializer, GroupSerializer, MessageSerializer, ReadPlaceSerializer, PostPlaceSerializer, ReadCommentarySerializer, PostCommentarySerializer
+from rest_framework import viewsets, permissions, status
+from .models import Message, Place, PlaceCommentary, EventCommentary, Event, Registered_to_Event
+from .serializers import UserSerializer, GroupSerializer, MessageSerializer, ReadPlaceSerializer, PostPlaceSerializer, ReadPlaceCommentarySerializer, PostPlaceCommentarySerializer, ReadEventCommentarySerializer, PostEventCommentarySerializer, ReadEventSerializer, PostEventSerializer, Registered_to_EventSerializer
 from django.utils import timezone
+from rest_framework.response import Response
 
 current_time = timezone.now()
 
@@ -49,7 +50,7 @@ class PlaceViewSet(viewsets.ModelViewSet):
     """
     queryset = Place.objects.all()
     serializer_class = ReadPlaceSerializer
-    permissions_classes = [permissions.AllowAny]
+    permissions_classes = [permissions.IsAuthenticated]
 
     def get_queryset(self):
         queryset = Place.objects.all()
@@ -70,11 +71,57 @@ class PlaceViewSet(viewsets.ModelViewSet):
 
     # SHOULD IMPLEMENT CUSTOM PERMISSIONS FOR OBJECT LEVEL SECURITY
 
-class CommentaryViewSet(viewsets.ModelViewSet):
-    queryset = Commentary.objects.all()
-    serializer_class = ReadCommentarySerializer
+class PlaceCommentaryViewSet(viewsets.ModelViewSet):
+    queryset = PlaceCommentary.objects.all()
+    serializer_class = ReadPlaceCommentarySerializer
+    permissions_classes = [permissions.IsAuthenticated]
     
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update", "destroy"] :
-            return PostCommentarySerializer
-        return ReadCommentarySerializer
+            return PostPlaceCommentarySerializer
+        return ReadPlaceCommentarySerializer
+    
+class EventCommentaryViewSet(viewsets.ModelViewSet):
+    queryset = EventCommentary.objects.all()
+    serializer_class = ReadEventCommentarySerializer
+    permissions_classes = [permissions.IsAuthenticated]
+    
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update", "destroy"] :
+            return PostEventCommentarySerializer
+        return ReadEventCommentarySerializer
+    
+class EventViewSet(viewsets.ModelViewSet):
+    queryset = Event.objects.all()
+    serializer_class = ReadEventSerializer
+    permissions_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        queryset = Event.objects.all()
+        place = self.request.query_params.get('place')
+        if place is not None:
+            queryset = queryset.filter(place = place)
+        return queryset
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update", "destroy"]:
+            return PostEventSerializer
+        return ReadEventSerializer
+    
+class Registered_to_EventViewSet(viewsets.ModelViewSet):
+    queryset = Registered_to_Event.objects.all()
+    serializer_class = Registered_to_EventSerializer
+    permissions_classes = [permissions.IsAuthenticated]
+    
+    def get_queryset(self):
+        queryset = Registered_to_Event.objects.all()
+        event = self.request.query_params.get('event')
+        if event is not None:
+            queryset = queryset.filter(event = event)
+        return queryset
+
+    def get_serializer_class(self):
+        if self.action in ["create", "update", "partial_update", "destroy"]:
+            return Registered_to_EventSerializer
+        return Registered_to_EventSerializer
+    

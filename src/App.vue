@@ -35,6 +35,7 @@
             <RouterLink class="nav-link" to="/places">Places</RouterLink>
           </li>
           <li class="nav-item">
+            <RouterLink class="nav-link" to="/events">Events</RouterLink>
           </li>
         </ul>
         <!-- <form class="d-flex" role="search">

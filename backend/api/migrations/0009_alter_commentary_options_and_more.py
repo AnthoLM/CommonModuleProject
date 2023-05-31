@@ -19,4 +19,8 @@ class Migration(migrations.Migration):
             old_name='created_at',
             new_name='date',
         ),
+        #migrations.RemoveField(
+            #model_name='commentary',
+            #name='parent',
+        #),
     ]
