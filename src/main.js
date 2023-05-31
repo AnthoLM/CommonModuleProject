@@ -1,11 +1,11 @@
 import { createApp } from "vue"
 import App from "./App.vue"
 import router from "./router"
-//import "bootstrap";
-import "bootstrap/dist/css/bootstrap.css"
-import "bootstrap-vue/dist/bootstrap-vue.css"
-import "@fortawesome/fontawesome-free/css/all.min.css"
+import "bootstrap";
+//import "bootstrap/dist/css/bootstrap.css"
+//import "bootstrap-vue/dist/bootstrap-vue.css"
 import 'bootswatch/dist/United/bootstrap.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css"
 //import 'bootstrap/scss/bootstrap.scss';
 
 const app = createApp(App)
