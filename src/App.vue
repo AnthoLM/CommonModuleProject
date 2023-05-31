@@ -3,11 +3,12 @@
     <div class="container-fluid">
       <a class="navbar-brand" href="#">
         <img
-          src="@/assets/images/logo_fennec.png"
+          src="@/assets/images/logo_fennec.jpg"
           alt="Logo"
           width="30"
           height="24"
           class="d-inline-block align-text-top"
+          :style="{ borderRadius: '20%', border: '2px solid black' }"
         />
         {{ decoration.websitename }}
       </a>
@@ -129,9 +130,18 @@ export default {
 .navbar {
   background-color: #FF6F00; /* Orange */
 }
+.btn-primary {
+  color: black; /* Black */
+  background-color: #FF4500;
+  border-color: black;
+}
+.nav-link {
+  font-weight: bold;
+}
 .nav-link:hover, .btn-primary:hover {
   color: #FF6F00; /* Orange */
   background-color: white;
+  border-radius: 20%;
 }
 
 </style>
