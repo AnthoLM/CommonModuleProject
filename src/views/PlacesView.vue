@@ -131,12 +131,12 @@ export default {
   
   },
   methods: {
-    placeUrl(index){
-      return `http://localhost:5173/#/places/${index}`;
-    },
-    placeTitle(place){
-      return `Venez découvrir ${place.name} à ${place.city}`
-    },
+      placeUrl(index){
+        return `http://localhost:5173/#/places/${index}`;
+      },
+      placeTitle(place){
+        return `Venez découvrir ${place.name} à ${place.city}`
+      },
   },
   components: {
     ShareNetwork

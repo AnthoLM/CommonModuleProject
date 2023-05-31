@@ -1,82 +1,98 @@
 [
     {
-        "model": "api.place",
+        "model": "api.message",
         "pk": 1,
         "fields": {
-            "name": "Bar",
-            "address": "Rue de la Brue 25",
-            "city": "Sierre",
-            "npa": 3960
+            "subject": "DateTest",
+            "body": "DateTestContent",
+            "created_at": "2023-05-14T18:51:34.957Z",
+            "updated_at": "2023-05-14T18:51:34.957Z"
         }
     },
     {
         "model": "api.place",
-        "pk": 4,
+        "pk": 19,
         "fields": {
-            "name": "Paintball",
-            "address": "Avenue de la gare 32",
-            "city": "Martigny",
-            "npa": 1920
+            "name": "Les Brasseurs",
+            "address": "Avenue de la Gare 23",
+            "city": "Sion",
+            "npa": 1951,
+            "createdDate": "2023-05-28T13:47:05.526Z",
+            "user": 3
         }
     },
     {
         "model": "api.place",
-        "pk": 6,
+        "pk": 20,
         "fields": {
-            "name": "Mario Kart Tournement",
-            "address": "Route Cantonale 65",
-            "city": "Chermignon",
-            "npa": 3971
-        }
-    },
-    {
-        "model": "api.place",
-        "pk": 7,
-        "fields": {
-            "name": "BeerPong",
-            "address": "Route de la soif 14",
-            "city": "Crans-Montana",
-            "npa": 3963
-        }
-    },
-    {
-        "model": "api.place",
-        "pk": 8,
-        "fields": {
-            "name": "Rooftop",
-            "address": "Rue de la Sauge 75",
-            "city": "Lausanne",
-            "npa": 1000
-        }
-    },
-    {
-        "model": "api.place",
-        "pk": 9,
-        "fields": {
-            "name": "Pétanque",
-            "address": "Route de la soie 55",
-            "city": "Neuchâtel",
-            "npa": 2000
-        }
-    },
-    {
-        "model": "api.place",
-        "pk": 10,
-        "fields": {
-            "name": "Pétanque",
+            "name": "Chez David",
             "address": "Route Cantonale 65",
             "city": "Chermignon - Chermignon-d'en-Bas - Ollon",
-            "npa": 3971
+            "npa": 3971,
+            "createdDate": "2023-05-28T13:49:22.284Z",
+            "user": 3
         }
     },
     {
         "model": "api.place",
-        "pk": 11,
+        "pk": 21,
         "fields": {
-            "name": "Soirée Karaoké",
-            "address": "Avenue de la gare 55",
+            "name": "La plage du Tourbillon",
+            "address": "Avenue du Bietschhorn 15",
             "city": "Sion",
-            "npa": 1950
+            "npa": 1951,
+            "createdDate": "2023-05-29T07:39:22.018Z",
+            "user": 3
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 22,
+        "fields": {
+            "name": "Le bar du Centre",
+            "address": "Avenue de Beaulieu 7",
+            "city": "Lausanne",
+            "npa": 1000,
+            "createdDate": "2023-05-29T12:00:10.915Z",
+            "user": 3
+        }
+    },
+    {
+        "model": "api.place",
+        "pk": 23,
+        "fields": {
+            "name": "Britannia Pub",
+            "address": "Avenue du Général Guisan 34",
+            "city": "Muraz (Sierre) - Sierre - Loc - Niouc - Corin-de-la-Crête",
+            "npa": 3960,
+            "createdDate": "2023-05-29T12:08:05.881Z",
+            "user": 3
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 7,
+        "fields": {
+            "name": "Darts Tournement",
+            "description": "We invite you to participate to our darts tournement. Come with your friends!",
+            "startDate": "2023-06-02T00:00:00Z",
+            "endDate": "2023-06-03T00:00:00Z",
+            "place": 20,
+            "user": 3,
+            "maxParticipants": 25
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 10,
+        "fields": {
+            "name": "Karaoké",
+            "description": "If you want to show everyone your singing talent, come and join in our karaoke and sing your favourite songs with your friends.",
+            "startDate": "2023-06-08T00:00:00Z",
+            "endDate": "2023-06-09T00:00:00Z",
+            "place": 22,
+            "user": 3,
+            "maxParticipants": 30
         }
     }
 ]
