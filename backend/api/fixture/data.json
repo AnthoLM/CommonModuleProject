@@ -1,5 +1,87 @@
 [
     {
+        "model": "auth.user",
+        "pk": 1,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$9rgusfPWcP6hDzU1lSwVki$EZiLPKhvtDlS6wE53nk6QSE38RALvdXcBSMg8HF2+6A=",
+            "last_login": "2023-05-28T12:49:58.266Z",
+            "is_superuser": true,
+            "username": "admin",
+            "first_name": "",
+            "last_name": "",
+            "email": "admin@example.com",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2023-05-09T12:53:35.147Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 2,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$vJplE5xz17fp9V7XCK8w5L$O65goqhamRa42U9KWrRaIuWpv8S4SH5OBOHkSTiiwPw=",
+            "last_login": null,
+            "is_superuser": false,
+            "username": "Antho",
+            "first_name": "",
+            "last_name": "",
+            "email": "antho@blabla.com",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-05-13T14:42:51.304Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "auth.user",
+        "pk": 3,
+        "fields": {
+            "password": "pbkdf2_sha256$600000$Aum4nNYhTGeyAuSi2np72w$LXaRTiUq5G0L/ASshcBf7ALHrDFYowidpwIx/Rtj+EY=",
+            "last_login": "2023-05-31T11:36:36.660Z",
+            "is_superuser": false,
+            "username": "Anthony",
+            "first_name": "",
+            "last_name": "",
+            "email": "antho@email.ch",
+            "is_staff": false,
+            "is_active": true,
+            "date_joined": "2023-05-21T19:05:27.004Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "sites.site",
+        "pk": 1,
+        "fields": {
+            "domain": "example.com",
+            "name": "example.com"
+        }
+    },
+    {
+        "model": "account.emailaddress",
+        "pk": 1,
+        "fields": {
+            "user": 2,
+            "email": "antho@blabla.com",
+            "verified": false,
+            "primary": true
+        }
+    },
+    {
+        "model": "account.emailaddress",
+        "pk": 2,
+        "fields": {
+            "user": 3,
+            "email": "antho@email.ch",
+            "verified": false,
+            "primary": true
+        }
+    },
+    {
         "model": "api.message",
         "pk": 1,
         "fields": {
@@ -70,6 +152,16 @@
         }
     },
     {
+        "model": "api.placecommentary",
+        "pk": 12,
+        "fields": {
+            "user": 3,
+            "place": 20,
+            "content": "Nice place to have a drink with your friends. I recommend it!",
+            "date": "2023-05-31T11:37:12.220Z"
+        }
+    },
+    {
         "model": "api.event",
         "pk": 7,
         "fields": {
@@ -93,6 +185,19 @@
             "place": 22,
             "user": 3,
             "maxParticipants": 30
+        }
+    },
+    {
+        "model": "api.event",
+        "pk": 11,
+        "fields": {
+            "name": "BeerPong Tournament",
+            "description": "Sign up with your friends to participate in our BeerPong tournament. The winning team will win vouchers for free drinks",
+            "startDate": "2023-06-08T18:00:00Z",
+            "endDate": "2023-06-08T23:00:00Z",
+            "place": 20,
+            "user": 3,
+            "maxParticipants": 50
         }
     }
 ]
