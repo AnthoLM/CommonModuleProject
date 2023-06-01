@@ -9,7 +9,7 @@
             <h1>Inscription</h1>
           </div>
           <div class="card-body">
-            <p class="card-text">
+            <span class="card-text">
               <!-- <input type="text" class="form-control" v-model="firstName" placeholder="Prénom" />
               <input
                 type="text"
@@ -41,7 +41,13 @@
                   {{ textNotReady }}
                 </div>
               </Transition>
+              <div v-if="registrationLoading">
+                <div class="spinner-border" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
               <input
+                v-else
                 type="submit"
                 class="mt-2 btn btn-primary"
                 value="Créer un compte"
@@ -49,11 +55,11 @@
                 @click="register"
               />
               <Transition name="slide-fade">
-                <div class="alert alert-danger mt-2" role="alert" v-if="loginFailed">
+                <div class="alert alert-danger mt-2" role="alert" v-if="loginFailed && !registrationLoading">
                   {{ textErrorRegister }}
                 </div>
               </Transition>
-            </p>
+            </span>
           </div>
           <div class="card-footer">
             <p>
@@ -81,7 +87,8 @@ export default {
       password: "",
       username: "",
       password2: "",
-      loginError: ""
+      loginError: null,
+      registrationLoading: false
     }
   },
   computed: {
@@ -89,7 +96,9 @@ export default {
       return authService.user.value
     },
     loginFailed() {
-      return this.loginError !== ""
+      if (this.loginError !== null) {
+        return true
+      } else return false
     },
     isReadyForRegister() {
       return this.textNotReady === null
@@ -126,6 +135,7 @@ export default {
   methods: {
     register() {
       this.loginError = ""
+      this.registrationLoading = true
       authService
         .register({
           username: this.username,
@@ -135,6 +145,7 @@ export default {
         })
         .catch((err) => {
           this.loginError = err.response.data
+          this.registrationLoading = false
         })
     }
   }
