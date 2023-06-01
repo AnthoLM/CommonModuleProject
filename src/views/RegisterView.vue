@@ -146,6 +146,9 @@ export default {
         .catch((err) => {
           this.loginError = err.response.data
           this.registrationLoading = false
+          if (this.textErrorRegister === "Compte créé avec succès !") {
+            this.$router.push("/login")
+          }
         })
     }
   }
