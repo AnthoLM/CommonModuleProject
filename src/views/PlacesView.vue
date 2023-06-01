@@ -93,7 +93,6 @@ import { ShareNetwork } from 'vue-social-sharing';
 export default {
   data() {
     return {
-      searchTerm: "",
       npaSearch: "",
       addressSearch: "",
       nameSearch: "",
@@ -106,6 +105,16 @@ export default {
   async mounted() {
     authService.getUser()
     this.places = await placeService.fetchPlaces()
+  },
+  watch: {
+    advancedSearch() {
+      if (this.advancedSearch === false) {
+                this.npaSearch = ""
+                this.citySearch = ""
+                this.addressSearch = ""
+                this.nameSearch = ""
+            }else this.generalSearch = ""
+    }
   },
   computed: {
     user() {
