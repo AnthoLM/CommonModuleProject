@@ -8,9 +8,8 @@
       </div>
       <div class="row" v-else>
         <h1>{{ place.name }}</h1>
-        <p>{{ place.address }}</p>
-        <p>{{ place.city }}</p>
-        <p>{{ place.npa }}</p>
+        <h3 class="text-start mt-2">Where to find us ?</h3>
+        <p class="text-start">{{ place.address }}, in {{ place.city }}, {{ place.npa }}</p>
         <button type="button" class="btn btn-primary" @click="changeSubject()">{{textChangingSubject}}</button>
         <hr>
       </div>
@@ -123,9 +122,9 @@ export default {
       //notice it change and do a new fetch so the actual comments list is up to date all the time, 
       //with the info that gets added when the comments goes through the api.
       //But for some reasons it CONTINOUSLY do fetch all the time. So, in a way, it works, but it's very network intensive.
-      if (this.comments !== null) {
-        this.comments = await commentService.getComments()
-      }
+      // if (this.comments !== null) {
+      //   this.comments = await commentService.getComments()
+      // }
     }
   },
   computed: {

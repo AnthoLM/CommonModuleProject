@@ -9,8 +9,13 @@
             </div>
             <div class="col-8 offset-2" v-else>
                 <h1>{{ event.name }}</h1>
-                <p class="border">{{ event.description }}</p>
-                <p class="border">This event will start on the {{ formatDate(event.startDate) }} and will end the {{ formatDate(event.endDate) }}</p>
+                <br>
+                <h3 class="text-start mt-2">What's happening ?</h3>
+                <p>{{ event.description }}</p>
+                <h3 class="text-start mt-2">Where to find us ?</h3>
+                <p class="text-start">Address : {{ event.place.name }}, {{ event.place.address }} of {{ event.place.city }}</p>
+                <h3 class="text-start mt-2">When to find us ?</h3>
+                <p class="text-start">This event will start on the {{ formatDate(event.startDate) }} and will end the {{ formatDate(event.endDate) }}</p>
                 <p v-if="this.registration.length >0">{{ this.registration.length }} people already registered !</p>
                 <button type="button" class="btn btn-primary" v-if="user" @click="register" :disabled="!registrationPossible || instantFeebackRegistration">{{textButtonRegister}}</button>
                 <hr>
