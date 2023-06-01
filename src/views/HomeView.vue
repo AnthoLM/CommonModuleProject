@@ -1,9 +1,8 @@
 <template>
   <div class="home">
     <div class="center">
+      <h1>Welcome to {{decoration.websitename}} !</h1> 
       <img alt="Fennec_logo" src="@/assets/images/fennec-anime.gif" />
-      <h1>Welcome to Fennec Website</h1> 
-
       <!-- Ajout d'un gif de fennec -->
       <!-- <div class="fennec">
         <img alt="Fennec_logo" src="../assets/images/logo_fennec.jpg" />
@@ -18,10 +17,16 @@
 </template>
 
 <script>
+import decoration from "../models/decoration"
 export default {
   name: 'HomeView',
   components: {
-  }
+  },
+  data() {
+    return {
+      decoration,
+    }
+  },
 }
 // // @ is an alias to /src
 // import HelloWorld from "@/components/HelloWorld.vue"
