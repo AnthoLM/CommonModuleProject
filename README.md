@@ -43,10 +43,10 @@ $ python manage.py createsuperuser --email admin@example.com --username admin
 
 ## Team
 - Nemo Vollert
-- Anthony Lemeillour
+- Anthony Le Meillour
 - Gregory Stankov
 - Benoit Bonvin
-- Ricardo-Miguel Almeida Santos
+
 
 ### Members
 - Nemo Vollert
@@ -84,16 +84,6 @@ $ python manage.py createsuperuser --email admin@example.com --username admin
     - Vue.js
     - Python
     - Django
-    
-- Ricardo Santos
-  - School: HEG GE
-  - Short description: Ricardo is a highly motivated software developer with 24 years of experience in IT. He has a strong understanding of JS, Java, and Python. Ricardo is confident in his ability to contribute to the project and is looking forward to working with the team.
-  - Skill levels:
-    - Javascript
-    - Java
-    - Python
-    - Assembly
-
 
 ### Professor Responsible
 Michael Schumacher
