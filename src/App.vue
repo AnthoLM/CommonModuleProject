@@ -71,11 +71,13 @@
             </h4>
           </li>
         </ul>
-      </div> 
-      <!--TO BE DELETED V here V DONT FORGET TO ALSO DELETE THE .vue ITSELF, AND THE ROUTER ELEMENT TOO!!!-->
+      </div> <!--TO BE DELETED V here V DONT FORGET TO ALSO DELETE THE .vue ITSELF, AND THE ROUTER ELEMENT TOO!!!-->
     </div>
   </nav>
   <router-view />
+  <footer class="container-fluid text-center">
+    SOMETHING HERE TO FILL THE SPACE
+  </footer>
 </template>
 <script>
 import authService from "@/services/authService"
@@ -95,6 +97,7 @@ export default {
   methods: {
     logout() {
       authService.logout()
+      this.$router.push("/")
     }
   }
 }
@@ -127,6 +130,12 @@ export default {
 .nav-link:hover, .btn-primary:hover {
   color: #FF6F00; /* Orange */
   background-color: white;
+}
+
+footer {
+  background-color: #FF6F00; /* Orange */
+  color: white;
+  padding: 30px;
 }
 
 </style>
