@@ -75,7 +75,7 @@
     </div>
   </nav>
   <router-view />
-  <footer class="container-fluid text-center">
+  <footer class="container-fluid text-center mt-5">
     <div class="row">
       <div class="col-4">
         Un projet avec <a href="https://vuejs.org/">Vue.js</a>, 
