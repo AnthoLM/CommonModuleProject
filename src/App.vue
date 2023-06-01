@@ -29,9 +29,6 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/messages">Message</RouterLink>
-          </li>
-          <li class="nav-item">
             <RouterLink class="nav-link" to="/places">Places</RouterLink>
           </li>
           <li class="nav-item">
@@ -74,10 +71,8 @@
             </h4>
           </li>
         </ul>
-      </div> |
+      </div> 
       <!--TO BE DELETED V here V DONT FORGET TO ALSO DELETE THE .vue ITSELF, AND THE ROUTER ELEMENT TOO!!!-->
-    <router-link :to="{ name: 'postget'}">GET POST</router-link>
-    <router-link :to="{ name: 'commentary'}">Commentary</router-link>
     </div>
   </nav>
   <router-view />
