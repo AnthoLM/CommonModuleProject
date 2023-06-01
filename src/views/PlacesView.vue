@@ -3,14 +3,10 @@
      <h1>Places !</h1>
      <div class="row">
         <div class="col-3">
-           <Transition name="fade">
-              <div v-if="!advancedSearch">
                  <div class="text-start">
                     Search
                  </div>
-                 <input type="text" class="form-control" v-model="generalSearch" />
-              </div>
-           </Transition>
+                 <input type="text" class="form-control" v-model="generalSearch" :disabled="advancedSearch"/>
            <input class="form-check-input" type="checkbox" v-model="advancedSearch">
            <label class="form-check-label" for="flexCheckDefault">
             Advanced search
