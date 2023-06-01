@@ -30,9 +30,6 @@
             <a class="nav-link active" aria-current="page" href="#">Home</a>
           </li>
           <li class="nav-item">
-            <RouterLink class="nav-link" to="/messages">Message</RouterLink>
-          </li>
-          <li class="nav-item">
             <RouterLink class="nav-link" to="/places">Places</RouterLink>
           </li>
           <li class="nav-item">
@@ -75,13 +72,31 @@
             </h4>
           </li>
         </ul>
-      </div> |
-      <!--TO BE DELETED V here V DONT FORGET TO ALSO DELETE THE .vue ITSELF, AND THE ROUTER ELEMENT TOO!!!-->
-    <router-link :to="{ name: 'postget'}">GET POST</router-link>
-    <router-link :to="{ name: 'commentary'}">Commentary</router-link>
+      </div> <!--TO BE DELETED V here V DONT FORGET TO ALSO DELETE THE .vue ITSELF, AND THE ROUTER ELEMENT TOO!!!-->
     </div>
   </nav>
   <router-view />
+  <footer class="container-fluid text-center mt-5">
+    <div class="row">
+      <div class="col-4">
+        Un projet avec <a href="https://vuejs.org/">Vue.js</a>, 
+        <a href="https://getbootstrap.com/">Bootstrap</a> et the 
+        <a href="https://www.django-rest-framework.org/">Django Rest Framework</a>
+        dans le cadres des cours inter-écoles de la HES-SO. 
+      </div>
+      <div class="col-4">
+        Realisé par : <br>
+        <a href="https://github.com/Briefgarde">Nemo Vollert</a> | 
+        <a href="https://github.com/AnthoLM">Anthony Le Meillour</a> | 
+        <a href="https://github.com/GregorySTNKV">Gregory Stankov</a> | 
+        <a href="https://github.com/Benoit0610">Benoit Bonvin</a>
+      </div> 
+      <div class="col-4">
+        <img src="@/assets/images/github-mark.png" alt="Logo github" id="logoGit">
+        <a href="https://github.com/heg-interschool/project-fennec">Github du projet</a>
+      </div>
+    </div>
+  </footer>
 </template>
 <script>
 import authService from "@/services/authService"
@@ -101,6 +116,7 @@ export default {
   methods: {
     logout() {
       authService.logout()
+      this.$router.push("/")
     }
   }
 }
@@ -142,6 +158,17 @@ export default {
   color: #FF6F00; /* Orange */
   background-color: white;
   border-radius: 20%;
+}
+
+footer {
+  background-color: #FF6F00; /* Orange */
+  color: white;
+  padding: 30px;
+}
+
+#logoGit {
+  width: 50px;
+  height: 50px;
 }
 
 </style>

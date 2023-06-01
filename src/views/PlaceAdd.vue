@@ -1,96 +1,99 @@
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col-8 offset-2">
-        <h1>Création de place</h1>
-        <h5 class="mt-5">
-          Tu as envie de créer l'endroit parfait pour célébrer avec tes amis ? 
-        </h5>
-        <h5>Ou bien tu veux donner un coup de projecteur à ton bar exceptionnel ?</h5>
-        <h5>Promouvoir ton tout nouveau restaurant ou marquer une occasion spéciale ?</h5>
-        <h4>
-          Alors ne cherche plus ! Tu es au bon endroit ! Remplis dès maintenant ce formulaire pour faire rayonner ton lieu sur notre site !
-        </h4>
-        <hr />
-       </div>
-    </div>
-    <div class="row">
-      <div class="col-6 offset-3">
-        <form>
-          <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">Nom de la ville</label>
-            <select
-              v-model="citySelected"
-              class="form-select form-select-lg mb-3"
-              aria-label=".form-select-lg example"
-            >
-              <option selected>Choisi ta ville</option>
-              <option v-for="city in distinctCities" :key="city">{{ city }}</option>
-            </select>
-            <Transition name="slide-fade">
-              <div v-if="citySelected && !hasMultipleZipCode">
-                Code postal de {{ citySelected }} : {{ listOfValidZIP[0].zipcode }}
+     <div class="row">
+        <div class="col-8 offset-2">
+           <h1>Création de place</h1>
+           <h5 class="mt-5">
+              Tu as envie de créer l'endroit parfait pour célébrer avec tes amis ? 
+           </h5>
+           <h5>Ou bien tu veux donner un coup de projecteur à ton bar exceptionnel ?</h5>
+           <h5>Promouvoir ton tout nouveau restaurant ou marquer une occasion spéciale ?</h5>
+           <h4>
+              Alors ne cherche plus ! Tu es au bon endroit ! Remplis dès maintenant ce formulaire pour faire rayonner ton lieu sur notre site !
+           </h4>
+           <hr />
+        </div>
+     </div>
+     <div class="row">
+        <div class="col-8 offset-2">
+           <form>
+              <div class="mb-3">
+                 <label for="exampleInputEmail1" class="form-label">Nom de la ville</label>
+                 <select
+                    v-model="citySelected"
+                    class="form-select form-select-lg mb-3"
+                    aria-label=".form-select-lg example"
+                    >
+                    <option selected>Choisi ta ville</option>
+                    <option v-for="city in distinctCities" :key="city">{{ city }}</option>
+                 </select>
+                 <Transition name="slide-fade">
+                    <div v-if="citySelected && !hasMultipleZipCode">
+                       Code postal de {{ citySelected }} : {{ listOfValidZIP[0].zipcode }}
+                    </div>
+                 </Transition>
               </div>
-            </Transition>
-          </div>
-          <Transition name="slide-fade">
-            <div class="mb-3" v-if="hasMultipleZipCode">
-              <label for="exampleInputPassword1" class="form-label"
-                >Nous ne parvenons pas a determiner le code postal de cette ville, lequel est le bon 
-                ?</label
-              >
-              <select
-                v-model="npaSelected"
-                class="form-select form-select-lg mb-3"
-                aria-label=".form-select-lg example"
-              >
-                <option v-for="zip in listOfValidZIP" :key="zip">{{ zip.zipcode }}</option>
-              </select>
-            </div>
-          </Transition>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">Adresse</label>
-            <input
-              v-model="address"
-              maxlength="255"
-              type="text"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Rue de la gare 12"
-            />
-          </div>
-          <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label"
-              >Donne un nom a ton endroit !</label
-            >
-            <input
-              v-model="nameOfPlace"
-              type="text"
-              class="form-control"
-              id="exampleInputPassword1"
-              placeholder="Le bar du coin !"
-              maxlength="255"
-            />
-          </div>
-          <button
-            type="submit"
-            class="btn btn-primary"
-            :disabled="!isReadyToAdd"
-            @click="
-              addPlace({
-                name: this.nameOfPlace,
-                address: this.address,
-                city: this.citySelected,
-                npa: this.npaSelected
-              })
-            "
-          >
-            <p v-if="!isReadyToAdd">Tout les champs doivent être Remplis </p>
-            <p v-else>Enregistre ta place !</p>
-          </button>
-        </form>
-      </div>
-    </div>
+              <Transition name="slide-fade">
+                 <div class="mb-3" v-if="hasMultipleZipCode">
+                    <label for="exampleInputPassword1" class="form-label"
+                       >Nous ne parvenons pas a determiner le code postal de cette ville, lequel est le bon 
+                    ?</label
+                       >
+                    <select
+                       v-model="npaSelected"
+                       class="form-select form-select-lg mb-3"
+                       aria-label=".form-select-lg example"
+                       >
+                       <option v-for="zip in listOfValidZIP" :key="zip">{{ zip.zipcode }}</option>
+                    </select>
+                 </div>
+              </Transition>
+              <div class="mb-3">
+                 <label for="exampleInputPassword1" class="form-label">Adresse</label>
+                 <input
+                    v-model="address"
+                    maxlength="255"
+                    type="text"
+                    class="form-control"
+                    id="exampleInputPassword1"
+                    placeholder="Rue de la gare 12"
+                    />
+              </div>
+              <div class="mb-3">
+                 <label for="exampleInputPassword1" class="form-label"
+                    >Donne un nom a ton endroit !</label
+                    >
+                 <input
+                    v-model="nameOfPlace"
+                    type="text"
+                    class="form-control"
+                    id="exampleInputPassword1"
+                    placeholder="Le bar du coin !"
+                    maxlength="255"
+                    />
+              </div>
+              <div>
+                <button
+                 type="submit"
+                 class="btn btn-primary w-100"
+                 :disabled="!isReadyToAdd"
+                 id="addPlace"
+                 @click="
+                 addPlace({
+                 name: this.nameOfPlace,
+                 address: this.address,
+                 city: this.citySelected,
+                 npa: this.npaSelected
+                 })
+                 "
+                 >
+                 <p v-if="!isReadyToAdd">Tout les champs doivent être Remplis </p>
+                 <p v-else>Enregistre ta place !</p>
+                </button>
+              </div>
+           </form>
+        </div>
+     </div>
   </div>
 </template>
 <!--Add user id as Integer-->
@@ -199,6 +202,8 @@ h4 {
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;
 }
+
+
 
 .slide-fade-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);

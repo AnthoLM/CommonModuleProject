@@ -94,7 +94,7 @@
                         </div>
                     </Transition>
                   </div>
-                  <button type="submit" class="btn btn-primary" :disabled="!isEventReadyForSend" v-on:click="addEvent()">{{textButtonSend}}</button>
+                  <button type="submit" class="btn btn-primary w-100 mt-2" :disabled="!isEventReadyForSend" v-on:click="addEvent()">{{textButtonSend}}</button>
                 </form>
               </div>
             </div>

@@ -1,89 +1,83 @@
 <template>
   <div class="container text-center">
-    <div class="row">
-      <div class="col-6 offset-3">
-        <h1>Places !</h1>
-        <h2>Bars and theaters, circus and everything !</h2>
-        <h2>Ready to be discovered by you !</h2>
-        <hr />
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-6 offset-3">
-        <label class="form-label">Chercher par une address</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="addressSearch"
-        /><!--Searching by name, address or cityname-->
-        <label class="form-label">Chercher par le nom d'une place</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="nameSearch"
-        />
-        <label class="form-label">Cherchez une ville</label>
-        <input
-          type="text"
-          class="form-control"
-          v-model="citySearch"
-        />
-        <label class="form-label">Recherche une place par son code postal</label>
-        <input type="number" class="form-control" v-model="npaSearch" />
-        <!--Searching by NPA-->
-        <!--Now make it pretty-->
-        <hr />
-      </div>
-    </div>
-    <div class="row mt-3" v-if="arePlacesLoading">
-      <div class="col-6 offset-3">
-        <div class="spinner-border" role="status">
-          <span class="visually-hidden">Loading...</span>
+     <h1>Places !</h1>
+     <div class="row">
+        <div class="col-3">
+                 <div class="text-start">
+                    Search
+                 </div>
+                 <input type="text" class="form-control" v-model="generalSearch" :disabled="advancedSearch"/>
+           <input class="form-check-input" type="checkbox" v-model="advancedSearch">
+           <label class="form-check-label" for="flexCheckDefault">
+            Advanced search
+           </label>
+           <Transition name="fade">
+              <div v-if="advancedSearch">
+                 <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label text-start">Place name</label>
+                    <input type="text" class="form-control" v-model="nameSearch">
+                 </div>
+                 <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label text-start">Address</label>
+                    <input type="text" class="form-control" v-model="addressSearch">
+                 </div>
+                 <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label text-start">City</label>
+                    <input type="text" class="form-control" v-model="citySearch">
+                 </div>
+                 <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label text-start">NPA</label>
+                    <input type="number" class="form-control" v-model="npaSearch">
+                 </div>
+              </div>
+           </Transition>
         </div>
-      </div>
-    </div>
-    <div class="row mt-3" v-if="filteredPlaces.length === 0 && places.length > 0">
-      <div class="col-6 offset-3">
-        <p>Looks like we don't have any info about what you're looking for, sowwyyy </p>
-        <i class="fa-regular fa-face-sad-tear fa-beat fa-2xl"></i>
-        <!--Faut probablement changé ce texte mais voila.-->
-      </div>
-    </div>
-    <div class="row mt-3" v-else>
-      <div class="col-6 offset-3">
-        <TransitionGroup name="list" tag="ul">
-          <li
-            class="card w-100"
-            style="width: 18rem"
-            v-for="(place, index) in filteredPlaces"
-            :key="index"
-          >
-            <div class="card-body">
-              <p class="card-text">
-                {{ place.name }}<br />
-                {{ place.address }}<br />
-                {{ place.city }}<br />
-                {{ place.npa }}<br />
-                <RouterLink class="btn btn-primary" :to="{ name: 'placeDetail', params: { id: place.pk } }">See this place !</RouterLink>
-              </p>
-              Share on: <br>
-              <ShareNetwork network="facebook" :url="placeUrl(index)" :title="placeTitle(place)">
-                <i class="fab fa-facebook fa-lg logo-icon" @click="$emit('click')"></i>
-              </ShareNetwork>
-              <ShareNetwork network="twitter" :url="placeUrl(index)" :title="placeTitle(place)">
-                <i class="fab fa-twitter fa-lg logo-icon" @click="$emit('click')"></i>
-              </ShareNetwork>
-              <ShareNetwork network="whatsapp" :url="placeUrl(index)" :title="placeTitle(place)">
-                <i class="fab fa-whatsapp fa-lg logo-icon" @click="$emit('click')"></i>
-              </ShareNetwork>
-              <ShareNetwork network="reddit" :url="placeUrl(index)" :title="placeTitle(place)">
-                <i class="fab fa-reddit fa-lg logo-icon" @click="$emit('click')"></i>
-              </ShareNetwork>
-            </div>
-          </li>
-        </TransitionGroup>
-      </div>
-    </div>
+        <div class="col-6">
+           <h2>Bars and theaters, circus and everything !</h2>
+           <h2>Ready to be discovered by you !</h2>
+           <hr />
+           <div class="spinner-border" role="status" v-if="arePlacesLoading">
+              <span class="visually-hidden">Loading...</span>
+           </div>
+           <div v-if="filteredPlaces.length === 0 && places.length > 0">
+              <p>Looks like we don't have any info about what you're looking for, sowwyyy </p>
+              <i class="fa-regular fa-face-sad-tear fa-beat fa-2xl"></i>
+           </div>
+           <div v-else>
+              <TransitionGroup name="list" tag="ul">
+                 <li
+                    class="card w-100"
+                    style="width: 18rem"
+                    v-for="(place, index) in filteredPlaces"
+                    :key="index"
+                    >
+                    <div class="card-body">
+                       <p class="card-text">
+                          {{ place.name }}<br />
+                          {{ place.address }}<br />
+                          {{ place.city }}<br />
+                          {{ place.npa }}<br />
+                          <RouterLink class="btn btn-primary" :to="{ name: 'placeDetail', params: { id: place.pk } }">See this place !</RouterLink>
+                       </p>
+                       Share on: <br>
+                       <ShareNetwork network="facebook" :url="placeUrl(index)" :title="placeTitle(place)">
+                          <i class="fab fa-facebook fa-lg logo-icon" @click="$emit('click')"></i>
+                       </ShareNetwork>
+                       <ShareNetwork network="twitter" :url="placeUrl(index)" :title="placeTitle(place)">
+                          <i class="fab fa-twitter fa-lg logo-icon" @click="$emit('click')"></i>
+                       </ShareNetwork>
+                       <ShareNetwork network="whatsapp" :url="placeUrl(index)" :title="placeTitle(place)">
+                          <i class="fab fa-whatsapp fa-lg logo-icon" @click="$emit('click')"></i>
+                       </ShareNetwork>
+                       <ShareNetwork network="reddit" :url="placeUrl(index)" :title="placeTitle(place)">
+                          <i class="fab fa-reddit fa-lg logo-icon" @click="$emit('click')"></i>
+                       </ShareNetwork>
+                    </div>
+                 </li>
+              </TransitionGroup>
+           </div>
+        </div>
+     </div>
   </div>
 </template>
 
@@ -95,17 +89,28 @@ import { ShareNetwork } from 'vue-social-sharing';
 export default {
   data() {
     return {
-      searchTerm: "",
       npaSearch: "",
       addressSearch: "",
       nameSearch: "",
       citySearch: "",
+      generalSearch: "",
+      advancedSearch: false,
       places: []
     }
   },
   async mounted() {
     authService.getUser()
     this.places = await placeService.fetchPlaces()
+  },
+  watch: {
+    advancedSearch() {
+      if (this.advancedSearch === false) {
+                this.npaSearch = ""
+                this.citySearch = ""
+                this.addressSearch = ""
+                this.nameSearch = ""
+            }else this.generalSearch = ""
+    }
   },
   computed: {
     user() {
@@ -115,16 +120,27 @@ export default {
       return this.places.length === 0
     },
     filteredPlaces() {
-      return this.places
-        .filter((place) => {
-          return (
-            place.name.toLowerCase().includes(this.nameSearch.toLowerCase()) &&
-            place.address.toLowerCase().includes(this.addressSearch.toLowerCase()) &&
-            place.city.toLowerCase().includes(this.citySearch.toLowerCase()) &&
-            place.npa.toString().includes(this.npaSearch.toString())
-          )
+      if (this.advancedSearch === false){
+        return this.places.filter((place) => {
+        return (
+          place.name.toLowerCase().includes(this.generalSearch.toLowerCase()) ||
+          place.address.toLowerCase().includes(this.generalSearch.toLowerCase()) ||
+          place.city.toLowerCase().includes(this.generalSearch.toLowerCase()) ||
+          place.npa.toString().includes(this.generalSearch.toString())
+        )
+      })
+      .sort((a, b) => {
+          return a.name.localeCompare(b.name)
         })
-        .sort((a, b) => {
+      } else return this.places.filter((place) => {
+        return (
+          place.name.toLowerCase().includes(this.nameSearch.toLowerCase()) &&
+          place.address.toLowerCase().includes(this.addressSearch.toLowerCase()) &&
+          place.city.toLowerCase().includes(this.citySearch.toLowerCase()) &&
+          place.npa.toString().includes(this.npaSearch.toString())
+        )
+      })
+      .sort((a, b) => {
           return a.name.localeCompare(b.name)
         })
     }
@@ -147,6 +163,16 @@ export default {
 <style scoped>
 /* DO NOT TOUCH ANY OF THOSE CSS THINGS; THEY ARE HERE TO MAKE THE SMOOTH TRANSITION OF THE LIST*/
 /* NO I DID NOT MAKE THEM; ITS FROM VUE.JS FRAMEWORK, YOU CAN JUST GRAB THEM ON THEIR WEBSITE. */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
 .list-enter-active,
 .list-leave-active {
   transition: all 0.5s ease;
