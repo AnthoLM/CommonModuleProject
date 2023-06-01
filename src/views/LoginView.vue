@@ -1,7 +1,7 @@
 <template>
   <div class="container text-center">
     <div class="row">
-      <div class="col-3"><!--EMpty on purpose--></div>
+      <div class="col-3"><!--Empty on purpose--></div>
       <div class="col text-center">
         <div class="card w-100 mt-5 text-center border-dark" style="width: 18rem">
           <div class="card-header">
@@ -38,7 +38,7 @@
           </div>
         </div>
       </div>
-      <div class="col-3"><!--EMpty on purpose--></div>
+      <div class="col-3"><!--Empty on purpose--></div>
     </div>
   </div>
 </template>
@@ -92,27 +92,10 @@ export default {
   }
 }
 </script>
-
-<!-- <style>
-
-.slide-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-} -->
-
 <style scoped>
 .container {
   background-color: transparent;
-  color: #FF6F00; /* Orange */
+  color: #FF6F00;
 }
 
 .card {
@@ -123,31 +106,30 @@ export default {
 }
 
 .card-header {
-  background-color: #ffffff; /* Orange */
+  background-color: #ffffff;
   color: #FF6F00; 
 }
 
 .card-footer {
-  background-color: white; /* Orange */
-  color: #FF6F00; 
+  background-color: white;
 }
 
 input[type="submit"] {
-  background-color: #FF6F00; /* Orange */
+  background-color: #FF6F00;
   color: white; 
   border: none;
 }
 
 input[type="submit"]:hover {
-  background-color: #FFA040; /* Light Orange */
+  background-color: #FFA040;
 }
 
 input[type="text"], input[type="password"] {
-  border: 2px solid #FF6F00; /* Orange */
+  border: 2px solid #FF6F00;
 }
 
 .alert {
-  background-color: #FFA040; /* Light Orange */
+  background-color: #FFA040;
   color: white; 
 }
 
@@ -156,7 +138,7 @@ input[type="text"], input[type="password"] {
 }
 
 .router-link:hover {
-  color: #FFF5EB; /* Light Orange */
+  color: #FFF5EB;
 }
 
 .slide-fade-enter-active {

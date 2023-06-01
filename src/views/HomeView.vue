@@ -3,15 +3,6 @@
     <div class="center">
       <h1>Welcome to {{decoration.websitename}} !</h1> 
       <img alt="Fennec_logo" src="@/assets/images/fennec-anime.gif" />
-      <!-- Ajout d'un gif de fennec -->
-      <!-- <div class="fennec">
-        <img alt="Fennec_logo" src="../assets/images/logo_fennec.jpg" />
-      </div> -->
-
-      <!-- Ajout d'un calendrier pour rappeler l'événementiel -->
-      <!-- <div class="event-calendar">
-        <img alt="Event calendar" src="../assets/calendar.png" />
-      </div> -->
     </div>
   </div>
 </template>
@@ -28,14 +19,6 @@ export default {
     }
   },
 }
-// // @ is an alias to /src
-// import HelloWorld from "@/components/HelloWorld.vue"
-
-// export default {
-//   components: {
-//     HelloWorld
-//   }
-// }
 </script>
 
 <style scoped>
@@ -45,15 +28,13 @@ export default {
   justify-content: center;
   align-items: center;
   height: auto; 
-  max-height: 80vh; /* Viewport Height ou 80vh à la place de auto*/ 
+  max-height: 80vh; /* Viewport Height 80vh */ 
 }
 
-.fennec img, .event-calendar img {
+.fennec img {
   width: 100px;
   height: auto;
 }
-
-
 
 h1 {
   font-size: 3rem;
@@ -62,7 +43,6 @@ h1 {
   text-align: center;
   animation : pulse 1.5s infinite;
 }
-
 
 @keyframes pulse {
   0% { transform: scale(1); }

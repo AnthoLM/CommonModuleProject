@@ -75,7 +75,7 @@
               <div>
                 <button
                  type="submit"
-                 class="btn btn-primary w-100"
+                 class="btn btn-warning w-100"
                  :disabled="!isReadyToAdd"
                  id="addPlace"
                  @click="
@@ -162,21 +162,6 @@ export default {
 }
 </script>
 
-<!-- <style scoped>
-.slide-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-}
-</style> -->
 <style scoped>
 @keyframes pulse {
   0% { transform: scale(1); }
@@ -204,7 +189,6 @@ h4 {
 }
 
 
-
 .slide-fade-leave-active {
   transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
 }
@@ -215,43 +199,15 @@ h4 {
   opacity: 0;
 }
 
-/* .form-control {
-  border: 1px solid #ffa500;
-  box-shadow: 0px 0px 0px 2px #ffa500;
-  transition: box-shadow 0.3s ease-in-out;
-}
-
-.form-control:focus {
-  box-shadow: 0px 0px 0px 2px #ff4500;
-} */
-
 .form-control {
-  border: 2px solid #FF6F00; /* Adjust border thickness and color here */
+  border: 2px solid #FF6F00;
   box-shadow: 0px 0px 0px 2px #FF6F00;
   transition: box-shadow 0.3s ease-in-out;
 }
 
 .form-control:focus {
-  border-color: #ff4500; /* Adjust border color on focus here */
-  box-shadow: 0px 0px 0px 2px #ff4500;
-}
-.btn-primary {
-  background-color: #FF6F00;
-  border-color: #FF6F00;
-}
-
-.btn-primary:hover {
-  background-color: #ffa500;
-  border-color: #ffa500;
-}
-
-.btn-primary:focus {
-  box-shadow: 0px 0px 0px 2px #ff4500;
-}
-
-.btn-primary:disabled {
-  background-color: #ff4500;
   border-color: #ff4500;
+  box-shadow: 0px 0px 0px 2px #ff4500;
 }
 
 .card {

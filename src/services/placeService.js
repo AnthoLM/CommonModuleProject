@@ -20,12 +20,9 @@ export default {
         return api.post(`places/`, npaData).then((response) => response.data.map(place => place))
     },
     postPlace(placeData){
-        //placeData.user = getCurrentUser();
         return api.post(`places/`, placeData).then((response) => response.data)
     },
     deletePlace(placeId){
         return api.delete(`places/${placeId}`).then((response) => response.data)
     }
 }
-
-// placeService to fetch place related a user and eventService to fetch event related to a user

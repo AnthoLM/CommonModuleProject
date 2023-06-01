@@ -4,12 +4,11 @@
         <div class="col-8 offset-2">
           <h1>Creation d'event</h1>
           <h5 class="mt-5">
-            T'as crée ta place, maintenant tu veux organiser un event ?
+            T'as crée ta place, maintenant tu veux organiser un événement ?
           </h5>
           <h4>Alors c'est ici que ça se passe !</h4>
           <h4>Trouve ta place dans la liste suivante et détermine ensuite comment ton event vas se passer !</h4>
           <hr />
-          <!--Waoooo ce speech nul a chier, pls quelqu'un propose quelque chose d'autre mdr-->
         </div>
       </div>
       <div class="row">
@@ -25,8 +24,8 @@
                 type="text"
                 class="form-control"
                 v-model="addressSearch"
-                placeholder="Addresse"
-              /><!--Searching by name, address or cityname-->
+                placeholder="Adresse"
+              />
               <input
                 type="text"
                 class="form-control"
@@ -94,7 +93,7 @@
                         </div>
                     </Transition>
                   </div>
-                  <button type="submit" class="btn btn-primary w-100 mt-2" :disabled="!isEventReadyForSend" v-on:click="addEvent()">{{textButtonSend}}</button>
+                  <button type="submit" class="btn btn-warning w-100 mt-2" :disabled="!isEventReadyForSend" v-on:click="addEvent()">{{textButtonSend}}</button>
                 </form>
               </div>
             </div>
@@ -103,7 +102,6 @@
       </div>
     </div>
   </template>
-  <!--Add user id as Integer-->
   <script>
   import authService from "@/services/authService"
   import placeService from "@/services/placeService"

@@ -37,7 +37,7 @@ class MessageViewSet(viewsets.ModelViewSet):
     """
     queryset = Message.objects.all()
     serializer_class = MessageSerializer
-    # SHOULD IMPLEMENT CUSTOM PERMISSIONS FOR OBJECT LEVEL SECURITY
+    
     def perform_create(self, serializer):
         serializer.save()
 
@@ -68,8 +68,6 @@ class PlaceViewSet(viewsets.ModelViewSet):
         if self.action in ["create", "update", "partial_update", "destroy"]:
             return PostPlaceSerializer
         return ReadPlaceSerializer
-
-    # SHOULD IMPLEMENT CUSTOM PERMISSIONS FOR OBJECT LEVEL SECURITY
 
 class PlaceCommentaryViewSet(viewsets.ModelViewSet):
     queryset = PlaceCommentary.objects.all()

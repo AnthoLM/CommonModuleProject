@@ -34,7 +34,6 @@ class PostPlaceSerializer(serializers.HyperlinkedModelSerializer):
         events = obj.events.all()
         return [event.id for event in events]
 
-    # Test can be deleted in the future
     def create(self, validated_data):
         events_data = validated_data.pop('events', [])
         place = Place.objects.create(
@@ -51,7 +50,6 @@ class PostPlaceSerializer(serializers.HyperlinkedModelSerializer):
         events = obj.event_set.all()
         return [event.id for event in events]
 
-    # Test can be deleted in the future
     def update(self, instance, validated_data):
         events_data = validated_data.pop('events', [])
         instance.pk = validated_data.get('pk', instance.pk)

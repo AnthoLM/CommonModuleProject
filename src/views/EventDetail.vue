@@ -17,7 +17,7 @@
                 <h3 class="text-start mt-2">When to find us ?</h3>
                 <p class="text-start">This event will start on the {{ formatDate(event.startDate) }} and will end the {{ formatDate(event.endDate) }}</p>
                 <p v-if="this.registration.length >0">{{ this.registration.length }} people already registered !</p>
-                <button type="button" class="btn btn-primary" v-if="user" @click="register" :disabled="!registrationPossible || instantFeebackRegistration">{{textButtonRegister}}</button>
+                <button type="button" class="btn btn-warning" v-if="user" @click="register" :disabled="!registrationPossible || instantFeebackRegistration">{{textButtonRegister}}</button>
                 <hr>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <h2>Commentaires</h2>
             <div v-if="!user">
               <p>You need to be logged in to comment !</p>
-              <RouterLink class="btn btn-primary" to="/login">Login</RouterLink>
+              <RouterLink class="btn btn-warning" to="/login">Login</RouterLink>
             </div>
             <div v-else>
               <div class="input-group mb-3">
@@ -161,3 +161,18 @@ export default {
 }
 
 </script>
+<style scoped>
+#button-addon2{
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color : black;
+}
+
+#button-addon2:hover{
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color : white;
+}
+
+</style>
+```

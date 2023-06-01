@@ -1,7 +1,7 @@
 <template>
   <div class="container text-center">
     <div class="row">
-      <div class="col-2"><!--EMpty on purpose--></div>
+      <div class="col-2"><!--Empty on purpose--></div>
       <div class="col-8 text-center">
         <div class="card w-100 mt-5 text-center border-dark" style="width: 18rem">
           <div class="card-header">
@@ -10,20 +10,13 @@
           </div>
           <div class="card-body">
             <span class="card-text">
-              <!-- <input type="text" class="form-control" v-model="firstName" placeholder="Prénom" />
-              <input
-                type="text"
-                class="form-control mt-2"
-                v-model="lastName"
-                placeholder="Nom de famille"
-              /> -->
               <input type="email" class="form-control mt-2" v-model="email" placeholder="Email" />
               <input
                 type="text"
                 class="form-control mt-2"
                 v-model="username"
                 placeholder="Nom d'utilisateur"
-              /><!--Seulement username, password1/2 sont nécessaire pour faire un register.-->
+              />
               <input
                 type="password"
                 class="form-control mt-2"
@@ -68,7 +61,7 @@
           </div>
         </div>
       </div>
-      <div class="col-2"><!--EMpty on purpose--></div>
+      <div class="col-2"><!--Empty on purpose--></div>
     </div>
   </div>
 </template>
@@ -102,9 +95,6 @@ export default {
     },
     isReadyForRegister() {
       return this.textNotReady === null
-      // if (this.password === "" || this.password2 === "" || this.username === "") {
-      //   return false
-      // } else return this.password === this.password2 && this.password.length <= 8
     },
     textNotReady() {
       if (this.username === "") {
@@ -154,22 +144,6 @@ export default {
   }
 }
 </script>
-<!-- <style scoped>
-.slide-fade-enter-active {
-  transition: all 0.3s ease-out;
-}
-
-.slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
-}
-
-.slide-fade-enter-from,
-.slide-fade-leave-to {
-  transform: translateX(20px);
-  opacity: 0;
-}
-</style> -->
-
 <style scoped>
 .slide-fade-enter-active {
   transition: all 0.3s ease-out;

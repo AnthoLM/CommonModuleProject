@@ -10,7 +10,7 @@
         <h1>{{ place.name }}</h1>
         <h3 class="text-start mt-2">Where to find us ?</h3>
         <p class="text-start">{{ place.address }}, in {{ place.city }}, {{ place.npa }}</p>
-        <button type="button" class="btn btn-primary" @click="changeSubject()">{{textChangingSubject}}</button>
+        <button type="button" class="btn btn-warning" @click="changeSubject()">{{textChangingSubject}}</button>
         <hr>
       </div>
       <div v-if="!this.watchingEvents">
@@ -72,7 +72,7 @@
             </div>
             <div class="card-body">
               <p>{{ event.description }}</p>
-              <RouterLink class="btn btn-primary" :to="{ name: 'eventDetail', params: { id: event.id } }">More info</RouterLink>
+              <RouterLink class="btn btn-warning" :to="{ name: 'eventDetail', params: { id: event.id } }">More info</RouterLink>
             </div>
             <div class="card-footer text-muted">
               From the {{ formatDate(event.startDate) }} to the {{ formatDate(event.endDate) }}
@@ -122,9 +122,9 @@ export default {
       //notice it change and do a new fetch so the actual comments list is up to date all the time, 
       //with the info that gets added when the comments goes through the api.
       //But for some reasons it CONTINOUSLY do fetch all the time. So, in a way, it works, but it's very network intensive.
-      // if (this.comments !== null) {
-      //   this.comments = await commentService.getComments()
-      // }
+      if (this.comments !== null) {
+      this.comments = await commentService.getComments()
+      }
     }
   },
   computed: {
@@ -188,3 +188,18 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+#button-addon2{
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color : black;
+}
+
+#button-addon2:hover{
+  background-color: #ffc107;
+  border-color: #ffc107;
+  color : white;
+}
+
+</style>

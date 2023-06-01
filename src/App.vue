@@ -36,10 +36,6 @@
             <RouterLink class="nav-link" to="/events">Events</RouterLink>
           </li>
         </ul>
-        <!-- <form class="d-flex" role="search">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form> --><!--This is commented for the moment but it can probably be used later on, so I'm leaving it there-->
         <ul class="navbar-nav" v-if="!user">
           <div class="btn-group" role="group" aria-label="Basic example">
             <RouterLink class="btn btn-primary" to="/login">Login</RouterLink>
@@ -49,12 +45,12 @@
         <ul class="navbar-nav" v-else>
           <li class="nav-item">
             <RouterLink class="nav-link" to="/placeAdd"
-              >Ajouter une place <i class="fa-solid fa-plus"></i
+              >Add a place <i class="fa-solid fa-plus"></i
             ></RouterLink>
           </li>
           <li class="nav-item">
             <RouterLink class="nav-link" to="/eventAdd"
-              >Ajouter un event <i class="fa-solid fa-plus"></i
+              >Add an event <i class="fa-solid fa-plus"></i
             ></RouterLink>
           </li>
           <li class="nav-item">
@@ -85,7 +81,7 @@
         dans le cadres des cours inter-écoles de la HES-SO. 
       </div>
       <div class="col-4">
-        Realisé par : <br>
+        Réalisé par : <br>
         <a href="https://github.com/Briefgarde">Nemo Vollert</a> | 
         <a href="https://github.com/AnthoLM">Anthony Le Meillour</a> | 
         <a href="https://github.com/GregorySTNKV">Gregory Stankov</a> | 
@@ -144,10 +140,10 @@ export default {
   color: #42b983;
 }
 .navbar {
-  background-color: #FF6F00; /* Orange */
+  background-color: #FF6F00;
 }
 .btn-primary {
-  color: black; /* Black */
+  color: black;
   background-color: #FF4500;
   border-color: black;
 }
@@ -155,15 +151,18 @@ export default {
   font-weight: bold;
 }
 .nav-link:hover, .btn-primary:hover {
-  color: #FF6F00; /* Orange */
+  color: #FF6F00;
   background-color: white;
   border-radius: 20%;
 }
 
 footer {
-  background-color: #FF6F00; /* Orange */
+  background-color: #FF6F00;
   color: white;
   padding: 30px;
+}
+footer a {
+  color: white;
 }
 
 #logoGit {

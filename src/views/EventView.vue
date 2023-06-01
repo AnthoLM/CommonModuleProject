@@ -46,19 +46,16 @@
                             <div>{{ event.place.city }}, {{ event.place.address }}</div>
                             <div> From the {{ formatDate(event.startDate) }} to the {{ formatDate(event.endDate) }}</div>
                         </div>
-                        <RouterLink class="btn btn-primary" :to="{ name: 'eventDetail', params: { id: event.id } }">See this event !</RouterLink>
+                        <RouterLink class="btn btn-warning" :to="{ name: 'eventDetail', params: { id: event.id } }">See this event !</RouterLink>
                         <br><br>Share on : <br>
-                        <ShareNetwork network="facebook" :url="placeUrl(index)" :title="placeTitle(event)">
-                            <i class="fab fa-facebook fa-lg logo-icon" @click="$emit('click')"></i>
-                        </ShareNetwork>
                         <ShareNetwork network="twitter" :url="placeUrl(index)" :title="placeTitle(event)">
-                            <i class="fab fa-twitter fa-lg logo-icon" @click="$emit('click')"></i>
+                            <i class="fab fa-twitter fa-lg logo-icon" @click="$emit('click')" style="color: #FFC107;"></i>
                         </ShareNetwork>
                         <ShareNetwork network="whatsapp" :url="placeUrl(index)" :title="placeTitle(event)">
-                            <i class="fab fa-whatsapp fa-lg logo-icon" @click="$emit('click')"></i>
+                            <i class="fab fa-whatsapp fa-lg logo-icon" @click="$emit('click')" style="color: #FFC107;"></i>
                         </ShareNetwork>
                         <ShareNetwork network="reddit" :url="placeUrl(index)" :title="placeTitle(event)">
-                            <i class="fab fa-reddit fa-lg logo-icon" @click="$emit('click')"></i>
+                            <i class="fab fa-reddit fa-lg logo-icon" @click="$emit('click')" style="color: #FFC107;"></i>
                         </ShareNetwork>
                     </div>
                 </div>
@@ -141,7 +138,6 @@ export default {
                     event.place.city.toLowerCase().includes(this.citySearch.toLowerCase()) && 
                     event.place.address.toLowerCase().includes(this.addressSearch.toLowerCase()) && 
                     event.place.npa.toString().toLowerCase().includes(this.npaSearch.toString().toLowerCase())
-                    //this does the same search but with the variables checking individual fields, not all of them at once
                 })
             }
 
@@ -162,5 +158,12 @@ export default {
 .fade-enter-from,
 .fade-leave-to {
   opacity: 0;
+}
+
+.card {
+  border: 2px solid #FF6F00;
+  border-color : #FF6F00;
+  box-shadow: 0px 0px 0px 10px #FF6F00;
+  transition: box-shadow 0.3s ease-in-out;
 }
 </style>
