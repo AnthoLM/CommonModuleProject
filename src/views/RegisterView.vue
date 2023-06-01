@@ -37,7 +37,7 @@
                 placeholder="Confirmer le mot de passe"
               />
               <Transition name="slide-fade">
-                <div class="alert alert-danger mt-2" role="alert" v-if="!isReadyForRegister">
+                <div class="alert alert-danger mt-2" role="alert" v-if="!isReadyForRegister && textNotReady !== null">
                   {{ textNotReady }}
                 </div>
               </Transition>
@@ -106,15 +106,21 @@ export default {
         return "Les mots de passe ne correspondent pas"
       } else if (this.password.length < 8) {
         return "Le mot de passe doit contenir au moins 8 caractères"
-      } else return this.loginError
+      } else return null
     },
     textErrorRegister() {
       if (this.loginError.username) {
         return "Ce nom d'utilisateur est déjà pris"
-      } else if (this.loginError.password) {
-        return "Ce mot de passe est trop courant ou n'est pas assez compliqué"
       }
-      return null
+      else if ( this.loginError.email){
+        return "Cet email est déjà pris"
+      } 
+      else if (this.loginError.password || this.loginError.password1) {
+        return "Ce mot de passe est trop courant ou n'est pas assez compliqué"
+      } else {
+        return "Compte créé avec succès !"
+      }
+      
     }
   },
   methods: {
