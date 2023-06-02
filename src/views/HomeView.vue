@@ -2,7 +2,7 @@
   <div class="home">
     <div class="center">
       <h1 class="mt-5">Welcome to {{decoration.websitename}} !</h1> 
-      <img alt="Fennec_logo" src="@/assets/images/fennec-anime.gif" />
+      <img alt="Fennec_logo" class="mb-1" src="@/assets/images/fennec-anime.gif" />
     </div>
   </div>
 </template>
