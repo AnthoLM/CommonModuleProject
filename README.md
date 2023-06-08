@@ -1,7 +1,7 @@
 # Project Fennec
 
 # REQUIEREMENT FENNEC PROJECT
-- When u download the fennec-project
+- When you download the fennec-project
 In new terminal do:
 cd projet-fennec
 npm install
